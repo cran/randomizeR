@@ -1,0 +1,38 @@
+Package: randomizeR
+Title: Randomization for Clinical Trials
+Version: 1.0
+Date: 2015-09-11
+Authors@R: c(
+    person(given="Thi Mui", family="Pham", email="thi.mui.pham@rwth-aachen.de", role="ctb"),
+    person(given="David", family="Schindler", email="dschindler@ukaachen.de", role="aut"),
+    person(given="Diane", family="Uschner", email="duschner@ukaachen.de", role=c("aut","cre"))
+    )
+Description: This tool enables the user to choose a randomization procedure
+    based on sound scientific criteria. It comprises the generation of randomization
+    sequences as well the assessment of randomization procedures based on carefully
+    selected criteria. Furthermore, randomizeR provides a function for the
+    comparison of randomization procedures.
+Depends: R (>= 3.2.2), methods, ggplot2
+License: GPL (>= 3)
+LazyData: true
+Collate: 'util.R' 'randSeq.R' 'testDec.R' 'getStat.R'
+        'getExpectation.R' 'normEndp.R' 'endpoint.R' 'doublyT.R'
+        'selBias.R' 'power.R' 'imbalance.R' 'corGuess.R' 'chronBias.R'
+        'bias.R' 'issue.R' 'assess.R' 'getDesign.R' 'randPar.R'
+        'ebcPar.R' 'bsdPar.R' 'bsdSeq.R' 'chronBiasStepT.R' 'compare.R'
+        'crPar.R' 'crSeq.R' 'createParam.R' 'ebcSeq.R' 'hadaPar.R'
+        'hadaSeq.R' 'mpPar.R' 'mpSeq.R' 'pbrPar.R' 'pbrSeq.R'
+        'rtbdSeq.R' 'rpbrSeq.R' 'randomBlockSeq.R'
+        'randomizeROverview.R' 'randomizeRPackage.R' 'rarPar.R'
+        'rarSeq.R' 'rpbrPar.R' 'tbdPar.R' 'rtbdPar.R' 'saveAssess.R'
+        'saveRand.R' 'tbdSeq.R' 'udPar.R' 'udSeq.R'
+Suggests: testthat, knitr, quantreg
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2015-09-09 16:14:47 UTC; duschner
+Author: Thi Mui Pham [ctb],
+  David Schindler [aut],
+  Diane Uschner [aut, cre]
+Maintainer: Diane Uschner <duschner@ukaachen.de>
+Repository: CRAN
+Date/Publication: 2015-09-09 21:19:36

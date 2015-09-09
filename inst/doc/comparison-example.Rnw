@@ -1,0 +1,176 @@
+\documentclass{article}
+
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Comparing randomizaton procedures}
+
+\usepackage[backend=bibtex,style=alphabetic,citestyle=authoryear]{biblatex}
+\bibliography{vignette}
+
+\begin{document}
+
+\author{Diane Uschner}
+\title{Tutorial: comparing randomization procedures with \texttt{randomizeR}.}
+\maketitle
+
+
+\section{Introduction}
+\texttt{randomizeR} is a user-friendly package that allows the user to assess and compare
+randomization procedures according to issues. This tutorial focuses on the
+comparison of randomization procedures.
+
+To install \texttt{randomizeR} from CRAN, run
+<<eval=F>>=
+install.packages("randomizeR")
+@
+in your R command line.
+
+\section{Main working example}
+
+Assume we are in the planning stage of a two-armed clinical trial with $N=24$ 
+patients. Assume further that we want to choose a randomization procedure such
+that the potential for selection bias is minimized. \texttt{randomizeR} can 
+help us choose a suitable randomization procedure by comparing various randomization
+procedures subject to their susceptibility to selection bias. In order to use
+the functionality provided by \texttt{randomizeR}, we have to load it into
+the library:
+<<message=F>>=
+library(randomizeR)
+@
+
+\cite{Blackwell1957} proposed the expected proportion of correct 
+guesses as a measure for the susceptibility to selection bias. They also 
+showed that the "`convergence strategy"' is optimal if the randomization procedure
+forces terminal balance.
+\texttt{randomizeR} represents the expected proportion of correct guesses
+with convergence strategy ("`CS"') as follows:
+
+<<cor-guess>>=
+cg <- corGuess("CS")
+cg
+@
+
+Because we want to reuse this representation of the correct guesses,
+we assigned it to the variable \texttt{cg}. \texttt{randomizeR} supports five
+different criteria (aka. \texttt{issues}) for the comparison of randomization 
+procedures. The help page
+<<further, eval=FALSE>>=
+?issues
+@
+provides an overview over all implemented criteria.
+
+Now assume that we are interested in a comparison between the Permuted Block
+Randomization with block length four (PBR(4)), Random Allocation Rule (RAR) and the 
+Big Stick Design with imbalance tolerance two (BSD(2)). (see \cite{rosenbergerlachin2002})
+Again, we can represent 
+these randomization procedures in \texttt{randomizeR} easily. Starting with RAR, 
+we get
+<<rar>>=
+rar <- rarPar(24)
+rar
+@
+
+For PBR(4), we need to define the \textit{block constellation} \texttt{bc}, i.e. the sequence of
+blocks that are forced to be balanced; and then pass it to \texttt{pbrPar}.
+<<pbr>>=
+bc <- rep(4, 24/4)
+pbr <- pbrPar(bc)
+pbr
+@
+
+BSD(2) depends on the total sample size and the maximum tolerated imbalance:
+<<bsd>>=
+bsd <- bsdPar(24, 2)
+bsd
+@
+
+The objects \texttt{rar}, \texttt{pbr} and \texttt{bsd} now represent the randomization
+procedures RAR, PBR(4) and BSD(2) for $N=24$ and we can use them in our calculations.
+If you are interested in more randomzation procedures, you can similarly 
+choose any of the ten randomization procedures supported by \texttt{randomizeR}.
+The help page
+<<ra, eval=FALSE>>=
+?randPar
+@
+provides an overview over all randomization procedures implemented.
+
+\texttt{randomizeR} pursues a sequence based approach. That means that the 
+randomization procedures are compared based on the randomization sequences they 
+produce along with their probability of occurrence. Naturally, the sampling 
+algorithms of \texttt{randomizeR} implement the randomization procedures such
+that the theoretical probabilities of occurence equal the sampled relative 
+frequencies. 
+
+For the comparison of \texttt{rar}, \texttt{pbr} and \texttt{bsd} we thus need
+to generate sequences. This is fairly easy in \texttt{randomizeR}
+
+<<sequences, results=F>>=
+rarS <- genSeq(rar,1000)
+pbrS <- genSeq(pbr,1000)
+bsdS <- genSeq(bsd,1000)
+@
+
+The resulting objects include 1000 random sequences from $x$ for $x \in$ 
+\{\texttt{rar}, \texttt{pbr}, \texttt{bsd}\}, along with the information
+of the randomization procedure.
+
+<<>>=
+bsdS
+@
+That way the information about how the sequences have been generated can never
+get lost. The sequences themselves can be accessed via 
+
+<<results='hide'>>=
+getRandList(bsdS)
+@
+
+Now we are ready to actually compare the randomization procedures. This is easy,
+because we can recycle all the objects that we have generated already.
+In \texttt{randomizeR}, we simply call \texttt{compare} and pass all the arguments
+to it:
+
+<<>>=
+C <- compare(cg, rarS, pbrS, bsdS)
+C
+@
+The first argument must be an \texttt{issue}, and the following arguments must
+be of class \texttt{randSeq}, i.e. representations of randomization sequences.
+
+From the table we can see that the maximum extent for selection bias is equal
+for RAR and PBR, while it is slightly lower for BSD. Concerning the mean, RAR 
+and BSD keep nearly the same level, whereas BSD has far higher restrictions to
+balance during the allocation process. 
+
+To make things even more accessible, \texttt{randomizeR} provides a function
+for visualizing this comparison:
+
+<<plot-comp,eval=F>>=
+plot(C)
+@
+
+\begin{figure}%
+<<echo=F>>=
+<<plot-comp>>
+@
+\caption{Comparison of randomization procedures}%
+\label{fig1:comp-cg}%
+\end{figure}
+
+Figure \ref{fig1:comp-cg} shows the result of this call. 
+The target value of the expected proportion of correct guesses is 0.5. 
+Figure \ref{fig1:comp-cg} shows that BSD manages to keep this target value for some
+sequences, and extends to approximately the same maximal value as RAR. PBR attains
+a higher extent of selection bias, yielding it inferior to BSD and RAR. It can 
+thus be concluded that BSD manages selection bias best of the three investigated 
+procedures.
+
+\section{Conclusion}
+\texttt{randomizeR} makes the comparison of different randomization procedures 
+according to one criterion easy. Furthermore, it comes with an extensive number 
+of randomization procedures and incorporates all relevant demands on 
+randomization procedures. The user can thus choose a tailored randomization 
+procedure on a scientifically sound basis.
+
+
+\printbibliography
+
+\end{document}
