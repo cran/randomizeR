@@ -111,6 +111,9 @@ setClass("randPar",
 #' \itemize{
 #'   \item Complete Randomization (\code{\link{crPar}})
 #'   \item Efron's Biased Coin Design (\code{\link{ebcPar}})
+#'   \item Generalized Biased Coin Design (\code{\link{gbcdPar}})
+#'   \item Adjustable Biased Coin Design (\code{\link{abcdPar}})
+#'   \item Bayesian Biased Coin Design (\code{\link{bbcdPar}})
 #'   \item Hadamard Randomization (\code{\link{hadaPar}})
 #'   \item Maximal Procedure (\code{\link{mpPar}})
 #'   \item Permuted Block Randomization (\code{\link{pbrPar}})
@@ -119,6 +122,7 @@ setClass("randPar",
 #'   \item Truncated Binomial Design with random block length (\code{\link{rtbdPar}})
 #'   \item Truncated Binomial Design (\code{\link{tbdPar}})
 #'   \item Wei's Urn Design (\code{\link{udPar}})
+#'   \item Chen's Design (\code{\link{chenPar}})
 #' }
 #' 
 #' @seealso Generate randomization sequences \code{\link{genSeq}}.
@@ -239,7 +243,31 @@ method <- function(obj) {
   toupper(sub("Par", "", class(obj)[1]))
 }
 
+#' Function returning the adjusting parameter rho slot of an S4 object
+#'
+#' @param obj object of class randPar 
+#' 
+#' @export
+rho <- function(obj) {
+  if (.hasSlot(obj, "rho")) {
+    obj@rho
+  } else {
+    stop("object has no slot named rho.")
+  }
+}
 
+#' Function returning the adjusting parameter a slot of an S4 object
+#'
+#' @param obj object of class randPar 
+#' 
+#' @export
+a <- function(obj) {
+  if (.hasSlot(obj, "a")) {
+    obj@a
+  } else {
+    stop("object has no slot named a.")
+  }
+}
 
 # --------------------------------------------
 # Show function for randPar
@@ -322,7 +350,23 @@ setMethod("show", "randPar", function(object) {
 #' # TBD
 #' myPar <- tbdPar(8)
 #' getAllSeq(myPar)
+#' 
+#' # GBCD
+#' myPar <- gbcdPar(8, 2)
+#' getAllSeq(myPar)
+#' 
+#' # ABCD
+#' myPar <- abcdPar(8, 3)
+#' getAllSeq(myPar)
 #'
+#' # BBCD
+#' myPar <- bbcdPar(8, 5)
+#' getAllSeq(myPar)
+#' 
+#' # CHEN
+#' myPar <- chenPar(8, 2, 0.667)
+#' getAllSeq(myPar)
+#' 
 #' @name generateAllSequences
 NULL
 
@@ -399,6 +443,26 @@ setGeneric("getAllSeq", function(obj) standardGeneric("getAllSeq"))
 #' # TBD
 #' myPar <- tbdPar(c(4, 6))
 #' genSeq(myPar, 4)
+#' genSeq(myPar)
+#' 
+#' # GBCD
+#' myPar <- gbcdPar(8, 2)
+#' genSeq(myPar, 4)
+#' genSeq(myPar)
+#' 
+#' # ABCD
+#' myPar <- abcdPar(8, 3)
+#' genSeq(myPar, 4)
+#' genSeq(myPar)
+#'
+#' # BBCD
+#' myPar <- bbcdPar(8, 5)
+#' genSeq(myPar, 5)
+#' genSeq(myPar)
+#' 
+#' # CHEN
+#' myPar <- chenPar(8, 2, 0.667)
+#' genSeq(myPar, 5)
 #' genSeq(myPar)
 #' 
 #' @name generateRandomSequences

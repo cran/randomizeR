@@ -8,6 +8,8 @@
 #' @param alpha the level of the t.test in each simulation.
 #' @param bc vector which contains the lengths \code{k_1,...,k_l} of each block. 
 #' This means that the vector \code{bc} will have one entry for each block.
+#' @param b numeric vector of length at most 2 specifying the weight(s) for the punishment of 
+# deviations from the target value.
 #' @param ini integer representing the initial urn composition.
 #' @param compr factor of compression for the sigmoid-time trend.
 #' @param d effect size.
@@ -19,7 +21,6 @@
 #' @param FTI final tolerated imbalance. This is the difference in number of
 #' patients of groups A and B that is permitted at the end of a trial. Usually
 #' this is set to zero.
-#' @param gamma selection effect (eta divided by sigma).
 #' @param groups character vector of labels for the different treatments.
 #' @param k length of the block to be permuted. \code{k} should be divisible by
 #' the number of treatment arms.
@@ -61,6 +62,8 @@
 #' @param seed seed for the random number generation
 #' @param sigma vector of the standard deviations in each the treatment group, 
 #' should have length \code{K} (i.e. one entry for each treatment group).
+#' @param SLs numeric vector of length at most 2 specifying the lower and/or upper 
+#' specified border.
 #' @param theta factor of the time trend for further details see \code{type}.
 #' @param type character vector indicating which biasing strategy the
 #' experimenter is using (selection bias) and which other bias is present in the
@@ -73,10 +76,20 @@
 #' sigmoid time trend, \code{PWR} for knowledge of all up to the first
 #' observation in each block, \code{MTI} the next observation after reaching the
 #' maximal tolerated imbalance is reached will be known to the physican.
+#' @param TV numeric specifying the optimal desired value called the target value.
 #' @param varEq \code{logical} parameter for the t.test: Shall the variances be treated 
 #' as equal (TRUE= t.test) or different (FALSE= Welch.test).
 #' @param ub upper bound for the last value of the poisson distribution.
 #' @param x a variable \code{x}.
+#' @param rho nonnegative parameter which my be adjusted according to how strongly it is 
+#' desired to balance the experiment. If \code{rho = 1}, we have Wei's urn design with
+#' \code{alpha = 0}. If \code{rho = 0}, we have complete randomization. 
+#' @param a nonnegative parameter which my be adjusted according to how strongly it is 
+#' desired to balance the experiment. a = 0 gives the complete randomization, while the
+#' assignments become more deterministic as \code{a} increases.
+#' @param a nonnegative parameter which controls the degree of randomness: 
+#' For decreasing \code{a} the allocations become deterministic, while for increasing
+#' \code{a} this procedure tends to complete randomization. 
 #'
 #' @name overview
 NULL

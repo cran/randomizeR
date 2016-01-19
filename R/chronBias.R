@@ -128,7 +128,7 @@ setClass("chronBias",
 #'    every patient included in the study, until reaching \code{log(N) theta} after \code{N} patients.
 #'    Logistic time trend may occur as a result of a learning curve, i.e. in a surgical trial.
 #'    It can be presented by the formula:
-#'   \deqn{\log(i) \theta}{f(i) = log(i) \theta}
+#'   \deqn{\log(i) \theta}{f(i) = log(i/N) \theta}
 #'   }
 #' 	 \item{\code{type = "stepT"}}{
 #'    Represents step trend. Step trend means that the expected response of the patients increases
@@ -196,24 +196,24 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "chronBias", 
           function(randSeq, issue, endp) {
             stopifnot(randSeq@K == 2, randSeq@K == length(endp@mu))
             validObject(randSeq); validObject(issue); validObject(endp)
-            n <- ncol(randSeq@M)
+            n <- N(randSeq)
             # linear time trend
             if (issue@type == "linT") {
               issue <- t(apply(randSeq@M, 1, function(x) {
                 1:n * issue@theta
               }))
             }
-			# logistic time trend			
+			# logarithmic time trend			
 			else if (issue@type == "logT") {
               issue <- t(apply(randSeq@M, 1, function(x) {
-                log(1:n) * issue@theta
+                log((1:n)/n) * issue@theta
               }))  
             } 
 			# step time trend
 			else if (issue@type == "stepT") {
               stopifnot(randSeq@N > issue@saltus)
               issue <- t(apply(randSeq@M, 1, function(x) {
-                c(rep(0, issue@saltus - 1), rep(issue@theta, randSeq@N - issue@saltus + 1))
+                c(rep(0, issue@saltus - 1), rep(issue@theta, n - issue@saltus + 1))
               }))  
             }
 
@@ -229,23 +229,24 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "chronBias", 
           function(randSeq, issue) {
             stopifnot(randSeq@K == 2)
             validObject(randSeq); validObject(issue)
-            n <- ncol(randSeq@M)
-            # convergence strategy
+            n <- N(randSeq)
+            # linear time trend
             if (issue@type == "linT") {
               issue <- t(apply(randSeq@M, 1, function(x) {
                 1:n * issue@theta
               }))
+            # logarithmic time trend			
             } else if (issue@type == "logT") {
               issue <- t(apply(randSeq@M, 1, function(x) {
-                log(1:n) * issue@theta
-              }))  
+                log((1:n)/n) * issue@theta
+              })) 
+            # step time trend
             } else if (issue@type == "stepT") {
               stopifnot(randSeq@N > issue@saltus, is(issue,"chronBiasStepT"))
               issue <- t(apply(randSeq@M, 1, function(x) {
-                c(rep(0, issue@saltus - 1), rep(issue@theta, randSeq@N - issue@saltus + 1))
+                c(rep(0, issue@saltus - 1), rep(issue@theta, n - issue@saltus + 1))
               })) 
             }
-
             issue
           }
 )

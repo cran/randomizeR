@@ -13,7 +13,10 @@ test_that("correct random seed is used", {
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # biased coin parameter
   seed   <- sample(1000, 1)                    # Sample seed
   nr     <- sample(10,1)                       # sample number of blocks 
-  blocks <- sample(seq(2, 20, 2), nr)          # sample blocks, 
+  blocks <- sample(seq(2, 20, 2), nr)          # sample blocks
+  gamma  <- sample(50, 1)                      # Sample parameter for bbcd
+  a      <- sample(50, 1)                      # Sample parameter for abcd
+  rho    <- sample(50, 1)                      # Sample parameter for gbcd
   
   # 1. Test for complete randomization
   output1 <- genSeq(crPar(N), r, seed) 
@@ -58,5 +61,17 @@ test_that("correct random seed is used", {
   
   # 9. Test for Hadamard Randomization
   output1 <- genSeq(hadaPar(N), r, seed)
+  expect_equal(output1$seed, seed)
+  
+  # 10. Test for Generalized Biased Coin Design
+  output1 <- genSeq(gbcdPar(N, rho), r, seed)
+  expect_equal(output1$seed, seed)
+  
+  # 11. Test for Adjustable Biased Coin Design
+  output1 <- genSeq(abcdPar(N, a), r, seed)
+  expect_equal(output1$seed, seed)
+  
+  # 12. Test for Bayesian Biased Coin Design
+  output1 <- genSeq(bbcdPar(N, gamma), r, seed)
   expect_equal(output1$seed, seed)
 })

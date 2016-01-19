@@ -218,5 +218,55 @@ NULL
 setGeneric("getProb", function(obj) standardGeneric("getProb"))
 
 
+#' Sequence plotting
+#'
+#' Plot all randomization sequences of a randSeq object
+#' 
+#' @param sequences object of type randSeq
+#' @param emph integer indicating which sequence should be highlighted in blue.
+#' @param plotAllSeq logical. If \code{plotAllSeq=TRUE}, the complete set of 
+#' randomization sequences will be plotted in light gray.
+#' @param rs vector of a randomization sequence that should be highlighted.
+#' 
+#' @export
+plotSeq <- function(sequences,plotAllSeq=F,emph=NA,rs=NA){ 
+  N<-N(sequences)
+  
+  plot.new()
+  plot.window(xlim=c(0,N), ylim=c(-N,N))
+  abline(a=0, b=0, col="lightgray")
+  axis(1)
+  axis(2)
+  axis(4)
+  #title(main = "Randomization Sequences")
+  title(ylab="Difference in group size")
+  title(xlab=expression(paste("Patient ", i)))
+  box()
+  
+  if(plotAllSeq){
+    for(i in 0:(N-1)){
+      for(j in seq(-i,i,2)){
+        lines(c(i,i+1),c(j,j+1),type="b",col="lightgray")
+        lines(c(i,i+1),c(j,j-1),type="b",col="lightgray")
+      }
+    }
+  }
+  
+  numberOfSequences<-nrow(sequences@M)
+  if (!is.na(emph)) stopifnot(emph<numberOfSequences, 0<emph)
+  
+  for(i in 1:numberOfSequences){
+    lines(0:N,cumsum(c(0,2*(sequences@M)[i,]-1)),type="b")
+  }
+  
+  if(!is.na(emph)){
+    lines(0:N,cumsum(c(0,2*sequences@M[emph,]-1)),type="b",lwd=2, col="cornflowerblue")
+  }
+  else if (!anyNA(rs)){
+    f<-c("black","red")
+    D<-c(0,cumsum(2*as.numeric(rs)-1)) # contains the random walk
+    lines(0:N,D,type="b",lwd=2)
+  }
+}
 
 

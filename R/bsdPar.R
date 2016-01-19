@@ -34,6 +34,11 @@ validatebsdPar <- function(object) {
     errors <- c(errors, msg)
   }
 
+  if(mti[1] < 0){
+    msg <- "mti must be a positive integer"
+    errors <- c(errors, msg)
+  }
+  
   if(length(errors) == 0) TRUE else errors
 }
 
@@ -131,9 +136,9 @@ setMethod("getAllSeq", signature(obj = "bsdPar"),
 		          M = allSeqs[inside, ], 
 		          mti = mti(obj), 
 		          N = N(obj),
-              K = K(obj),
+             		  K = K(obj),
 		          ratio = obj@ratio,
-              groups = obj@groups
+              		  groups = obj@groups
 		          )
           }
 )

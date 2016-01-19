@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{randomizeR Quick Reference Guide}
+\usepackage{graphicx, verbatim}
+\usepackage{framed}
+\usepackage[a4paper, top=0.1in, bottom = 0.1in, left=0.2in, right=0.2in, landscape]{geometry} % for setting margins
+\usepackage[T1]{fontenc}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{tabularx}
+\begin{document}
+\section*{\center{\texttt{randomizeR 1.0} Quick Reference Guide}}
+\center{Diane Uschner, David Schindler, Thi Mui Pham}\\
+\vspace{0.2cm}
+%\center{21st September, 2015}\\
+\begin{table}[ht]
+\parfillskip=0pt
+% % % % % % % % % % % % % % % % % % % 
+% RANDOMIZATION PROCEDURES
+% % % % % % % % % % % % % % % % % % % 
+\shadowbox{
+  \begin{tabularx}{0.47\textwidth}{p{4cm}|p{8.5cm}}
+  \multicolumn{2}{l}{\textbf{1 \quad Randomization Procedures (RP)}}  \\
+  \hline \hline
+  \texttt{rarPar(N)} & Random Allocation rule with \texttt{N} patients\\
+  \texttt{crPar(N)} & Complete Randomization with \texttt{N} patients \\
+  \texttt{pbrPar(bc), rpbr(bc)} & (randomized) Permuted Block Design \\
+  \texttt{ebcPar(N, p)} & Efron's Biased Coin Design with \texttt{N} patients and success probability \texttt{p} \\
+  \texttt{mpPar(N, mti)} & Maximal Procedure with \texttt{N} patients and maximum tolerated imbalance \texttt{mti} \\
+  \texttt{bsdPar(N, mti)} & Big Stick design with \texttt{N} patients and maximum tolerated imbalance \texttt{mti} \\
+  \texttt{udPar(N, ini, add)} & Wei's urn design with an initial urn composition of \texttt{ini} balls and in each step \texttt{add} balls are added\\
+  \vdots\\ \hline
+  \texttt{createParam(method, N,\dots)} & Creates object that represents the chosen RP\\
+  \texttt{genSeq(obj, r, seed)} & Generates random sequences \\
+  \texttt{getAllSeq(obj)} & Output of all randomization sequences for the given RP  \\
+  \texttt{getProb(obj)} & Calculates theoretical probability for observed randomization sequences \\
+  \texttt{getRandList(obj)} & Get the randomization list coded in its groups \\
+  \texttt{saveRand(obj)} & Saves the generated randomization sequence and its input parameters 
+  \end{tabularx}
+}
+\hfill
+\parfillskip=0pt
+% % % % % % % % % % % %  
+% ISSUES
+% % % % % % % % % % % %  
+\shadowbox{
+  \begin{tabularx}{0.47\textwidth}{p{4.2cm}|p{8cm}}
+  \multicolumn{2}{l}{\textbf{3 \quad Issues}} \\
+  \multicolumn{2}{l}{Summarizes the criteria for the assessment of randomization}\\
+  \hline \hline
+  \texttt{selBias(type, eta, method, alpha)} & Issue of selection bias in a clinical trial with magnitude of selection bias \texttt{eta}\\
+  \texttt{chronBias(type, theta, method, alpha)} & Issue of chronological bias in a clinical trial with factor of time trend \texttt{theta}\\
+  \texttt{setPower(d, method, alpha)} & Expected power of the individual randomization sequences with effect size \texttt{d} \\
+  \texttt{normEndp(mu, sigma)} & Represents normally distributed endpoints in clinical trials (in conjunction with \texttt{assess} function and issues mentioned above) \\
+  \hline
+  \multicolumn{2}{l}{}\\
+  \multicolumn{2}{l}{For the parameter \texttt{method} there are two possible models supported:}\vspace{0.2cm}\\
+  \texttt{method = "sim"} & the object represents the simulated type-I-error rate given the significance level \texttt{alpha}\\
+  \texttt{method = "exact"} & the object represents the exact type-I-error probability given the significance level \texttt{alpha}\\
+  \hline
+  \texttt{imbal(type)} & Imbalance of the treatment assignments of patients in clinical trial with parameter \texttt{type} that represents the different kinds of imbalance, e.g. final imbalance, maximal attained imbalance \\
+  \texttt{corGuess(type)} & Expected number of correct guesses of randomization sequences with strategy parameter \texttt{type}, i.e. \texttt{type = "CS"} or \texttt{type = "DS"} \\
+  \end{tabularx}
+}\vspace{0.3cm}
+% % % % % % % % % % % %  
+% ASSESSMENT
+% % % % % % % % % % % % 
+\shadowbox{
+  \begin{tabularx}{0.47\textwidth}{p{4.8cm}|p{7.2cm}}
+  \multicolumn{2}{l}{\textbf{2 \quad Assessment of a Randomization Procedure}} \\
+  \multicolumn{2}{l}{Assess one randomization procedure according to several specified issues} \\
+  \hline \hline
+  \texttt{assess(\dots)} & Evaluates the behaviour of randomization sequences with respect to certain issues\\
+  \texttt{summary(assess(\dots))} & Summary of assessessments (for each issue) of one RP 
+  \end{tabularx}
+}
+% % % % % % % % % % % %  
+% COMPARISON
+% % % % % % % % % % % %  
+\shadowbox{
+  
+  \begin{tabularx}{0.47\textwidth}{p{4.8cm}|p{7.2cm}}
+  \multicolumn{2}{l}{\textbf{4 \quad Comparison of Randomization procedures}} \\
+  \multicolumn{2}{l}{Compare several randomization procedures according to one issue}\\
+  \hline\hline
+  \texttt{compare(issue,\dots )} & Compares randomization procedures based on a specified issue\\
+  \texttt{plot(compare(\dots))} & Creates a box- or violinplot of an object of the class \texttt{comparison}
+  \end{tabularx}
+}
+\end{table}
+\end{document}

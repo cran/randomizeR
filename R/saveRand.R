@@ -16,12 +16,14 @@
 #' @family saving functions
 #' 
 #' @inheritParams overview
+#' @param obj object of class \code{randSeq} containing a single randomization sequence.
 #'
-#' @return Creates a \code{.csv} data in the home folder.
+#' @return Creates a \code{.csv} data in the home folder and saves the randomization list as a column vector.
 #'
 #' @export
 saveRand <- function(obj, file = "randList.csv") {
   if(!("randSeq" %in% is(obj))) stop("Object not of class randSeq")
+  if (nrow(obj@M) > 1) stop("Object should only contain one randomization sequence.")
   
   write(paste("This document was generated on",  format(Sys.time(), "%a %b %d %Y"),
               "at",  format(Sys.time(), "%X") ,".\n"),
@@ -54,13 +56,29 @@ saveRand <- function(obj, file = "randList.csv") {
 
   write("\n" , file = file, append = TRUE)
   randList <- getRandList(obj)
-  colnames(randList) <- paste("Allocation", 1:ncol(randList))
-  write(colnames(randList) , file = file,  sep = "\t", ncolumns = ncol(randList),
-        append = TRUE)
-  write(randList , file = file,  sep = "\t", ncolumns = ncol(randList),
-        append = TRUE)
-
+  
+  dataFrame <- data.frame("Allocation" = 1:length(randList))
+  dataFrame$Treatment = as.vector(randList)
+  
+  suppressWarnings(write.table(dataFrame, file = file,  sep = "\t", append = TRUE, 
+                               row.names = FALSE, col.names = TRUE))
+  
+  # old version (output is transposed)
+  #colnames(randList) <- paste("Allocation", 1:ncol(randList))
+  #write(colnames(randList) , file = file,  sep = "\t", ncolumns = ncol(randList),
+  #      append = TRUE)
+  #write(t(randList) , file = file,  sep = "\t", ncolumns = ncol(randList),
+  #      append = TRUE)
+  
 }
+
+
+
+
+
+
+
+
 
 
 

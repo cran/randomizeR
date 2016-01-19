@@ -19,7 +19,8 @@
 # @return A matrix containing all \code{2^N} randomisation sequences in the
 # rows, where \code{N=N(obj)} is the total sample size.
 compltSet <- function(obj) {
-  stopifnot(N(obj) <= 24, K(obj) == 2, identical(ratio(obj),  c(1, 1)))
+  if (N(obj) > 24) stop("Full reference set only computeable up to N=24. Use the parameter r in genSeq to simulate several sequences.")
+  stopifnot(K(obj) == 2, identical(ratio(obj),  c(1, 1)))
   # For K > 2 this must be modified!
   unname(as.matrix(expand.grid(rep(list(0:1), N(obj)))))
 }

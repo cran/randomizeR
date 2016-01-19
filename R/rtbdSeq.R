@@ -26,7 +26,7 @@ NULL
 # @slot p success probability of the coin.
 # @slot rb random blocks to choose from
 # 
-setClass("rRtbdSeq", slots=c(rb = "numeric", bc = "list"),
+setClass("rRtbdSeq", slots=c(rb = "numeric", bc = "list", filledBlock = "logical"),
          contains = "rRandSeq")
 
 # --------------------------------------------
@@ -38,6 +38,10 @@ setMethod("getDesign",
           signature(obj = "rRtbdSeq"),
           function(obj) {
             rb <- capture.output(cat(obj@rb, sep = ","))
-            paste(c("RTBD(", rb, ")"), sep = "", collapse = "")
+            if (obj@filledBlock) {
+              paste(c("RTBDFB(", rb, ")"), sep = "", collapse = "")
+            } else {
+              paste(c("RTBD(", rb, ")"), sep = "", collapse = "")
+            }
           }
 )

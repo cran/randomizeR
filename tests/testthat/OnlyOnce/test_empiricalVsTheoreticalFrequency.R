@@ -13,6 +13,9 @@ test_that("the empirical and theoretical frequency coincide",{
   p       <- sample(seq(0.5001, 1, 0.05), 1)        # biasesd coin parameter
   blocks  <- c(4,4)                                 # blocks for block based procedures
   mti     <- sample(N/2, 1)                         # Maximal Tolerated Imbalance
+  gamma   <- sample(50, 1)                          # Sample parameter for bbcd
+  a       <- sample(50, 1)                          # Sample parameter for abcd
+  rho     <- sample(50, 1)                          # Sample parameter for gbcd
 
   
   # # # # # # # # # # # # # # # # # # # #
@@ -159,5 +162,55 @@ test_that("the empirical and theoretical frequency coincide",{
   
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
   # 9. Test for Hadamard Randomization => not necessary!?
- 
+  
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  # 10. Test for Generalized Biased Coin Design
+  output1 <- genSeq(gbcdPar(N, rho))
+  M1 <- output1$M[1,] 
+  # the corresponding theoretical frequency is computes
+  p1 <- getProb(output1)
+  
+  # n sequences are generated
+  outputN <- genSeq(gbcdPar(N, rho), n)
+  Mn <- outputN$M
+  # empirical frequency of sequence of above is computed
+  freq <- length(which(apply(Mn, 1, function(x) all(x == M1))))/n
+  # tolerance is computed by formula from approximate standard confidence intervall
+  tol <- qnorm(1-alpha/2)*sqrt(p1*(1-p1)/n)   
+  # check if empirical frequency is included confidence interval                                    
+  expect_less_than(abs(p1-freq), tol)
+  
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  # 11. Test for Adjustable Biased Coin Design
+  output1 <- genSeq(abcdPar(N, a))
+  M1 <- output1$M[1,] 
+  # the corresponding theoretical frequency is computes
+  p1 <- getProb(output1)
+  
+  # n sequences are generated
+  outputN <- genSeq(abcdPar(N, a), n)
+  Mn <- outputN$M
+  # empirical frequency of sequence of above is computed
+  freq <- length(which(apply(Mn, 1, function(x) all(x == M1))))/n
+  # tolerance is computed by formula from approximate standard confidence intervall
+  tol <- qnorm(1-alpha/2)*sqrt(p1*(1-p1)/n)   
+  # check if empirical frequency is included confidence interval                                    
+  expect_less_than(abs(p1-freq), tol)
+  
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  # 12. Test for Bayesian Biased Coin Design
+  output1 <- genSeq(bbcdPar(N, gamma))
+  M1 <- output1$M[1,] 
+  # the corresponding theoretical frequency is computes
+  p1 <- getProb(output1)
+  
+  # n sequences are generated
+  outputN <- genSeq(bbcdPar(N, gamma), n)
+  Mn <- outputN$M
+  # empirical frequency of sequence of above is computed
+  freq <- length(which(apply(Mn, 1, function(x) all(x == M1))))/n
+  # tolerance is computed by formula from approximate standard confidence intervall
+  tol <- qnorm(1-alpha/2)*sqrt(p1*(1-p1)/n)   
+  # check if empirical frequency is included confidence interval                                    
+  expect_less_than(abs(p1-freq), tol)
 })

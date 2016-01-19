@@ -13,7 +13,9 @@ test_that("total probability adds up to 1", {
   p <- sample(seq(0.5001, 1, 0.05), 1)          # biased coin parameter
   nr <- sample(3,1)                             # sample number of blocks 
   blocks <- sample(seq(2, 10, 2), nr)           # sample blocks
-  
+  rho <- sample(50, 1)
+  a <- sample(50,1)
+  gam <- sample (50,1)
   
   allCRseq <- getAllSeq(crPar(N)) 
   allPBRseq <- getAllSeq(pbrPar(bc = blocks)) 
@@ -23,6 +25,9 @@ test_that("total probability adds up to 1", {
   allTBDseq <- getAllSeq(tbdPar(bc = blocks)) 
   allHADAseq <- getAllSeq(hadaPar(N = 10))
   allRARseq <- getAllSeq(rarPar(N))
+  allGBCDseq <- getAllSeq(gbcdPar(N, rho))
+  allABCDseq <- getAllSeq(abcdPar(N, a))
+  allBBCDseq <- getAllSeq(bbcdPar(N, gam))
   
   expect_equal(sum(getProb(allCRseq)), 1)
   expect_equal(sum(getProb(allPBRseq)), 1)
@@ -32,4 +37,8 @@ test_that("total probability adds up to 1", {
   expect_equal(sum(getProb(allTBDseq)), 1)
   expect_equal(sum(getProb(allHADAseq)), 1) 
   expect_equal(sum(getProb(allRARseq)), 1)
+  expect_equal(sum(getProb(allGBCDseq)), 1)
+  expect_equal(sum(getProb(allABCDseq)), 1)
+  expect_equal(sum(getProb(allBBCDseq)), 1)
+  
 })

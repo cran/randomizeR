@@ -71,9 +71,10 @@ setMethod("show", "comparison", function(object) {
 #' Compares randomization procedures based on a specified issue 
 #' in clinical trials.
 #'
-#' @param issue object of class issue.
-#' @param endp object of class endpoint, or missing.
-#' @param ... at least one object of class randSeq.
+#' @param issue object of class \code{issue}.
+#' @param endp object of class \code{endpoint}, or \code{missing}.
+#' @param ... at least one object of class \code{randSeq} or a list of 
+#' objects of class \code{randSeq}.
 #'
 #' @details
 #' Randomization procedures behave differently with respect to issues
@@ -160,6 +161,10 @@ setGeneric("plot")
 setMethod("compare", signature(issue = "issue", endp = "missing"),
           function(issue, ...) {
             R <- list(...)
+            if (length(R) == 1 && is.list(R[[1]])) {
+              R <- c(...)
+            }
+            
             if (!all(sapply(R, function(x)  is(x, "randSeq"))))
               stop("Not all ... objects of class randSeq.")
             
@@ -190,6 +195,10 @@ setMethod("compare", signature(issue = "issue", endp = "missing"),
 setMethod("compare", signature(issue = "issue", endp = "endpoint"),
           function(issue, ..., endp) {
             R <- list(...)
+            if (length(R) == 1 && is.list(R[[1]])) {
+              R <- c(...)
+            }
+            
             if (!all(sapply(R, function(x)  is(x, "randSeq"))))
               stop("Not all ... objects of class randSeq.")
             

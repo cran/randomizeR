@@ -18,6 +18,9 @@ test_that("Output has correct number of sequences (without seed).", {
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # Sample biased coin parameter
   nr     <- sample(10,1)                       # Sample number of blocks 
   blocks <- sample(seq(2, 20, 2), nr)          # Sample blocks
+  gamma  <- sample(50, 1)                      # Sample parameter for bbcd
+  a      <- sample(50, 1)                      # Sample parameter for abcd
+  rho    <- sample(50, 1)                      # Sample parameter for gbcd
   
   # 1. Test for complete randomization
   output1 <- genSeq(crPar(N = N), r = r) # most probably more than one sequence
@@ -63,6 +66,18 @@ test_that("Output has correct number of sequences (without seed).", {
   # 9. Test for Hadamard Randomization
   output1 <- genSeq(hadaPar(N = N), r = r) 
   expect_equal(nrow(getRandList(output1)), r)
+  
+  # 10. Test for Generalized Biased Coin Design
+  output1 <- genSeq(gbcdPar(N, rho), r = r)
+  expect_equal(nrow(getRandList(output1)), r)
+  
+  # 11. Test for Adjustable Biased Coin Design
+  output1 <- genSeq(abcdPar(N, a), r = r)
+  expect_equal(nrow(getRandList(output1)), r)
+  
+  # 12. Test for Bayesian Biased Coin Design
+  output1 <- genSeq(bbcdPar(N, gamma), r = r)
+  expect_equal(nrow(getRandList(output1)), r)
 })
 
 test_that("Output has correct number of sequences (with seed)", {
@@ -75,7 +90,10 @@ test_that("Output has correct number of sequences (with seed)", {
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # biased coin parameter
   seed   <- sample(.Machine$integer.max, 1)    # Sample seed
   nr     <- sample(10,1)                       # sample number of blocks 
-  blocks <- sample(seq(2, 20, 2), nr)          # sample blocks, 
+  blocks <- sample(seq(2, 20, 2), nr)          # sample blocks
+  gamma  <- sample(50, 1)                      # Sample parameter for bbcd
+  a      <- sample(50, 1)                      # Sample parameter for abcd
+  rho    <- sample(50, 1)                      # Sample parameter for gbcd
   
   # 1. Test for complete randomization
   output1 <- genSeq(crPar(N = N), r = r, seed = seed) 
@@ -120,6 +138,18 @@ test_that("Output has correct number of sequences (with seed)", {
   
   # 9. Test for Hadamard Randomization
   output1 <- genSeq(hadaPar(N = N), r = r, seed = seed)
+  expect_equal(nrow(getRandList(output1)), r)
+  
+  # 10. Test for Generalized Biased Coin Design
+  output1 <- genSeq(gbcdPar(N, rho), r = r, seed = seed)
+  expect_equal(nrow(getRandList(output1)), r)
+  
+  # 11. Test for Adjustable Biased Coin Design
+  output1 <- genSeq(abcdPar(N, a), r = r, seed = seed)
+  expect_equal(nrow(getRandList(output1)), r)
+  
+  # 12. Test for Bayesian Biased Coin Design
+  output1 <- genSeq(bbcdPar(N, gamma), r = r, seed = seed)
   expect_equal(nrow(getRandList(output1)), r)
 })
 

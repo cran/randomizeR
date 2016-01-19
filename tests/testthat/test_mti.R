@@ -11,6 +11,7 @@ context("Comply with MTI")
 test_that("the randomization methods comply with the prescribed MTI",{
   N <- sample(seq(2, 20, 2), 1)
   mti <- sample(N/2, 1)
+  p <- sample(seq(0.5, 1, 0.01), 1)
   nr <- sample(10, 1)
   
   # Maximal Procedure
@@ -26,4 +27,9 @@ test_that("the randomization methods comply with the prescribed MTI",{
   randomWalk <- t(apply(bsdSeq$M, 1, function(x) { cumsum(c(2*x-1)) }))
   # Now check, whether each entry does not exceed the mti
   expect_true(all(abs(randomWalk) <=  mti))
+  
+  # Chen's Design
+  chenSeq <- genSeq(chenPar(N = N, mti = mti, p = p))
+  randomWalk <- t(apply(chenSeq$M, 1, function(x) { cumsum(c(2*x-1)) }))
+  expect_true(all(abs(randomWalk) <= mti))
 })

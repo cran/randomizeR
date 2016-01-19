@@ -70,7 +70,7 @@ setClass("corGuess",
 #'   \item{\code{"CS"}}{refers to "convergence strategy", i.e. the investigator
 #'   predicts the treatment which has hitherto occured less often.}
 #'   \item{\code{"DS"}}{refers to "divergence strategy", i.e. the investigator
-#'   predicts the treatment which has hitherto occured less often.}
+#'   predicts the treatment which has hitherto occured more often.}
 #' }
 #' 
 #' @return

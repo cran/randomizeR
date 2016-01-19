@@ -34,4 +34,5 @@
 #' @import ggplot2
 #' @importFrom stats dpois pt qpois qt rbinom rnorm t.test
 #' @importFrom utils capture.output packageVersion sessionInfo write.table
+#' @importFrom graphics abline axis box lines plot.new plot.window title
 NULL

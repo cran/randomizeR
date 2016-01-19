@@ -28,6 +28,9 @@ test_that("randomization designs produce sequences of correct length",{
     seed   <- sample(seedMax[i], 1)              # Sample seed
     nr     <- sample(blockNrMax[i],1)            # Sample number of blocks 
     blocks <- sample(seq(2, blockMax[i], 2), nr) # Sample blocks
+    gamma  <- sample(50, 1)                      # Sample parameter for bbcd
+    a      <- sample(50, 1)                      # Sample parameter for abcd
+    rho    <- sample(50, 1)                      # Sample parameter for gbcd
     
     # # # # # # # # # # # # # # # # # # # 
     # Tests for K = 2
@@ -78,6 +81,18 @@ test_that("randomization designs produce sequences of correct length",{
     output1 <- genSeq(hadaPar(N = N), seed = seed)
     expect_equal(ncol(getRandList(output1)), N)
     
+    # 10. Test for Generalized Biased Coin Design
+    output1 <- genSeq(gbcdPar(N, rho), seed = seed)
+    expect_equal(ncol(getRandList(output1)), N)
+    
+    # 11. Test for Adjustable Biased Coin Design
+    output1 <- genSeq(abcdPar(N, a), seed = seed)
+    expect_equal(ncol(getRandList(output1)), N)
+    
+    # 12. Test for Bayesian Biased Coin Design
+    output1 <- genSeq(bbcdPar(N, gamma), seed = seed)
+    expect_equal(ncol(getRandList(output1)), N)
+    
     # # # # # # # # # # # # # # # # # # # 
     # Test for K = 3
     
@@ -126,10 +141,3 @@ test_that("randomization designs produce sequences of correct length",{
     
   }
 })
-
-# test_that("random truncated binomial design produces sequences of correct length",{
-#   output <- genSeq(rtbdPar(N=10, rb=c(2,4)),2)
-#   sums <- lapply(blocks(output), sum)
-#   expect_equal(all(sums >= N(output)), TRUE)
-# })
-

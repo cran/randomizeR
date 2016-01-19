@@ -32,6 +32,11 @@ validatempPar <- function(object) {
     errors <- c(errors, msg)
   }
   
+  if(mti[1] < 0){
+    msg <- "mti must be a positive integer"
+    errors <- c(errors, msg)
+  }
+  
   if(length(N) == 1 && !(N %% sum(ratio) == 0)) {
     msg <- paste("N = ", N, " is not a multiple of sum(ratio) = "
                  , sum(ratio), ".", sep = "")

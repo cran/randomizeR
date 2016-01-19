@@ -26,7 +26,8 @@ NULL
 # @slot bc vector which contains the lengths \code{k_1,...,k_l} of each block. 
 # @slot M matrix containing randomisation sequences of length \code{N} in its rows.
 #
-setClass("rRpbrSeq", slots = c(rb = "numeric", bc = "list"),  contains = "rRandSeq")
+setClass("rRpbrSeq", slots = c(rb = "numeric", bc = "list", filledBlock = "logical"),  
+         contains = "rRandSeq")
 
 
 # --------------------------------------------
@@ -38,6 +39,10 @@ setMethod("getDesign",
           signature(obj = "rRpbrSeq"),
           function(obj) {
             rb <- capture.output(cat(obj@rb, sep = ","))
-            paste(c("RPBR(", rb, ")"), sep = "", collapse = "")
+            if (obj@filledBlock) {
+              paste(c("RPBRFB(", rb, ")"), sep = "", collapse = "")
+            } else {
+              paste(c("RPBR(", rb, ")"), sep = "", collapse = "")
+            }  
           }
 )

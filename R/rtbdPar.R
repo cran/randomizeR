@@ -112,6 +112,7 @@ setMethod("genSeq", signature(obj = "rtbdPar", r = "numeric", seed = "numeric"),
             new("rRtbdSeq", 
                M = t(sapply(bc, function(x) tbdRand(N(obj), x, K(obj),
                  ratio(obj)))), 
+               filledBlock = obj@filledBlock, 
                N = N(obj), 
                rb = randBlocks(obj),
       	       bc = bc,
@@ -127,16 +128,17 @@ setMethod("genSeq", signature(obj = "rtbdPar", r = "missing", seed = "numeric"),
           function(obj, r, seed) {
 	    set.seed(seed)
 	    bc <- genBlockConst(N(obj), randBlocks(obj), obj@filledBlock)
-            new("rRtbdSeq", 
-               M = t(tbdRand(N(obj), randBlocks(obj), K(obj), ratio(obj))),
-               N = N(obj), 
-               rb = randBlocks(obj),
-	             bc = list(bc),
-               K = K(obj),
-               ratio = obj@ratio,
-               groups = obj@groups,
-	             seed = seed)
-          }
+      new("rRtbdSeq", 
+         M = t(tbdRand(N(obj), bc, K(obj), ratio(obj))),
+         filledBlock = obj@filledBlock, 
+         N = N(obj), 
+         rb = randBlocks(obj),
+         bc = list(bc),
+         K = K(obj),
+         ratio = obj@ratio,
+         groups = obj@groups,
+         seed = seed)
+      }
 )
 
 #' @rdname generateRandomSequences
@@ -149,6 +151,7 @@ setMethod("genSeq", signature(obj = "rtbdPar", r = "numeric", seed = "missing"),
                 new("rRtbdSeq", 
                   M = t(sapply(bc, function(x) tbdRand(N(obj), x, K(obj),
                     ratio(obj)))), 
+                  filledBlock = obj@filledBlock, 
                   N = N(obj), 
                   rb = randBlocks(obj),
 		              bc = bc,
@@ -165,16 +168,17 @@ setMethod("genSeq", signature(obj = "rtbdPar", r = "missing", seed = "missing"),
 	    seed <- sample(.Machine$integer.max, 1)
 	    set.seed(seed)
 	    bc <- genBlockConst(N(obj), randBlocks(obj), obj@filledBlock)
-            new("rRtbdSeq", 
-                M = t(tbdRand(N(obj), bc, K(obj), ratio(obj))),
-                N = N(obj),  
-                rb = randBlocks(obj),
-		            bc = list(bc),
-                K = K(obj),
-		            ratio = obj@ratio,
-                groups = obj@groups,
-		            seed = seed)
-          }
+      new("rRtbdSeq", 
+          M = t(tbdRand(N(obj), bc, K(obj), ratio(obj))),
+          filledBlock = obj@filledBlock, 
+          N = N(obj),  
+          rb = randBlocks(obj),
+          bc = list(bc),
+          K = K(obj),
+          ratio = obj@ratio,
+          groups = obj@groups,
+          seed = seed)
+     }
 )
 
 #' @rdname getDesign
@@ -182,6 +186,10 @@ setMethod("getDesign",
           signature(obj = "rtbdPar"),
           function(obj) {
             rb <- capture.output(cat(obj@rb, sep = ","))
-            paste(c("RTBD(", rb, ")"), sep = "", collapse = "")
+            if (obj@filledBlock) {
+              paste(c("RTBDFB(", rb, ")"), sep = "", collapse = "")
+            } else {
+              paste(c("RTBD(", rb, ")"), sep = "", collapse = "")
+            }
           }
 )

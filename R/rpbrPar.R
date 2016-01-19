@@ -110,6 +110,7 @@ setMethod("genSeq", signature(obj = "rpbrPar", r = "missing", seed = "numeric"),
             new("rRpbrSeq", 
                 M = t(blockRand(bc = bc, K = K(obj),
                 ratio = ratio(obj))[1:N(obj)]), 
+                filledBlock = obj@filledBlock,  
 		            rb = randBlocks(obj),
                 bc = list(bc),
                 N = N(obj),
@@ -129,6 +130,7 @@ setMethod("genSeq", signature(obj = "rpbrPar", r = "numeric", seed = "numeric"),
             new("rRpbrSeq", 
                 M = t(sapply(bc, function(x) (blockRand(bc = x, K = K(obj),
                   ratio = ratio(obj)))[1:N(obj)])), 
+                filledBlock = obj@filledBlock,  
 		            rb = randBlocks(obj),
                 bc = bc,				
                 N = N(obj),
@@ -147,7 +149,8 @@ setMethod("genSeq", signature(obj = "rpbrPar", r = "missing", seed = "missing"),
             set.seed(seed)
             bc <- genBlockConst(N(obj), randBlocks(obj), obj@filledBlock)
             new("rRpbrSeq", 
-                M = t(blockRand(bc = bc, K = K(obj), ratio = ratio(obj))[1:N(obj)]), 
+                M = t(blockRand(bc = bc, K = K(obj), ratio = ratio(obj))[1:N(obj)]),
+                filledBlock = obj@filledBlock,  
 		            rb = randBlocks(obj),
 		            bc = list(bc),
                 N = N(obj),
@@ -168,6 +171,7 @@ setMethod("genSeq", signature(obj = "rpbrPar", r = "numeric", seed = "missing"),
             new("rRpbrSeq", 
                 M = t(sapply(bc, function(x) (blockRand(bc = x, K = K(obj),
                 ratio = ratio(obj)))[1:N(obj)])), 
+                filledBlock = obj@filledBlock,  
                 bc = bc,
 		            rb = randBlocks(obj),				
                 N = N(obj),
@@ -184,6 +188,10 @@ setMethod("getDesign",
           signature(obj = "rpbrPar"),
           function(obj) {
               rb <- capture.output(cat(obj@rb, sep = ","))
-              paste(c("RPBR(", rb, ")"), sep = "", collapse = "")
+              if (obj@filledBlock) {
+                paste(c("RPBRFB(", rb, ")"), sep = "", collapse = "")
+              } else {
+                paste(c("RPBR(", rb, ")"), sep = "", collapse = "")
+              }  
           }
 )

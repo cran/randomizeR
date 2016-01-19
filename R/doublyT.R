@@ -114,9 +114,9 @@ doublyTValues <- function(randSeq, bias, endp) {
         return(0)
       
       # lower boundary
-      lb <- max(floor(x[2]/2 - qpois(.999, x[2]/2)), 0)
+      lb <- max(floor(x[2]/2 - qpois(.995, x[2]/2)), 0)
       # upper boundary
-      ub <- as.vector(ceiling(x[2]/2 + qpois(.999, x[2]/2)))
+      ub <- as.vector(ceiling(x[2]/2 + qpois(.995, x[2]/2)))
       # degrees of freedom
       df <- as.vector(x[3]) - 2
       # t quantiles

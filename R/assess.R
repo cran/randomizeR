@@ -54,7 +54,9 @@ setMethod("$", "assessment",
 
 setMethod("show", "assessment", function(object) {
     # headline
-    cat("\nObject of class \"", class(object)[1],"\"\n\n", sep="")
+    #cat("\nObject of class \"", class(object)[1],"\"\n\n", sep="")
+    #cat("\nAssessment of ",slot(object, "design"),"\n\n", sep="")
+    cat("\nAssessment of a randomization procedure \n\n", sep="")
     # iterate through all slots of the object
     names <- slotNames(object)
     names <- names[!(names == "D")] # without D
@@ -66,13 +68,15 @@ setMethod("show", "assessment", function(object) {
     if (dim(object@D)[1] <= 3) {
       if (nchar(as.character(object@D[1, 1])) >= 10)
         object@D[ ,1] <- paste(substr(object@D[, 1], 1, 9), "...")
-      print(object@D) 
+      object@D[ ,-1] <- round(object@D[ ,-1], digits = 3)
+      print(object@D)
     } else {
       cat("\nThe first 3 rows of", dim(object@D)[1], "rows of D: \n\n")
-      object <- object@D[1:3, ]
-      if (nchar(as.character(object[1, 1])) >= 10)
-        object[ ,1] <- paste(substr(object[, 1], 1, 9), "...")
-      print(object) 
+      obj <- object@D[1:3, ]
+      if (nchar(as.character(obj[1, 1])) >= 10)
+        obj[ ,1] <- paste(substr(obj[, 1], 1, 9), "...")
+      obj[ ,-1] <- round(obj[ ,-1],digits = 3)
+      print(obj)
       cat("...")
     }
     cat("\n") 
@@ -89,9 +93,10 @@ setMethod("show", "assessment", function(object) {
 #' Assesses randomization sequences based on specified issues 
 #' in clinical trials.
 #'
-#' @param randSeq object of class randSeq.
-#' @param endp object of class endpoint, or missing.
-#' @param ... at least one object of class issue.
+#' @param randSeq object of class \code{randSeq}.
+#' @param endp object of class \code{endpoint}, or \code{missing}.
+#' @param ... at least one object of class \code{issue} or just a list of objects 
+#' of the class \code{issue}.
 #'
 #' @details
 #' Randomization sequences behave differently with respect to issues
@@ -124,6 +129,25 @@ setMethod("show", "assessment", function(object) {
 #' issue6 <- setPower(2, "exact")
 #' assess(sequence, issue1, issue5, issue6, endp = endp)
 #'
+#' # recommended plot for the assessment of rejection probabilities
+#' RP <- getAllSeq(crPar(6))
+#' cB <- chronBias(type = "linT", theta = 1/6, method = "exact")
+#' sB <- selBias(type=  "CS", eta = 1/4, method = "exact")
+#' normEndp <- normEndp(c(0, 0), c(1, 1))
+#' A <- assess(RP, cB, sB, endp = normEndp)
+#' D <- A$D
+#' desiredSeq <- round(sum(D[,2][D[,3] <= 0.05 & D[,4] <= 0.05]), digits = 4)
+#' colnames(D) <- c("Seq", "Prob", "SB", "linT")
+#' g <- ggplot(D, aes(x = SB, y = linT))
+#' g <- g + annotate("rect", xmin = 0, xmax = 0.05, ymin = 0, ymax = 0.05,
+#' alpha=0.2, fill="green") 
+#' g <- g + geom_point(alpha = 1/10, size = 3, col = "orange")
+#' g <- g <- g + geom_vline(xintercept = 0.05, col = "red")
+#' g <- g + geom_hline(yintercept = 0.05, col = "red")
+#' g  <- g + geom_text(data = NULL, x = 0, y = 0,
+#' label = paste("Proportion:", desiredSeq), hjust=0, vjust=0, size = 7)
+#' g
+#'
 #' @return
 #' \code{S4} object of class \code{assessment} summarizing the assessment of the 
 #' randomization procedure.
@@ -143,7 +167,7 @@ setGeneric("assess", function(randSeq, ..., endp) standardGeneric("assess"))
 #' Summary of assessments of a randomization procedure
 #' 
 #' @param object assessment object.
-#' @param ... additional arguments affecting the summary that will be produced.c
+#' @param ... additional arguments affecting the summary that will be produced.
 #'
 #' @details
 #' For each issue the assessment of the sequences is summarized to permit a design-based 
@@ -179,6 +203,9 @@ setGeneric("summary")
 setMethod("assess", signature(randSeq = "randSeq", endp = "missing"),
           function(randSeq, ...) {
             L <- list(...)
+            if (length(L) == 1 && is.list(L[[1]])) {
+              L <- c(...)
+            }
             stopifnot(randSeq@K == 2, all(sapply(L, function(x)  is(x, "issue"))))
             stopifnot(randSeq@ratio == c(1, 1))
             D <- data.frame("Sequence" = apply(getRandList(randSeq), 1, function(x) paste(x, sep = "", collapse = "")))
@@ -199,7 +226,10 @@ setMethod("assess", signature(randSeq = "randSeq", endp = "missing"),
 #' @rdname assess
 setMethod("assess", signature(randSeq = "randSeq", endp = "endpoint"),
           function(randSeq, ..., endp) {
-			      L <- list(...)
+            L <- list(...)
+            if (length(L) == 1 && is.list(L[[1]])) {
+              L <- c(...)
+            }
             stopifnot(randSeq@K == 2, all(sapply(L, function(x) is(x, "issue"))))
             stopifnot(randSeq@ratio == c(1, 1))
             D <- data.frame("Sequence" = apply(getRandList(randSeq), 1, function(x) paste(x, sep = "", collapse = "")))
@@ -242,7 +272,7 @@ setMethod("summary", signature(object = "assessment"), function(object) {
      c(x1, x2, max(x), min(x), x05, x25, x50, x75, x95)
     }) 
    rownames(stat) <- c("mean", "sd", "max", "min", "x05", "x25", "x50", "x75", "x95")
-   stat
+   round(stat, digits=3)
  }
 )
 

@@ -10,12 +10,13 @@
 
 #' Saving an assess object
 #' 
-#' Saves the fully information of an \code{assess} object in a \code{.csv} data
+#' Saves the full information of an \code{assess} object in a \code{.csv} data
 #' sheet.
 #' 
 #' @family saving functions
 #' 
 #' @inheritParams overview
+#' @param obj object of class assessmentment, e.g. the output of the \code{\link{assess}} function.
 #'
 #' @return Creates a \code{.csv} data in the home folder.
 #'
@@ -54,7 +55,8 @@ saveAssess <- function(obj, file = "assessObject.csv") {
   write(colnames(obj@D) , file = file,  sep = "\t", ncolumns = ncol(obj@D),
         append = TRUE)
   
-  
+  obj@D[,-1] <- round(obj@D[,-1], digits = 3)
+
   write.table(obj@D, file = file, sep = "\t", append = TRUE, row.names = FALSE, col.names = FALSE)
   
 }
