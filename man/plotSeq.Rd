@@ -4,7 +4,7 @@
 \alias{plotSeq}
 \title{Sequence plotting}
 \usage{
-plotSeq(sequences, plotAllSeq = F, emph = NA, rs = NA)
+plotSeq(sequences, plotAllSeq = FALSE, emph = NA, rs = NA)
 }
 \arguments{
 \item{sequences}{object of type randSeq}

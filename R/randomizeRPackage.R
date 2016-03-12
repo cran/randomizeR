@@ -28,10 +28,11 @@
 #' @docType package
 #' @name randomizeR-package
 #' @aliases randomizeR
-#' @author David Schindler \email{dschindler@@ukaachen.de}, Diane Uschner \email{duschner@@ukaachen.de}
+#' @author David Schindler \email{dschindler@@ukaachen.de}, Diane Uschner \email{duschner@@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
 #' 
 #' @import methods
 #' @import ggplot2
+#' @import plotrix
 #' @importFrom stats dpois pt qpois qt rbinom rnorm t.test
 #' @importFrom utils capture.output packageVersion sessionInfo write.table
 #' @importFrom graphics abline axis box lines plot.new plot.window title

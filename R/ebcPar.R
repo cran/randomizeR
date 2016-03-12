@@ -34,12 +34,6 @@ validateebcPar <- function(object) {
     errors <- c(errors, msg)
   }
   
-  if(length(N) == 1 && !(N%%sum(ratio) == 0)) {
-    msg <- paste("N = ", N, " is not a multiple of sum(ratio) = "
-                 , sum(ratio),".", sep = "")
-    errors <- c(errors, msg)
-  }
-
   if(length(errors) == 0) TRUE else errors
 }
 

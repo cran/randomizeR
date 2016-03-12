@@ -21,7 +21,7 @@ research, technological development and demonstration under Grant Agreement
 no 602552.
 }
 \author{
-David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}
+David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
 }
 \references{
 W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}.

@@ -249,31 +249,32 @@ setMethod("assess", signature(randSeq = "randSeq", endp = "endpoint"),
 
 #' @rdname summary
 setMethod("summary", signature(object = "assessment"), function(object) {
-   D <- object@D
-   colnames(D)[2] <- "Probability"
-   probs <- D$Probability
-   if (dim(D)[1] == 1) stop("Selected randomization procedure(s) should have more than one generated sequence.")
-   D$Probability <- D$Sequence <- NULL
-   stat <- apply(D, 2, function(x) {
-     ## weighted mean value
-     x1 <- sum(x*probs)
-     ## weighted standard deviation
-     x2 <- sqrt(sum(probs * (x-x1)^2)/(1 - sum(probs^2)))
-     ## weighted quantiles
-     sA <- cbind(x, probs)
-     sA <- sA[order(x), ]
-     wv <- cumsum(sA[ ,2])
-     x <- sA[,1]
-     x05 <- x[wv >= 0.05][1]
-     x25 <- x[wv >= 0.25][1]
-     x50 <- x[wv >= 0.5][1]
-     x75 <- x[wv >= 0.75][1]
-     x95 <- x[wv >= 0.95][1]
-     c(x1, x2, max(x), min(x), x05, x25, x50, x75, x95)
-    }) 
-   rownames(stat) <- c("mean", "sd", "max", "min", "x05", "x25", "x50", "x75", "x95")
-   round(stat, digits=3)
- }
+  D <- object@D
+  colnames(D)[2] <- "Probability"
+  probs <- D$Probability
+  # if (dim(D)[1] == 1) stop("Selected randomization procedure(s) should have more than one generated sequence.")
+  D$Probability <- D$Sequence <- NULL
+  stat <- apply(D, 2, function(x) {
+    ## weighted mean value
+    x1 <- sum(x*probs)
+    ## weighted standard deviation
+    if (dim(D)[1] == 1) x2 <- NA else x2 <- sqrt(sum(probs*(x-x1)^2)/(1 - sum(probs^2))) 
+    ## weighted quantiles
+    sA <- data.frame(cbind(x, probs))
+    d <- x # Save unordered vector x for the computation of max and min (later)
+    sA <- sA[order(x),]
+    wv <- cumsum(sA[ ,2])
+    x <- sA[,1]
+    x05 <- x[wv >= 0.05][1]
+    x25 <- x[wv >= 0.25][1]
+    x50 <- x[wv >= 0.5][1]
+    x75 <- x[wv >= 0.75][1]
+    x95 <- x[wv >= 0.95][1]
+    c(x1, x2, max(d[probs>0]), min(d[probs>0]), x05, x25, x50, x75, x95)
+  }) 
+  rownames(stat) <- c("mean", "sd", "max", "min", "x05", "x25", "x50", "x75", "x95")
+  round(stat, digits=3)
+}
 )
 
 

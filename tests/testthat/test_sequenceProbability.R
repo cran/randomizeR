@@ -12,7 +12,7 @@ test_that("total probability adds up to 1", {
   mti <- sample(N/2, 1)                         # Sample maximum tolerated imbalance
   p <- sample(seq(0.5001, 1, 0.05), 1)          # biased coin parameter
   nr <- sample(3,1)                             # sample number of blocks 
-  blocks <- sample(seq(2, 10, 2), nr)           # sample blocks
+  blocks <- sample(seq(2, 6, 2), nr)           # sample blocks
   rho <- sample(50, 1)
   a <- sample(50,1)
   gam <- sample (50,1)
