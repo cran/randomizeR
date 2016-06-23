@@ -104,9 +104,9 @@ For the comparison of \texttt{rar}, \texttt{pbr} and \texttt{bsd} we thus need
 to generate sequences. This is fairly easy in \texttt{randomizeR}
 
 <<sequences, results=F>>=
-rarS <- genSeq(rar,1000)
-pbrS <- genSeq(pbr,1000)
-bsdS <- genSeq(bsd,1000)
+rarS <- genSeq(rar, r = 1000, seed = 123)
+pbrS <- genSeq(pbr, r = 1000, seed = 124)
+bsdS <- genSeq(bsd, r = 1000, seed = 125)
 @
 
 The resulting objects include 1000 random sequences from $x$ for $x \in$ 
@@ -137,9 +137,10 @@ be of class \texttt{randSeq}, i.e. representations of randomization sequences.
 
 From the table we can see that the maximum extent for selection bias is equal
 for RAR and PBR, while it is slightly lower for BSD. Concerning the mean, RAR 
-and BSD keep nearly the same level, whereas BSD has far higher restrictions to
-balance during the allocation process. 
-
+and BSD keep nearly the same level. The minimum however is higher for RAR, indicating
+that all RAR sequences have inflated type-I-error probability in case a selection
+bias is present.
+%
 To make things even more accessible, \texttt{randomizeR} provides a function
 for visualizing this comparison:
 

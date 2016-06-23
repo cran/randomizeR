@@ -24,8 +24,12 @@ no 602552.
 David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
 }
 \references{
-W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}.
+W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}. 
 Wiley.
+
+D. Uschner, D. Schindler, N. Heussen and R.-D. Hilgers (2016) \emph{randomizeR:
+An R package for the Assessment and Implementation of Randomization in Clinical 
+Trials}. Submitted to the Journal of Statistical Software.
 }
 \seealso{
 For functionality for randomization procedures, see \code{\link{randPar}} and

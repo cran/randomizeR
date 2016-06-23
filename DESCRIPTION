@@ -1,7 +1,7 @@
 Package: randomizeR
 Title: Randomization for Clinical Trials
-Version: 1.2.0
-Date: 2016-03-11
+Version: 1.3
+Date: 2016-06-23
 Authors@R: c(
     person(given="David", family="Schindler", email="dschindler@ukaachen.de", role="aut"),
     person(given="Diane", family="Uschner", email="duschner@ukaachen.de", role=c("aut","cre")),
@@ -15,7 +15,7 @@ Description: This tool enables the user to choose a randomization procedure
     randomization sequences as well the assessment of randomization procedures
     based on carefully selected criteria. Furthermore, randomizeR provides a
     function for the comparison of randomization procedures.
-Depends: R (>= 3.2.4), methods, ggplot2, plotrix
+Depends: R (>= 3.3.0), methods, ggplot2, plotrix
 License: GPL (>= 3)
 LazyData: true
 Collate: 'getDesign.R' 'randPar.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
@@ -35,7 +35,7 @@ Suggests: testthat, knitr, quantreg
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2016-03-11 13:56:49 UTC; duschner
+Packaged: 2016-06-23 15:22:48 UTC; duschner
 Author: David Schindler [aut],
   Diane Uschner [aut, cre],
   Martin Manolov [ctb],
@@ -44,4 +44,4 @@ Author: David Schindler [aut],
   Nicole Heussen [aut, ths]
 Maintainer: Diane Uschner <duschner@ukaachen.de>
 Repository: CRAN
-Date/Publication: 2016-03-12 00:19:09
+Date/Publication: 2016-06-23 19:44:15

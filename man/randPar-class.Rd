@@ -3,8 +3,8 @@
 \docType{class}
 \name{randPar-class}
 \alias{randPar-class}
-\title{Randomization paramters generic}
+\title{Randomization paramters}
 \description{
-Randomization paramters generic
+Randomization paramters
 }
 

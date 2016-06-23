@@ -2,7 +2,7 @@
 % Please edit documentation in R/abcdPar.R
 \name{abcdPar}
 \alias{abcdPar}
-\title{Representing Adjustable Biased Coin Design}
+\title{Representing Accelerated Biased Coin Design}
 \usage{
 abcdPar(N, a, groups = LETTERS[1:2])
 }
@@ -19,7 +19,7 @@ assignments become more deterministic as \code{a} increases.}
 \code{S4} object of the class \code{abcdPar}.
 }
 \description{
-Represents the randomization procedure Adjustable Biased Coin Design.
+Represents the randomization procedure Accelerated Biased Coin Design.
 }
 \details{
 This is a class of 'biased coins' where the probability of selecting the under-represented

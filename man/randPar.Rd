@@ -14,19 +14,20 @@ functions.
  
 \itemize{
   \item Complete Randomization (\code{\link{crPar}})
-  \item Efron's Biased Coin Design (\code{\link{ebcPar}})
-  \item Generalized Biased Coin Design (\code{\link{gbcdPar}})
-  \item Adjustable Biased Coin Design (\code{\link{abcdPar}})
-  \item Bayesian Biased Coin Design (\code{\link{bbcdPar}})
-  \item Hadamard Randomization (\code{\link{hadaPar}})
-  \item Maximal Procedure (\code{\link{mpPar}})
-  \item Permuted Block Randomization (\code{\link{pbrPar}})
   \item Random Allocation Rule (\code{\link{rarPar}})
+  \item Permuted Block Randomization (\code{\link{pbrPar}})
   \item Permuted Block Randomization with random block length (\code{\link{rpbrPar}})
-  \item Truncated Binomial Design with random block length (\code{\link{rtbdPar}})
   \item Truncated Binomial Design (\code{\link{tbdPar}})
+  \item Truncated Binomial Design with random block length (\code{\link{rtbdPar}})
+  \item Efron's Biased Coin Design (\code{\link{ebcPar}})
+  \item Big Stick Design (\code{\link{bsdPar}})
+  \item Maximal Procedure (\code{\link{mpPar}})
   \item Wei's Urn Design (\code{\link{udPar}})
   \item Chen's Design (\code{\link{chenPar}})
+  \item Generalized Biased Coin Design (\code{\link{gbcdPar}})
+  \item Accelerated Biased Coin Design (\code{\link{abcdPar}})
+  \item Bayesian Biased Coin Design (\code{\link{bbcdPar}})
+  \item Hadamard Randomization (\code{\link{hadaPar}})
 }
 }
 \seealso{

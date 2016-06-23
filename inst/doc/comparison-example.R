@@ -28,9 +28,9 @@ bsd
 #  ?randPar
 
 ## ----sequences, results=F------------------------------------------------
-rarS <- genSeq(rar,1000)
-pbrS <- genSeq(pbr,1000)
-bsdS <- genSeq(bsd,1000)
+rarS <- genSeq(rar, r = 1000, seed = 123)
+pbrS <- genSeq(pbr, r = 1000, seed = 124)
+bsdS <- genSeq(bsd, r = 1000, seed = 125)
 
 ## ------------------------------------------------------------------------
 bsdS

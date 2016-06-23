@@ -13,7 +13,7 @@ procedures.
 
 ## Installation
 
-You can install randomizeR from [CRAN](http://cran.rstudio.com/package=randomizeR):
+You can install randomizeR from [CRAN](https://cran.r-project.org/package=randomizeR):
 
 ```r
 install.packages('randomizeR', dependencies = TRUE)

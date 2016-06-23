@@ -16,10 +16,10 @@ NULL
 # Class definition for abcdSeq
 # --------------------------------------------
 
-# Representation of sequences for Adjustable Biased Coin Design
+# Representation of sequences for Accelerated Biased Coin Design
 # 
 # @description This set of classes provides functionality of storing randomization
-# sequences of Adjustable Biased Coin Design along with the parameters 
+# sequences of Accelerated Biased Coin Design along with the parameters 
 # representing the design.
 # 
 # @slot N total number of patients included in the trial.
@@ -32,10 +32,10 @@ setClass("abcdSeq", slots=c(a = "numeric"), contains = "randSeq")
 # Class definition for rabcdSeq
 # --------------------------------------------
 
-# Representation of sequences for Adjustable Biased Coin Design
+# Representation of sequences for Accelerated Biased Coin Design
 # 
 # @description This set of classes provides functionality of storing random 
-# randomization sequences of Adjustable Biased Coin Design along with the parameters 
+# randomization sequences of Accelerated Biased Coin Design along with the parameters 
 # representing the design.
 setClass("rAbcdSeq", contains = c("rRandSeq", "abcdSeq"))
 

@@ -48,8 +48,8 @@ getAllSeq(obj)
 \S4method{getAllSeq}{udPar}(obj)
 }
 \arguments{
-\item{obj}{object specifying the randomization procedure, i.e. an object of a
-class.}
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+or \code{\link{createParam}}.}
 }
 \value{
 An object inheriting from \linkS4class{randSeq}, representing the set 
@@ -59,15 +59,17 @@ randomization sequences (see \code{\link{createParam}}) and the matrix \code{M}
 that stores the randomization sequences in its rows.
 }
 \description{
-Outputs all randomization sequences for the given randomization procedure 
-along with the parameters belonging to the randomization procedure.
-The output consists of the parameters used for the generation of the 
-randomization sequences (see \code{\link{createParam}}) and the matrix \code{M}
-that stores the randomization sequences in its rows.
+Computes all randomization sequences for the given randomization procedure, 
+and stores them in an object along with the parameters belonging to the 
+randomization procedure.
 }
 \details{
 \code{getAllSeq} is a generic function which dispatches different 
-methods depending on the type of input.
+methods depending on the type of input. The set of sequences of a procedure 
+is computed by enumerating all possible sequences and eliminating those that
+are not possible in the randomization procedure specified by \code{obj}. The 
+parameters of the randomization procedure are saved along with the sequences
+to ensure reproducibility of the results.
 }
 \examples{
 # CR

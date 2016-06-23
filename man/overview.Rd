@@ -60,13 +60,10 @@ sequence. It can take values \code{PBR}, \code{RAR}, \code{HAD}, \code{PWR},
 length \code{K} 
 (i.e. one entry for each treatment group).}
 
-\item{obj}{object specifying the randomization procedure, i.e. an object of a
-class.}
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+or \code{\link{createParam}}.}
 
 \item{object}{any R object.}
-
-\item{oject}{any R object.
-Inheriting from \linkS4class{randPar}. See also \code{\link{createParam}}.}
 
 \item{p}{success probability of the biased coin (e.g. in Efron's Biased Coin
 Design).}
@@ -78,7 +75,7 @@ after the treatment.}
 from which the experimenter imposes selection bias on the data.}
 
 \item{r}{numeric indicating the number of random sequences to be generated at
-random or missing.}
+random, or missing.}
 
 \item{ratio}{vector of length \code{K}. The total sample number \code{N} and
 all used block lengths (\code{bc}) have to be divisible by \code{sum(ratio)}.}
@@ -95,7 +92,8 @@ procedure.}
 \item{saltus}{integer or  \code{missing} specifying the patient index (i.e. position)
 of the step in case of step time trend.}
 
-\item{seed}{seed for the random number generation}
+\item{seed}{a single value, interpreted as an integer, that specifies the seed 
+for the random number generation.}
 
 \item{sigma}{vector of the standard deviations in each the treatment group, 
 should have length \code{K} (i.e. one entry for each treatment group).}

@@ -99,14 +99,14 @@ setClass("chronBias",
 #'
 #' If \code{method="sim"}, the object represents the simulated type-I-error rate given 
 #'  the level \code{alpha}, the selection effect \code{eta} and the biasing 
-#'  strategy \code{type}. When calling \code{assess} for a \code{selBias} object 
+#'  strategy \code{type}. When calling \code{assess} for a \code{chronBias} object 
 #'  with \code{method="sim"}, one test decision is computed for each sequence of
 #' \code{randSeq}. The type-I-error rate (power) is the proportion of falsely
 #' (correctly) rejected null hypotheses.
 #' 
 #' If \code{method="exact"}, the object represents the exact type-I-error proabability 
 #'  given the level \code{alpha}, the selection effect \code{eta} and the 
-#'  biasing strategy \code{type}. When calling \code{assess} for a \code{selBias} 
+#'  biasing strategy \code{type}. When calling \code{assess} for a \code{chronBias} 
 #'  object with \code{method="exact"}, the exact \emph{p}-value of each 
 #'  randomization sequence is computed. So far, this is only supported for
 #'  normal endpoints. Then the type-I-error probability is

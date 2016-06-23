@@ -8,8 +8,8 @@
 getRandList(obj)
 }
 \arguments{
-\item{obj}{object specifying the randomization procedure, i.e. an object of a
-class.}
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+or \code{\link{createParam}}.}
 }
 \description{
 Get the randomization list coded in its groups.

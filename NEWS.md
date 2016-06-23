@@ -1,3 +1,15 @@
+# Changes in randomizeR version 1.3
+
+## Bug Fixes
+* CreateParam needs parameter N for design PBR.
+
+# New Features
+* CreateParam takes parameter filledBlock for Design RPBR and RTBD.
+* Added new vignette for the Assessment and Implementation of Randomization in Clinical Trials (paper submitted to the Journal of Statistical Software)
+
+# Minor changes
+* Improved help functions for issues.
+* Improved clarity of vignette comparison-example.
 
 # Changes in randomizeR version 1.2
 

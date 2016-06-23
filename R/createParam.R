@@ -18,7 +18,7 @@ NULL
 #' S4object of the corresponding randomization procedure class.
 #' 
 #' @export
-createParam <- function(method, N, mti, bc, rb, p, ini, add) {
+createParam <- function(method, N, mti, bc, rb, p, ini, add, filledBlock) {
   Cls <-  names(getClass("randPar")@subclasses)
   RPs <- sub("Par", "", Cls)
   ## query for the method, if not specified!
@@ -47,13 +47,20 @@ createParam <- function(method, N, mti, bc, rb, p, ini, add) {
              error = function(e) {FALSE})
   }
   slotns <- slotns[!(slotns %in% c("K", "ratio", "groups"))]
+  # escape bug with N input in pbrPar and tbdPar
+  if(method == "PBR" || method == "TBD")
+    slotns <- slotns[!(slotns %in% "N")]
   for(i in 1:length(slotns)){
     eval(parse(text = paste("dec <- missing(", slotns[i], ")", sep = "\"")))
-    if(dec){
+  if(dec){
       repeat{
         # checking if the value was ok
-        param <- readline(cat(paste("Value for the paramter ",
-                                    slotns[i], ": \n>", sep = "")))
+        if(slotns[i] == "N")
+          param <- readline(cat(paste("Value for the paramter ",
+                                      slotns[i], " (even number for RAR and MP): \n>", sep = "")))
+        else
+          param <- readline(cat(paste("Value for the paramter ",
+                                      slotns[i], ": \n>", sep = "")))
         test <- robEval(slotns[i], param)
         if(!test)
           next
@@ -108,18 +115,18 @@ createSeq <- function(file) {
 # @inheritParams overview
 #
 # @return returns a \code{TRUE} if everything is fine, otherwise a \code{FALSE}
-paramErrors <- function(method, N, mti, bc, rb, p, ini, add) {
+paramErrors <- function(method, N, mti, bc, rb, p, ini, add, filledBlock) {
   Cls <-  names(getClass("randPar")@subclasses)
   RPs <- sub("Par", "", Cls)
   out <- FALSE
   # error request for the method
-  if(!missing("method"))
+  if(!missing("method"))#cr
     if(!(method %in% toupper(RPs)))
       out <- TRUE
   # error request for N
-  if(!missing("N"))   
-    if(!(length(N) == 1 && is.numeric(N) && N > 0 && (N %% 2 == 0)))
-      out <- TRUE
+  if(!missing("N"))
+      if(!(length(N) == 1 && is.numeric(N) && N > 0))
+        out <- TRUE
   # error request for mti
   if(!missing("mti"))
     if(!(length(mti) == 1 && is.numeric(mti) && mti == ceiling(mti)))
@@ -144,5 +151,10 @@ paramErrors <- function(method, N, mti, bc, rb, p, ini, add) {
   if(!missing("add"))
     if(!(length(add) == 1 && is.numeric(add) && add == round(add)))
       out <- TRUE
+  # error request for filledBlock
+  if(!missing("filledBlock"))
+    if(!(is.logical(filledBlock))){
+      out <- TRUE
+    }
   return(out)
 }

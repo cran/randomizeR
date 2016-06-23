@@ -50,9 +50,9 @@ setClass("abcdPar",
 # Constructor function for abcdPar
 # --------------------------------------------
 
-#' Representing Adjustable Biased Coin Design
+#' Representing Accelerated Biased Coin Design
 #' 
-#' Represents the randomization procedure Adjustable Biased Coin Design.
+#' Represents the randomization procedure Accelerated Biased Coin Design.
 #'
 #' @details
 #' This is a class of 'biased coins' where the probability of selecting the under-represented

@@ -37,11 +37,9 @@
 #' @param mu vector of the expected responses of the treatment groups, should have
 #' length \code{K} 
 #' (i.e. one entry for each treatment group).
-#' @param obj object specifying the randomization procedure, i.e. an object of a
-#' class.
+#' @param obj object specifying the randomization procedure, see \code{\link{randPar}} 
+#' or \code{\link{createParam}}.
 #' @param object any R object.
-#' @param oject any R object.
-#' Inheriting from \linkS4class{randPar}. See also \code{\link{createParam}}.
 #' @param p success probability of the biased coin (e.g. in Efron's Biased Coin
 #' Design).
 #' @param pr vector with patient responses, i.e. each patients resulting value
@@ -49,7 +47,7 @@
 #' @param q "cut-off" value in \code{[0.5,1]}. This is the ratio of patients up 
 #' from which the experimenter imposes selection bias on the data.
 #' @param r numeric indicating the number of random sequences to be generated at
-#' random or missing.
+#' random, or missing.
 #' @param ratio vector of length \code{K}. The total sample number \code{N} and
 #' all used block lengths (\code{bc}) have to be divisible by \code{sum(ratio)}.
 #' @param rb block lengths of the blocks that can be selected equiprobable at random.
@@ -59,7 +57,8 @@
 #' procedure.
 #' @param saltus integer or  \code{missing} specifying the patient index (i.e. position)
 #' of the step in case of step time trend.
-#' @param seed seed for the random number generation
+#' @param seed a single value, interpreted as an integer, that specifies the seed 
+#' for the random number generation.
 #' @param sigma vector of the standard deviations in each the treatment group, 
 #' should have length \code{K} (i.e. one entry for each treatment group).
 #' @param SLs numeric vector of length at most 2 specifying the lower and/or upper 

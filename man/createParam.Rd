@@ -4,7 +4,7 @@
 \alias{createParam}
 \title{Representing any randomization procedure}
 \usage{
-createParam(method, N, mti, bc, rb, p, ini, add)
+createParam(method, N, mti, bc, rb, p, ini, add, filledBlock)
 }
 \arguments{
 \item{method}{method that is used to generate the (random) allocation
@@ -27,6 +27,8 @@ Design).}
 
 \item{add}{integer representing the number of balls that are added to the
 urn in each step.}
+
+\item{filledBlock}{\code{logical} whether the last block should be filled or not.}
 }
 \value{
 S4object of the corresponding randomization procedure class.
