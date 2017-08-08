@@ -3,8 +3,9 @@
 \docType{methods}
 \name{assess}
 \alias{assess}
-\alias{assess,randSeq,endpoint-method}
+\alias{assess}
 \alias{assess,randSeq,missing-method}
+\alias{assess,randSeq,endpoint-method}
 \title{Assessing randomization sequences}
 \usage{
 assess(randSeq, ..., endp)
@@ -87,4 +88,3 @@ Generation of randomization sequences: \code{\link{genSeq}}
 
 \code{\link{issues}} for the assessment of randomization sequences
 }
-

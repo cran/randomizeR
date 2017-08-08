@@ -1,3 +1,15 @@
+
+# Changes in randomizeR version 1.4
+
+# Bug Fixes
+* Minor Bug fixes
+
+# New Features
+* Desirability-Functions
+* Selection Bias support for K > 2
+* Chronological Bias support for K > 2
+* Assessment of chronological and selection bias for K > 3
+
 # Changes in randomizeR version 1.3
 
 ## Bug Fixes

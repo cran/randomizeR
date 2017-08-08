@@ -12,4 +12,3 @@ method(obj)
 \description{
 Function returning the allocation ratio slot of an S4 object
 }
-

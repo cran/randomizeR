@@ -29,4 +29,3 @@ Other issues: \code{\link{chronBias}},
   \code{\link{issue}}, \code{\link{selBias}},
   \code{\link{setPower}}
 }
-

@@ -30,10 +30,10 @@ functions.
   \item Hadamard Randomization (\code{\link{hadaPar}})
 }
 }
+
 \seealso{
 Generate randomization sequences \code{\link{genSeq}}.
 Calculate the the complete set of randomization sequences of a randomization 
 procedure.
 \code{\link{getAllSeq}}.
 }
-

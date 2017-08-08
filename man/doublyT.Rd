@@ -25,4 +25,3 @@ Distribution value of the doubly noncentral t-distribution at \code{x}.
 \description{
 Computes the value of the distribution function of the doubly noncentral t-distribution at \code{x}.
 }
-

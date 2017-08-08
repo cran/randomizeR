@@ -45,4 +45,3 @@ Other issues: \code{\link{chronBias}},
   \code{\link{imbal}}, \code{\link{issue}},
   \code{\link{selBias}}
 }
-

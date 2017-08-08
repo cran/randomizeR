@@ -55,4 +55,3 @@ Other issues: \code{\link{chronBias}},
   \code{\link{imbal}}, \code{\link{selBias}},
   \code{\link{setPower}}
 }
-

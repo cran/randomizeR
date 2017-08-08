@@ -12,4 +12,3 @@ blocks(obj)
 \description{
 Function returning the block slot of an S4 object
 }
-

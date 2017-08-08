@@ -12,4 +12,3 @@ sigma(obj)
 \description{
 Function returning the standard deviation slot of a normEndp S4 object
 }
-

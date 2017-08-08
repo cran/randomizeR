@@ -140,4 +140,3 @@ For decreasing \code{a} the allocations become deterministic, while for increasi
 This list of parameters yields a comprehensive overview of the parameters
 used in the \code{randomizeR} package.
 }
-

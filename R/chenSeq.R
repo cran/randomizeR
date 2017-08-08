@@ -48,18 +48,18 @@ setClass("rChenSeq", contains = c("rRandSeq", "chenSeq"))
 setMethod("getProb", signature = c(obj = "chenSeq"),
           function(obj) {
             if(obj@K == 2) {
-              apply(obj@M, 1, function(x, p){
+              apply(obj@M, 1, function(x, p, mti){
                 rw <- abs(c(0, cumsum(2*x - 1)))
                 # hitting zero imbalance
                 origin <- sum(rw[-length(rw)] == 0)
                 # hitting the mti
-                mti <- sum(rw[-length(rw)] == mti(obj))
-                # reducing the imbalaobj
+                mtiHit <- sum(rw[-length(rw)] == mti)
+                # reducing the imbalance object
                 together <- sum(rw[-length(rw)] > rw[-1]) 
                 # increasing the imbalance
                 apart <- sum((rw[-length(rw)] < rw[-1])*(rw[-length(rw)] > 0))
-                0.5^origin * p^together * (1 - p)^apart * (1/(1-p))^mti
-              }, p = coin(obj))
+                0.5^origin * p^(together-mtiHit) * (1 - p)^apart 
+              }, p = coin(obj), mti = mti(obj))
             } 
             else "Only supported for K=2."
           }  

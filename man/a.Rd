@@ -12,4 +12,3 @@ a(obj)
 \description{
 Function returning the adjusting parameter a slot of an S4 object
 }
-

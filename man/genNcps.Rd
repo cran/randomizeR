@@ -27,4 +27,3 @@ endp <- normEndp(mu = c(0, 0), sigma = c(1, 1))
 genNcps(M, cs, endp)
 
 }
-

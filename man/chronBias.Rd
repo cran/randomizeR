@@ -91,4 +91,3 @@ Other issues: \code{\link{combineBias}},
   \code{\link{issue}}, \code{\link{selBias}},
   \code{\link{setPower}}
 }
-

@@ -18,4 +18,3 @@ for a two-armed clinical trial. If
 \code{file} is defined, the generated sequence is automatically saved to the
 corresponding path.
 }
-

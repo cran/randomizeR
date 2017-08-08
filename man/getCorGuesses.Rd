@@ -26,4 +26,3 @@ type <- corGuess("CS")
 getCorGuesses(M, type)
 
 }
-

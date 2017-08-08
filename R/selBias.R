@@ -29,8 +29,8 @@ validateSelBias <- function(object) {
   }
   
   type <- object@type[1]
-  if (!(type %in% c("CS", "DS"))) {
-    msg <- paste("(First) Argument of type is ", type, ". Should be \"CS\" or \"DS\"."
+  if (!(type %in% c("CS", "DS", "CS2"))) {
+    msg <- paste("(First) Argument of type is ", type, ". Should be \"CS\", \"DS\" or \"CS2\" ."
                  , sep = "")
     errors <- c(errors, msg)
   }
@@ -93,11 +93,14 @@ setClass("selBias", slots = c(eta = "numeric", type = "character",
 #' @family issues
 #' 
 #' @inheritParams overview
+#' 
+#' @importFrom stats anova lm
+#' 
 #' @param 
 #' method character string, should be one of \code{"sim"} or \code{"exact"}, see 
 #' Details.
 #' @param
-#' type character string, should be one of \code{"CS"} or \code{"DS"}, see 
+#' type character string, should be one of \code{"CS"}, \code{"CS2"} or \code{"DS"}, see 
 #' Details.
 #' @param alpha significance level.
 #'
@@ -156,7 +159,7 @@ setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "m
 # @rdname getStat
 setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "normEndp"),
           function(randSeq, issue, endp) {
-            stopifnot(validObject(randSeq), validObject(issue), validObject(endp))
+            stopifnot(validObject(randSeq), validObject(issue), validObject(endp), randSeq@K == length(endp@mu))
             if (issue@method == "sim") {
               D <- data.frame(testDec(randSeq, issue, endp))
               colnames(D) <- paste("testDec(", issue@type, ")", sep = "")
@@ -173,10 +176,19 @@ setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "n
 setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
                                      endp = "normEndp"),
           function(randSeq, issue, endp) {
-            stopifnot(randSeq@K == 2, randSeq@K == length(endp@mu))
+            stopifnot(randSeq@K == length(endp@mu))
             validObject(randSeq); validObject(issue); validObject(endp)
-            # convergence strategy
-            if (issue@type == "CS") {
+            # for the second convergence strategy, use the already implemented function
+            # in the doublyF file
+            if(issue@type == "CS2"){
+              R_ <- genSeq(crPar(N(randSeq), K(randSeq)))
+              issue_ <- t(apply(randSeq@M, 1, function(x) {
+                R_@M <- matrix(x, nrow = 1)
+                makeBiasedExpectation(R_, endp@mu, issue)
+              }))
+              return(issue_)
+            } else if (issue@type == "CS") {
+              # convergence strategy
               issue <- t(apply(randSeq@M, 1, function(x) {
                 issue <- sign(cumsum(2*x - 1)) * issue@eta
                 issue <- issue[-length(issue)]
@@ -185,7 +197,7 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
               }))
             } else if (issue@type == "DS") {
               issue <- t(apply(randSeq@M, 1, function(x) {
-                issue <- sign(cumsum(2*x - 1)) * issue@eta
+                issue <- sign(cumsum(2*x - 1)) * issue@eta * (-1)
                 issue <- issue[-length(issue)]
                 issue <- c(0, issue)
                 issue
@@ -201,9 +213,19 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
 setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias", 
                                      endp = "missing"), 
           function(randSeq, issue) {
-            stopifnot(randSeq@K == 2, validObject(randSeq), validObject(issue))
-            # convergence strategy
-            if (issue@type == "CS") {
+            stopifnot(validObject(randSeq), validObject(issue))
+            # if no endpoint is specified, create a vector with 0s for the
+            # second convergence strategy
+            if(issue@type == "CS2"){
+              mu <- rep(0, randSeq@K)
+              R_ <- genSeq(crPar(N(randSeq), K(randSeq)))
+              issue_ <- t(apply(randSeq@M, 1, function(x) {
+                R_@M <- matrix(x, nrow = 1)
+                makeBiasedExpectation(R_, mu, issue)
+              }))
+              return(issue_)
+            }else if (issue@type == "CS") {
+              # convergence strategy
               issue <- t(apply(randSeq@M, 1, function(x) {
                 issue <- sign(cumsum(2*x - 1)) * issue@eta
                 issue <- issue[-length(issue)]
@@ -214,7 +236,7 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
               issue <- t(apply(randSeq@M, 1, function(x) {
                 issue <- sign(cumsum(2*x - 1)) * issue@eta
                 issue <- issue[-length(issue)]
-                issue <- c("nG", issue)
+                issue <- c(0, issue)
                 issue
               }))  
             }

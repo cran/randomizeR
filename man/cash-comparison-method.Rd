@@ -15,4 +15,3 @@
 \description{
 Method defining the $ operator for the assessemnt class
 }
-

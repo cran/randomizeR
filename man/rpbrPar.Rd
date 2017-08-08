@@ -50,4 +50,3 @@ Other randomization procedures: \code{\link{abcdPar}},
   \code{\link{rarPar}}, \code{\link{rtbdPar}},
   \code{\link{tbdPar}}, \code{\link{udPar}}
 }
-

@@ -3,6 +3,7 @@
 \docType{methods}
 \name{plot}
 \alias{plot}
+\alias{plot}
 \alias{plot,comparison,character-method}
 \alias{plot,comparison,missing-method}
 \title{Generic plotting of comparison objects}
@@ -42,4 +43,3 @@ plot(comp)
 \seealso{
 \code{\link{compare}} for creating \code{S4} objects of the class \code{comparison}
 }
-

@@ -12,4 +12,3 @@ coin(obj)
 \description{
 Function returning the coin slot of an S4 object
 }
-

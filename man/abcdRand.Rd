@@ -30,4 +30,3 @@ allocation of two treatments.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}
 \strong{53}, No. 4, 651-664
 }
-

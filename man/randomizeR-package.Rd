@@ -2,8 +2,8 @@
 % Please edit documentation in R/randomizeRPackage.R
 \docType{package}
 \name{randomizeR-package}
-\alias{randomizeR}
 \alias{randomizeR-package}
+\alias{randomizeR}
 \title{Randomization for Clinical Trials}
 \description{
 This tool enables the user to choose a randomization procedure based on 
@@ -20,9 +20,7 @@ funding from the European Union's Seventh Framework Programme for
 research, technological development and demonstration under Grant Agreement 
 no 602552.
 }
-\author{
-David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
-}
+
 \references{
 W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}. 
 Wiley.
@@ -30,6 +28,9 @@ Wiley.
 D. Uschner, D. Schindler, N. Heussen and R.-D. Hilgers (2016) \emph{randomizeR:
 An R package for the Assessment and Implementation of Randomization in Clinical 
 Trials}. Submitted to the Journal of Statistical Software.
+
+D. Schindler (2016) \emph{Assessment of Randomization Procedures in the Presence of 
+Selection and Chronological Bias}. PhD Thesis.
 }
 \seealso{
 For functionality for randomization procedures, see \code{\link{randPar}} and
@@ -39,4 +40,6 @@ For the criteria for the assessment of randomization procedures, see
 For the assessment and comparison of randomization procedures, see 
 \code{\link{assess}} and \code{\link{compare}}.
 }
-
+\author{
+David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
+}

@@ -12,4 +12,3 @@ N(obj)
 \description{
 Function returning the sample size slot of an S4 object
 }
-

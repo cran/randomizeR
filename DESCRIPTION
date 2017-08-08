@@ -1,7 +1,7 @@
 Package: randomizeR
 Title: Randomization for Clinical Trials
-Version: 1.3
-Date: 2016-06-23
+Version: 1.4
+Date: 2017-08-01
 Authors@R: c(
     person(given="David", family="Schindler", email="dschindler@ukaachen.de", role="aut"),
     person(given="Diane", family="Uschner", email="duschner@ukaachen.de", role=c("aut","cre")),
@@ -13,29 +13,32 @@ Authors@R: c(
 Description: This tool enables the user to choose a randomization procedure
     based on sound scientific criteria. It comprises the generation of
     randomization sequences as well the assessment of randomization procedures
-    based on carefully selected criteria. Furthermore, randomizeR provides a
+    based on carefully selected criteria. Furthermore, 'randomizeR' provides a
     function for the comparison of randomization procedures.
 Depends: R (>= 3.3.0), methods, ggplot2, plotrix
 License: GPL (>= 3)
 LazyData: true
 Collate: 'getDesign.R' 'randPar.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
         'getExpectation.R' 'normEndp.R' 'endpoint.R' 'util.R'
-        'getStat.R' 'power.R' 'imbalance.R' 'corGuess.R' 'testDec.R'
-        'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R' 'issue.R'
-        'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R' 'bsdPar.R'
-        'bsdSeq.R' 'chenPar.R' 'chenSeq.R' 'chronBiasStepT.R'
-        'combinedBias.R' 'compare.R' 'crPar.R' 'crSeq.R'
-        'createParam.R' 'ebcSeq.R' 'gbcdPar.R' 'gbcdSeq.R' 'hadaPar.R'
-        'hadaSeq.R' 'mpPar.R' 'mpSeq.R' 'pbrPar.R' 'pbrSeq.R'
-        'rtbdSeq.R' 'rpbrSeq.R' 'randomBlockSeq.R'
-        'randomizeROverview.R' 'randomizeRPackage.R' 'rarPar.R'
-        'rarSeq.R' 'rpbrPar.R' 'tbdPar.R' 'rtbdPar.R' 'saveAssess.R'
-        'saveRand.R' 'tbdSeq.R' 'udPar.R' 'udSeq.R'
-Suggests: testthat, knitr, quantreg
+        'getStat.R' 'power.R' 'imbalance.R' 'corGuess.R' 'doublyF.R'
+        'testDec.R' 'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R'
+        'issue.R' 'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R'
+        'bsdPar.R' 'bsdSeq.R' 'chenPar.R' 'chenSeq.R'
+        'chronBiasStepT.R' 'combinedBias.R' 'compare.R' 'crPar.R'
+        'crSeq.R' 'createParam.R' 'derFunc.R' 'desFunc.R'
+        'getDesFunc.R' 'derringerLs.R' 'derringerRs.R' 'derringerTs.R'
+        'desScores.R' 'desirability.R' 'ebcSeq.R' 'evaluate.R'
+        'gbcdPar.R' 'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'mpPar.R'
+        'mpSeq.R' 'pbrPar.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R'
+        'rpbrSeq.R' 'randomBlockSeq.R' 'randomizeROverview.R'
+        'randomizeRPackage.R' 'rarPar.R' 'rarSeq.R' 'rpbrPar.R'
+        'tbdPar.R' 'rtbdPar.R' 'saveAssess.R' 'saveRand.R' 'tbdSeq.R'
+        'udPar.R' 'udSeq.R'
+Suggests: testthat, knitr
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2016-06-23 15:22:48 UTC; duschner
+Packaged: 2017-08-08 10:04:39 UTC; duschner
 Author: David Schindler [aut],
   Diane Uschner [aut, cre],
   Martin Manolov [ctb],
@@ -44,4 +47,4 @@ Author: David Schindler [aut],
   Nicole Heussen [aut, ths]
 Maintainer: Diane Uschner <duschner@ukaachen.de>
 Repository: CRAN
-Date/Publication: 2016-06-23 19:44:15
+Date/Publication: 2017-08-08 11:22:16 UTC

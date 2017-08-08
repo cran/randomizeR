@@ -12,4 +12,3 @@ rho(obj)
 \description{
 Function returning the adjusting parameter rho slot of an S4 object
 }
-

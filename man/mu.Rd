@@ -12,4 +12,3 @@ mu(obj)
 \description{
 Access the expectation value slot of a normEndp S4 object
 }
-

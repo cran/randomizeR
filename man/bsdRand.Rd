@@ -26,4 +26,3 @@ Sampling algorithm for BSD
 J. F. Soares and C. F. Jeff Wu (1983) Some Restricted Randomization Rules in
 Sequential Designs. Comm. in Stat., 12, 2017-34.
 }
-

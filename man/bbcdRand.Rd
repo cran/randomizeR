@@ -30,4 +30,3 @@ clinical trials: the dominant biased coin design.
 \emph{Pharmaceutical Statistics}
 \strong{13(2)}, 119-127
 }
-

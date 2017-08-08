@@ -42,4 +42,3 @@ Other randomization procedures: \code{\link{bbcdPar}},
   \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
   \code{\link{tbdPar}}, \code{\link{udPar}}
 }
-

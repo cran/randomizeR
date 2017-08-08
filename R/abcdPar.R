@@ -213,7 +213,7 @@ setMethod("genSeq", signature(obj = "abcdPar", r = "missing", seed = "missing"),
 setMethod("getDesign", 
           signature(obj = "abcdPar"),
           function(obj) {
-            paste("abcd(", obj@a, ")", sep = "")
+            paste("ABCD(", obj@a, ")", sep = "")
           }
 )
 

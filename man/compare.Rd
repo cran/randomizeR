@@ -3,8 +3,9 @@
 \docType{methods}
 \name{compare}
 \alias{compare}
-\alias{compare,issue,endpoint-method}
+\alias{compare}
 \alias{compare,issue,missing-method}
+\alias{compare,issue,endpoint-method}
 \title{Comparison of randomization procedures}
 \usage{
 compare(issue, ..., endp)
@@ -66,4 +67,3 @@ Generation of randomization sequences: \code{\link{genSeq}}
 
 \code{\link{issues}} for the assessment of randomization sequences
 }
-

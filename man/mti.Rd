@@ -12,4 +12,3 @@ mti(obj)
 \description{
 Function returning the MTI slot of an S4 object
 }
-

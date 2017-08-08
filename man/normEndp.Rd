@@ -27,4 +27,3 @@ admit the calculation of the exact type-I-error probability and power.
 \seealso{
 Compute exact or simulated type-I-error: \code{\link{assess}}.
 }
-

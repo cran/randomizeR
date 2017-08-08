@@ -29,4 +29,3 @@ Representing Chen's Design
 Chen Yung-Pin (1999) Biased coin design with imbalance tolerance.
 Comm. in Stat., 15, 953-975.
 }
-

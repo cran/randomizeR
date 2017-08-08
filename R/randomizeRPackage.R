@@ -14,6 +14,8 @@
 #' An R package for the Assessment and Implementation of Randomization in Clinical 
 #' Trials}. Submitted to the Journal of Statistical Software.
 #' 
+#' D. Schindler (2016) \emph{Assessment of Randomization Procedures in the Presence of 
+#' Selection and Chronological Bias}. PhD Thesis.
 #' 
 #' @section Acknowledgement:
 #' This research is embedded in the 
@@ -43,4 +45,5 @@
 #' @importFrom graphics abline axis box lines plot.new plot.window title
 #' @importFrom grDevices col2rgb rainbow
 #' @importFrom graphics legend
+#' @importFrom stats pbeta qf
 NULL

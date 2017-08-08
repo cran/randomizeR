@@ -7,7 +7,7 @@
 selBias(type, eta, method, alpha = 0.05)
 }
 \arguments{
-\item{type}{character string, should be one of \code{"CS"} or \code{"DS"}, see 
+\item{type}{character string, should be one of \code{"CS"}, \code{"CS2"} or \code{"DS"}, see 
 Details.}
 
 \item{eta}{numeric specifying the magnitude of selection bias.}
@@ -65,4 +65,3 @@ Other issues: \code{\link{chronBias}},
   \code{\link{imbal}}, \code{\link{issue}},
   \code{\link{setPower}}
 }
-

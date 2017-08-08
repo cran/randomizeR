@@ -77,11 +77,14 @@ setClassUnion("issue", c("combinedBias", "combinedBiasStepTrend"))
 setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias",
                                       endp = "normEndp"),
           function(randSeq, issue, endp) {
-            stopifnot(randSeq@K == 2, randSeq@K == length(endp@mu))
+            stopifnot(randSeq@K == length(endp@mu))
             validObject(randSeq); validObject(endp)
             chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
-            expectationSB <- getExpectation(randSeq, selBias)
+            if(randSeq@K == 2)
+              expectationSB <- getExpectation(randSeq, selBias, endp)
+            else
+              expectationSB <- makeBiasedExpectation(randSeq, endp@mu, selBias)
             expectationCB <- getExpectation(randSeq, chronBias, endp)
             expectationSB + expectationCB
 })
@@ -90,12 +93,24 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
 setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBiasStepTrend",
                                       endp = "normEndp"),
           function(randSeq, issue, endp) {
-            stopifnot(randSeq@K == 2, randSeq@K == length(endp@mu))
+            stopifnot(randSeq@K == length(endp@mu))
             validObject(randSeq); validObject(endp)
             chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@saltus,
                                    issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
-            expectationSB <- getExpectation(randSeq, selBias)
+            if(randSeq@K == 2)
+              expectationSB <- getExpectation(randSeq, selBias, endp)
+            else {
+              if(dim(randSeq@M)[1]){
+                R_ <- genSeq(crPar(randSeq@N, randSeq@K))
+                expectationSB <- t(apply(randSeq@M, 1, function(x){
+                  R_@M <- matrix(x, ncol = N(randSeq))
+                  makeBiasedExpectation(R_, endp@mu, selBias)
+                }))
+              }else{
+                expectationSB <- makeBiasedExpectation(randSeq, endp@mu, selBias)
+              }
+            }
             expectationCB <- getExpectation(randSeq, chronBias, endp)
             expectationSB + expectationCB
 })

@@ -19,4 +19,3 @@ randomization sequences will be plotted in light gray.}
 \description{
 Plot all randomization sequences of a randSeq object
 }
-

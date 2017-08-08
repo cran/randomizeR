@@ -31,4 +31,3 @@ R. L. Smith (1984) Sequential treatment allocation using biased coin designs.
 W. F. Rosenberger and J. M. Lachin (2002) Randomization in Clinical Trials. \emph{Wiley},
 64-65
 }
-

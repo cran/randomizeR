@@ -47,7 +47,7 @@ setClass("rEbcSeq", contains = c("rRandSeq", "ebcSeq"))
 setMethod("getProb", signature = c(obj = "ebcSeq"),
           function(obj) {
             if(obj@K == 2) {
-            apply(obj@M, 1, function(x, p){
+            apply(obj@M, 1, function(x, p) {
               rw <- abs(c(0, cumsum(2*x - 1)))
               # hitting zero imbalance
               origin <- sum(rw[-length(rw)] == 0) 

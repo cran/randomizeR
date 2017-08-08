@@ -26,6 +26,67 @@ test_that("assess returns valid object", {
 	expect_error(assess(seqs, "issue"))
 	expect_error(assess(seqs, 42))
 	
+	
+	#### Assessment object with Selection Bias for K>2
+	seqs <- genSeq(crPar(12, 3), r = 1000)
+	i4 <- selBias("CS", 0.5, "exact", 0.05)
+	i5 <- selBias("CS", 0.5, "sim", 0.05)
+	endp <- normEndp(c(0,0,0), c(1,1,1))
+	expect_is(assess(seqs, i4, endp = endp), "assessment")
+	expect_is(assess(seqs, i5, endp = endp), "assessment")
+	expect_error(assess(seqs, i4, endp = normEndp(c(0,0), c(1,1))))
+	expect_error(assess(seqs, i5, endp = normEndp(c(0,0), c(1,1))))
+	expect_error(assess(seqs, selBias("DS", 0.5, "exact", 0.05),endp = endp))
+	
+	
+	
+	
+	### A broad assessment test
+	## some selection biases (one from every case)
+	sbias1 <- selBias("CS", 0.5, "exact", 0.05)
+	sbias2 <- selBias("CS", 0.5, "sim", 0.05)
+	sbias3 <- selBias("DS", 0.5, "exact", 0.05)
+	sbias4 <- selBias("DS", 0.5, "sim", 0.05)
+	sbias5 <- selBias("CS2", 0.5, "exact", 0.05)
+	sbias6 <- selBias("CS2", 0.5, "sim", 0.05)
+	sbias_list <- list(sbias1, sbias2, sbias3, sbias4, sbias5, sbias6)
+	
+	## some chronological biases (one from every case)
+	cbias1 <- chronBias(type = "linT", theta = 0.25, method = "exact", saltus = 3, alpha = 0.05)
+	cbias2 <- chronBias(type = "linT", theta = 0.25, method = "sim", saltus = 3, alpha = 0.05)
+	cbias3 <- chronBias(type = "logT", theta = 0.25, method = "exact", saltus = 3, alpha = 0.05)
+	cbias4 <- chronBias(type = "logT", theta = 0.25, method = "sim", saltus = 3, alpha = 0.05)
+	cbias5 <- chronBias(type = "stepT", theta = 0.25, method = "exact", saltus = 3, alpha = 0.05)
+	cbias6 <- chronBias(type = "stepT", theta = 0.25, method = "sim", saltus = 3, alpha = 0.05)
+	cbias_list <- list(cbias1, cbias2, cbias3, cbias4, cbias5, cbias6)
+	
+	## some combined biases (every combination that makes sense)
+	combias_list <- list(combineBias(sbias1, cbias1), combineBias(sbias1, cbias3), combineBias(sbias1, cbias5), 
+	                     combineBias(sbias2, cbias2), combineBias(sbias2, cbias4), combineBias(sbias2, cbias6),
+	                     combineBias(sbias5, cbias1), combineBias(sbias5, cbias3), combineBias(sbias5, cbias5),
+	                     combineBias(sbias6, cbias2), combineBias(sbias6, cbias4), combineBias(sbias6, cbias6))
+	
+	## some sequences and endpoints defined
+	seqs_2k <- list(genSeq(rarPar(10)), genSeq(rarPar(10), r = 100), getAllSeq(rarPar(10)))
+	seqs_3k <- list(genSeq(rarPar(12,3)), genSeq(rarPar(12,3), r = 100))
+	
+	endp1 <- normEndp(c(0,0), c(1,1))
+	endp2 <- normEndp(c(0,0,0), c(1,1,1))
+	
+	
+	seq <- seqs_2k[[sample(1:3, 1)]]
+	i <- sample(1:6, 1)
+  expect_is(assess(seq, cbias_list[[i]], endp = endp1), "assessment")
+  expect_is(assess(seq, sbias_list[[i]], endp = endp1), "assessment")
+  expect_is(assess(seq, combias_list[[i*2]], endp = endp1), "assessment")
+  
+  seq <- seqs_3k[[sample(1:2, 1)]]
+  i <- sample(1:6, 1)
+  expect_is(assess(seq, cbias_list[[i]], endp = endp2), "assessment")
+  expect_is(assess(seq, sbias_list[[sample(c(1,2,5,6), 1)]], endp = endp2), "assessment")
+  expect_is(assess(seq, combias_list[[i*2]], endp = endp2), "assessment")
+	
+	
 })
 
 test_that("issues are computed right", {

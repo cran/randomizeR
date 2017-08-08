@@ -16,4 +16,3 @@ case of chronological bias.
 \description{
 Accesses the type slot of an S4 object
 }
-

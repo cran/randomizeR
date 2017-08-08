@@ -12,4 +12,3 @@ K(obj)
 \description{
 Function returning the total sample size slot of an S4 object
 }
-

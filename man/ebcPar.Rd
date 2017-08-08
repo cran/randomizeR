@@ -39,4 +39,3 @@ Other randomization procedures: \code{\link{abcdPar}},
   \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
   \code{\link{tbdPar}}, \code{\link{udPar}}
 }
-

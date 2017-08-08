@@ -14,4 +14,3 @@ or \code{\link{createParam}}.}
 Returns the seed that was either generated at random or user specified.
 The seed can be specified for any random operation e.g. genSeq.
 }
-

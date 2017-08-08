@@ -21,4 +21,3 @@ sheet.
 \seealso{
 Other saving functions: \code{\link{saveRand}}
 }
-
