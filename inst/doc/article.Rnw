@@ -1,9 +1,9 @@
  \documentclass[nojss]{jss}
-
+\usepackage[latin1]{inputenc}
 \usepackage{graphicx} % subfigures
 \usepackage{subcaption} % Figures
 \usepackage{booktabs} % nice tables
-\usepackage{multirow}
+%\usepackage{multirow}
 %\usepackage{csquotes} % quotes
 
 
@@ -627,36 +627,36 @@ Random Allocation Rule (RAR) & \code{rarPar(N)} & \code{N} sample size\\
 \addlinespace
 Permuted Block Randomization (PBR) & \code{pbrPar(bc)} & \code{bc} block constellation\\
 \addlinespace
-\multirow{2}{*} {Rand. Permuted Block Randomization (RPBR)} & \multirow{2}{*} {\code{rpbrPar(N, rb)}} & \code{N} sample size \\ 
+Rand. Permuted Block Randomization (RPBR) & \code{rpbrPar(N, rb)} & \code{N} sample size \\ 
 & & \code{rb} random block lengths \\
 \addlinespace
 Truncated Binomial Design (TBD) & \code{tbdPar(bc)} & \code{bc} block constellation\\
 \addlinespace
-\multirow{2}{*} {Rand. Truncated Binomial Design (RTBD)} & \multirow{2}{*} {\code{rtbdPar(N, rb)}} & \code{N} sample size \\ 
+Rand. Truncated Binomial Design (RTBD) & \code{rtbdPar(N, rb)} & \code{N} sample size \\ 
 & & \code{rb} random block lengths \\
 \addlinespace
-\multirow{2}{*} {Maximal Procedure (MP)} & \multirow{2}{*} {\code{mpPar(N, mti)}} & \code{N} sample size \\ 
+Maximal Procedure (MP) & \code{mpPar(N, mti)} & \code{N} sample size \\ 
 & & \code{mti} max. tolerated imbalance\\
 \addlinespace
-\multirow{2}{*} {Big Stick Design (BSD)} & \multirow{2}{*} {\code{bsdPar(N, mti)}} & \code{N} sample size \\ 
+Big Stick Design (BSD) & \code{bsdPar(N, mti)} & \code{N} sample size \\ 
 & & \code{mti} max. tolerated imbalance\\
 \addlinespace
-\multirow{2}{*} {Efrons Biased Coin Design (EBC)} & \multirow{2}{*} {\code{ebcPar(N, p)}} & \code{N} sample size \\ 
+Efrons Biased Coin Design (EBC) & \code{ebcPar(N, p)} & \code{N} sample size \\ 
 & & \code{p} biased coin probability\\
 \addlinespace
-\multirow{3}{*} {Chen's Design (CHEN)} & \multirow{3}{*} {\code{chenPar(N, mti, p)}} & \code{N} sample size \\ 
+Chen's Design (CHEN) & \code{chenPar(N, mti, p)} & \code{N} sample size \\ 
 & & \code{mti} max. tolerated imbalance\\
 & & \code{p} biased coin probability\\
 \addlinespace
-\multirow{2}{*} {Generalized Biased Coin Design (GBCD)} & \multirow{2}{*} {\code{gbcdPar(N, rho)}} & \code{N} sample size \\ 
+Generalized Biased Coin Design (GBCD) & \code{gbcdPar(N, rho)} & \code{N} sample size \\ 
 & & \code{rho} balance factor\\
 \addlinespace
-\multirow{2}{*} {Adjustable Biased Coin Design (ABCD)} & \multirow{2}{*} {\code{abcdPar(N, a)}} & \code{N} sample size \\ 
+Adjustable Biased Coin Design (ABCD) & \code{abcdPar(N, a)} & \code{N} sample size \\ 
 & & \code{a} balance factor\\
-\multirow{2}{*} {Bayesian Biased Coin Design (BBCD)} & \multirow{2}{*} {\code{bbcdPar(N, a)}} & \code{N} sample size \\ 
+Bayesian Biased Coin Design (BBCD) & \code{bbcdPar(N, a)} & \code{N} sample size \\ 
 & & \code{a} balance factor\\
 \addlinespace
-\multirow{3}{*} {Wei's Urn Design (UD)} & \multirow{3}{*} {\code{udPar(N, ini, add)}} & \code{N} sample size \\ 
+Wei's Urn Design (UD) & \code{udPar(N, ini, add)} & \code{N} sample size \\ 
 & & \code{ini} initial urn composition\\
 & & \code{add} adjustment in each step\\
 \addlinespace
@@ -666,7 +666,6 @@ Hadamard Randomization (HADA) & \code{hadaPar(N)} & \code{N} sample size\\
 \caption{Randomization procedures included in \pkg{randomizeR}.}
 \label{tab:rand-proc}
 \end{table}
-
 
 \subsubsection{Generation of a single sequence} \label{ssec:gen-one-seq}
 
@@ -816,11 +815,11 @@ an overview over the implemented assessment criteria is shown by \code{?issues}.
 \toprule
 Criterion & Constructor Function & Parameters\\
 \midrule
-\multirow{3}{*}{Chronological Bias} & \multirow{3}{*}{\code{chronBias(type,theta, method)}} & \code{type} of trend\\
+Chronological Bias & \code{chronBias(type,theta, method)} & \code{type} of trend\\
   & & \code{theta} strength of trend\\
 	& & \code{method} of assessment\\
 \addlinespace
-\multirow{3}{*}{Selection Bias} & \multirow{3}{*}{\code{selBias(type,eta, method)}} & \code{type} of guessing strategy\\
+Selection Bias & \code{selBias(type,eta, method)} & \code{type} of guessing strategy\\
   & & \code{eta} selection effect \\
 	& & \code{method} of assessment\\
 \addlinespace
@@ -828,10 +827,10 @@ Correct Guesses & \code{corGuess(type)} & \code{type} of guessing strategy\\
 \addlinespace
 Imbalance & \code{imbal(type)} & \code{type} of imbalance\\
 \addlinespace
-\multirow{2}{*}{Combined Bias} & \multirow{2}{*}{\code{combineBias(selBias, chronBias)}} & \code{selBias} object\\
+Combined Bias & \code{combineBias(selBias, chronBias)} & \code{selBias} object\\
   & & \code{chronBias} object\\
 \addlinespace
-\multirow{2}{*}{Power loss due to imbalance} & \multirow{2}{*}{\code{setPower(d, method)}} & \code{d} detectable effect\\
+Power loss due to imbalance & \code{setPower(d, method)} & \code{d} detectable effect\\
 	& & \code{method} of assessment\\
 	\bottomrule
 \end{tabular}

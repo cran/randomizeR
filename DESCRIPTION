@@ -1,7 +1,7 @@
 Package: randomizeR
 Title: Randomization for Clinical Trials
-Version: 1.4
-Date: 2017-08-01
+Version: 1.4.1
+Date: 2018-06-01
 Authors@R: c(
     person(given="David", family="Schindler", email="dschindler@ukaachen.de", role="aut"),
     person(given="Diane", family="Uschner", email="duschner@ukaachen.de", role=c("aut","cre")),
@@ -38,7 +38,7 @@ Suggests: testthat, knitr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2017-08-08 10:04:39 UTC; duschner
+Packaged: 2018-06-04 16:21:11 UTC; martin
 Author: David Schindler [aut],
   Diane Uschner [aut, cre],
   Martin Manolov [ctb],
@@ -47,4 +47,4 @@ Author: David Schindler [aut],
   Nicole Heussen [aut, ths]
 Maintainer: Diane Uschner <duschner@ukaachen.de>
 Repository: CRAN
-Date/Publication: 2017-08-08 11:22:16 UTC
+Date/Publication: 2018-06-05 14:32:04 UTC

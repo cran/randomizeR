@@ -1,3 +1,7 @@
+# Changes in randomizeR version 1.4.1
+
+## Bug Fixes
+* Fixes Bug in getExpectation in combinedBias
 
 # Changes in randomizeR version 1.4
 

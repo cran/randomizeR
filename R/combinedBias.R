@@ -82,7 +82,7 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
             chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
             if(randSeq@K == 2)
-              expectationSB <- getExpectation(randSeq, selBias, endp)
+              expectationSB <- getExpectation(randSeq, selBias)
             else
               expectationSB <- makeBiasedExpectation(randSeq, endp@mu, selBias)
             expectationCB <- getExpectation(randSeq, chronBias, endp)
@@ -99,7 +99,7 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
                                    issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
             if(randSeq@K == 2)
-              expectationSB <- getExpectation(randSeq, selBias, endp)
+              expectationSB <- getExpectation(randSeq, selBias)
             else {
               if(dim(randSeq@M)[1]){
                 R_ <- genSeq(crPar(randSeq@N, randSeq@K))
