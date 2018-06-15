@@ -1,3 +1,8 @@
+# Changes in randomizeR version 1.4.2
+
+## Minor changes
+* Citation updated: Paper now published in the journal of statistical software.
+
 # Changes in randomizeR version 1.4.1
 
 ## Bug Fixes
@@ -5,7 +10,7 @@
 
 # Changes in randomizeR version 1.4
 
-# Bug Fixes
+## Bug Fixes
 * Minor Bug fixes
 
 # New Features

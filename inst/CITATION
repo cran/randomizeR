@@ -1,0 +1,21 @@
+bibentry(bibtype = "Article",
+  title        = "{randomizeR}: An {R} Package for the Assessment and Implementation of Randomization in Clinical Trials",
+  author       = c(person(given = "Diane",
+                          family = "Uschner",
+                          email = "duschner@ukaachen.de"),
+                   person(given = "David",
+                          family = "Schindler"),
+                   person(given = "Ralf-Dieter",
+                          family = "Hilgers"),
+                   person(given = "Nicole",
+                          family = "Heussen")),
+  journal      = "Journal of Statistical Software",
+  year         = "2018",
+  volume       = "85",
+  number       = "8",
+  pages        = "1--22",
+  doi          = "10.18637/jss.v085.i08",
+
+  header       = "To cite randomizeR in publications use:"
+)
+

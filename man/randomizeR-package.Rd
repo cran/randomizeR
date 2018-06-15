@@ -22,15 +22,15 @@ no 602552.
 }
 
 \references{
-W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}. 
+W. F. Rosenberger and J. M. Lachin (2012) \emph{Randomization in Clinical Trials - Theory and Practice}. 
 Wiley.
-
-D. Uschner, D. Schindler, N. Heussen and R.-D. Hilgers (2016) \emph{randomizeR:
-An R package for the Assessment and Implementation of Randomization in Clinical 
-Trials}. Submitted to the Journal of Statistical Software.
 
 D. Schindler (2016) \emph{Assessment of Randomization Procedures in the Presence of 
 Selection and Chronological Bias}. PhD Thesis.
+
+Uschner D, Schindler D, Hilgers R and Heussen N (2018). "randomizeR: An R Package for the
+Assessment and Implementation of Randomization in Clinical Trials." \emph{Journal of Statistical
+Software}, \strong{85}(8), pp. 1-22. doi: 10.18637/jss.v085.i08 (URL: \url{http://doi.org/10.18637/jss.v085.i08}).
 }
 \seealso{
 For functionality for randomization procedures, see \code{\link{randPar}} and
