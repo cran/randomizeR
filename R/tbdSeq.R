@@ -25,7 +25,7 @@ NULL
 # 
 # @slot N total number of patients included in the trial.
 # @slot bc vector which contains the realized block lengths from the trial.
-# @slot M matrix containing randomisation sequences of length \code{N} in its
+# @slot M matrix containing randomization sequences of length \code{N} in its
 # rows.
 setClass("tbdSeq", slots=c(bc = "numeric"), contains = "randSeq")
 

@@ -15,7 +15,7 @@ sequence. It can take values \code{PBR}, \code{RAR}, \code{HAD}, \code{PWR},
 
 \item{mti}{maximum tolerated imbalance in patient numbers during the trial.}
 
-\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block. 
+\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block.
 This means that the vector \code{bc} will have one entry for each block.}
 
 \item{rb}{block lengths of the blocks that can be selected equiprobable at random.}
@@ -37,17 +37,26 @@ S4object of the corresponding randomization procedure class.
 Represents any randomization procedure for a two-armed clinical trial.
 }
 \details{
-Dending on the input of the user, \code{createParam} creates an object
+Depending on the input of the user, \code{createParam} creates an object
 representing a randomization procedures for a two-armed clinical trial
 (see also \code{\link{randPar}}).
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{ebcPar}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

@@ -25,7 +25,7 @@ NULL
 # @slot N total number of patients included in the trial.
 # @slot p success probability of the biased coin.
 # @slot mti The maximum tolerated imbalance during the trial.
-# @slot M matrix containing randomisation sequences of length \code{N} in its
+# @slot M matrix containing randomization sequences of length \code{N} in its
 # rows.
 setClass("chenSeq", slots = c(p="numeric", mti = "numeric"), contains = "randSeq")
 
@@ -43,7 +43,6 @@ setClass("rChenSeq", contains = c("rRandSeq", "chenSeq"))
 # --------------------------------------------
 # Methods for chenSeq
 # --------------------------------------------
-
 #' @rdname getProbabilities
 setMethod("getProb", signature = c(obj = "chenSeq"),
           function(obj) {

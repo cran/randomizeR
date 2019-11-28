@@ -9,33 +9,22 @@
 #' Computes the value of the distribution function of the doubly noncentral t-distribution at \code{x}.
 #'
 #' @inheritParams overview
-#' 
+#' @keywords internal
 #' @return Distribution value of the doubly noncentral t-distribution at \code{x}.
-#'
-#' @export
-doublyT <- function(x, df, delta, lambda, lb = 0, ub) {
+doublyT <- function(x, df, lambda1, lambda2, lb = 0, ub) {
   values <- lb:ub
-  suppressWarnings(sum(dpois(values, lambda/2)*pt(x*(1+2*values/df)^(0.5), df+2*values, delta)))
+  suppressWarnings(sum(dpois(values, lambda2/2)*pt(x*(1+2*values/df)^(0.5), df+2*values, lambda1)))
 }
 
 #' Calculation of the NCPs of each randomization sequence for the doubly noncentral t-distribution
 #'
-#' Computes the noncentraility parameters delta and lambda for the doubly noncentral t-distribution of each randomization sequence.
+#' Computes the noncentrality parameters delta and lambda for the doubly noncentral t-distribution of each randomization sequence.
 #'
 #' @param randSeq object of the class randSeq.
 #' @param bias object of the class bias.
 #' @param endp object of the class endpoint.
-#' 
-#' @examples 
-#' myPar <- crPar(4)
-#' M <- getAllSeq(myPar)
-#' cs <- selBias("CS", 1, "exact")
-#' endp <- normEndp(mu = c(0, 0), sigma = c(1, 1))
-#' genNcps(M, cs, endp)
-#' 
+#' @keywords internal
 #' @return matrix containing the noncentrality parameters delta and lambda of all randomization sequences.
-#'
-#' @export
 genNcps <- function(randSeq, bias, endp) {
   stopifnot(is(randSeq, "randSeq"), randSeq@K == 2,
             is(bias, "issue"), is(endp, "endpoint"), sum(duplicated(endp@sigma)) == 1)
@@ -75,30 +64,21 @@ genNcps <- function(randSeq, bias, endp) {
     }
   )
   P <- do.call("rbind", P)
-  colnames(P) <- c("delta", "lambda", "N", "nA", "nB")
+  colnames(P) <- c("lambda1", "lambda2", "N", "nA", "nB")
   P
 }
 
 
-#' Calculation of the biased type-one-error (resp. power) of Student`s t-test
+#' Calculation of the biased type-one-error probability (resp. power) of Student`s t-test
 #'
-#' Computes the biased type-one-error (resp. power) of Student`ts t-test due to shifts in the expectation vectors 
+#' Computes the biased type-one-error probability (resp. power) of Student`s t-test due to shifts in the expectation vectors 
 #' in both treatment groups.
 #'
 #' @param randSeq object of the class randSeq.
 #' @param bias object of the class bias.
 #' @param endp object of the class endpoint.
-#' 
-#' @examples 
-#' myPar <- crPar(4)
-#' M <- getAllSeq(myPar)
-#' cs <- selBias("CS", 1, "exact")
-#' endp <- normEndp(mu = c(0, 0), sigma = c(1, 1))
-#' doublyTValues(M, cs, endp)
-#' 
-#' @return the biased type-one-error (resp. power) of all randomization sequences.
-#'
-#' @export
+#' @keywords internal
+#' @return the biased type-one-error probability (resp. power) of all randomization sequences.
 doublyTValues <- function(randSeq, bias, endp) {
   stopifnot(is(randSeq, "randSeq"), randSeq@K == 2,
             is(bias, "issue"), is(endp, "endpoint"), sum(duplicated(endp@sigma)) == 1)   

@@ -17,13 +17,6 @@ genNcps(randSeq, bias, endp)
 matrix containing the noncentrality parameters delta and lambda of all randomization sequences.
 }
 \description{
-Computes the noncentraility parameters delta and lambda for the doubly noncentral t-distribution of each randomization sequence.
+Computes the noncentrality parameters delta and lambda for the doubly noncentral t-distribution of each randomization sequence.
 }
-\examples{
-myPar <- crPar(4)
-M <- getAllSeq(myPar)
-cs <- selBias("CS", 1, "exact")
-endp <- normEndp(mu = c(0, 0), sigma = c(1, 1))
-genNcps(M, cs, endp)
-
-}
+\keyword{internal}

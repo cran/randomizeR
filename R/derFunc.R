@@ -41,7 +41,7 @@ validateDerFunc <- function(object) {
 # Class definition for derFunc
 # --------------------------------------------
 
-#' Parameters generic
+# Parameters generic
 setClass("derFunc", 
          slots = c(TV = "numeric"),
          validity = validateDerFunc)
@@ -72,11 +72,13 @@ setClass("derFunc",
 #' (linear loss). \cr
 #' 
 #' @examples 
-#' # Create an object of a left-sided desirability function
+#' # create an object of a left-sided desirability function
 #' dLeft <- derFunc(0.5, 0.3, 2)
-#' # Create an object of a right-sided desirability function
+#' 
+#' # create an object of a right-sided desirability function
 #' dRight <- derFunc(0.5, 0.8, 1)
-#' # Create an object of a two-sided desirability function
+#' 
+#' # create an object of a two-sided desirability function
 #' dLR <- derFunc(0.5, c(0.3, 0.9), c(3, 1))
 #' 
 #' @return 
@@ -129,12 +131,12 @@ setMethod("show", "derFunc", function(object) {
 # --------------------------------------------
 
 #' Method defining the $ operator for the derFunc class
-#' 
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "derFunc",
           function(x, name) slot(x, name))
 
-#' Function returning the sample size slot of an S4 object
+#' Function returning the target value slot of an S4 object
 #'
 #' @param obj object inheriting from derFunc 
 #' 

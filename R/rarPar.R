@@ -35,7 +35,7 @@ validaterarPar <- function(object) {
 # Class definition for rarPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("rarPar", contains = "randPar", validity = validaterarPar)
 
 

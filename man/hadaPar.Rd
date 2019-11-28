@@ -20,7 +20,7 @@ Represents the randomization procedure Hadamard Randomization.
 \details{
 Hadamard randomization has been proposed by R.A. Bailey. The key idea is to
 use the columns of a special Hadamard Matrix as a randomization scheme. The
-implemented algorithm uses the Hadamard Matrix with \code{N=12} columns 
+implemented algorithm uses the Hadamard Matrix with \code{N=12} columns
 proposed in the paper, see references.
 }
 \note{
@@ -32,12 +32,21 @@ R.A. Bailey and P.R. Nelson (2003) Hadamard Randomization: A valid restriction
 of random permuted blocks. \emph{Biometrical Journal}, \strong{45}, 554-60.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

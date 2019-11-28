@@ -42,7 +42,7 @@ validateebcPar <- function(object) {
 # Class definition for ebcPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("ebcPar",
          slots = c(p = "numeric"),
          contains = "randPar",
@@ -57,7 +57,7 @@ setClass("ebcPar",
 #' Represents the randomization procedure Efron's Biased Coin Design.
 #'
 #' @details
-#' Flip a biased coin with probability \code{p} in favour of the treatment
+#' Flip a biased coin with probability \code{p} in favor of the treatment
 #' which is allocated less frequently. If both treatments have been assigned
 #' equally often a fair coin is tossed.
 #' 
@@ -126,7 +126,6 @@ efronRand <- function(bc, p, mti, K = 2) {
 # --------------------------------------------
 # Methods for ebcPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "ebcPar"),
           function(obj) {

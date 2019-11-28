@@ -40,7 +40,7 @@ validateSelBias <- function(object) {
     msg <- paste("eta is length ", lengthEta, ". Should be 1.", sep = "")
     errors <- c(errors, msg)
   }
-  
+
   lengthMethod <- length(object@method)
   if (lengthMethod != 1) {
     msg <- paste("Method is length ", lengthMethod, ". Should be 1.", sep = "")
@@ -120,13 +120,42 @@ setClass("selBias", slots = c(eta = "numeric", type = "character",
 #' \code{randSeq}. The type-I-error rate (power) is the proportion of falsely
 #' (correctly) rejected null hypotheses.
 #'  }
-#'  \item{\code{method="exact"}}{Represents the exact type-I-error proabability 
+#'  \item{\code{method="exact"}}{Represents the exact type-I-error probability 
 #'  given the level \code{alpha}, the selection effect \code{eta} and the 
 #'  biasing strategy \code{type}. When calling \code{assess} for a \code{selBias} 
-#'  object with \code{method="exact"}, the exact \emph{p}-value of each 
-#'  randomization sequence is computed. So far, this is only supported for
-#'  normal endpoints. Then the type-I-error probability is
-#'  the sum of the corresponding quantiles of the doubly noncentral t-distribution.
+#'  object with \code{method="exact"}, the \emph{p}-value of each randomization 
+#'  sequence is computed. For normal endpoints and two treatment groups these p-values 
+#'  are exact values which can be calculated from the sum of the corresponding quantiles 
+#'  of the doubly noncentral t-distribution. For more than two treatment groups, exact 
+#'  p-values are computed using a doubly noncentral F distribution. For exponential 
+#'  endpoints the p-values are obtained using an approximation formula. 
+#'  }
+#' }
+#' 
+#' It also supports three types of selection bias:
+#' 
+#' \describe{
+#'  \item{\code{type="DS"}}{Refers to the divergence strategy according to 
+#'  Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+#'  guesses that the upcoming treatment is the one that has so far been allocated 
+#'  *more* frequently. 
+#'  }
+#'  \item{\code{type="CS"}}{Refers to the convergence strategy according to 
+#'  Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+#'  guesses that the upcoming treatment is the one that has so far been allocated 
+#'  *less* frequently. In multi-arm trials, \code{type="CS"} refers to the first 
+#'  generalization of the convergence strategy according to Uschner et al (2018).
+#'  The investigator guesses the treatment that had been allocated less frequently
+#'  whenever all the treatments of the opposite group are larger than the smallest
+#'  of the present group.
+#'  }
+#'  \item{\code{type="CS2"}}{In trials with two treatment arms, \code{type="CS2"}
+#'  is equivalent to \code{type="CS"}. In multi-arm trials, \code{type="CS2"} refers 
+#'  to the second generalization of convergence strategy according to 
+#'  Uschner et al (2018).
+#'  The investigator guesses the treatment that had been allocated less frequently
+#'  whenever all the treatments of the opposite group are larger than the smallest
+#'  of the present group.
 #'  }
 #' }
 #' 
@@ -134,7 +163,7 @@ setClass("selBias", slots = c(eta = "numeric", type = "character",
 #' \code{S4} object of class \code{selBias}, a formal representation of the
 #' issue of selection bias in a clinical trial.
 #'
-#' @seealso Compute exact or simulated type-I-error: \code{\link{assess}}.
+#' @seealso Compute exact or simulated rejection probability: \code{\link{assess}}.
 #'
 #' @references
 #' D. Blackwell and J.L. Hodges Jr. (1957) Design for the control of 
@@ -142,6 +171,14 @@ setClass("selBias", slots = c(eta = "numeric", type = "character",
 #' 
 #' M. Proschan (1994) Influence of selection bias on the type-I-error rate  
 #' under random permuted block designs. \emph{Statistica Sinica}, \strong{4}, 219-31. 
+#' 
+#' D. Uschner, R.-D. Hilgers, N. Heussen (2018) The impact of selection bias in 
+#' randomized multi-arm parallel group clinical trials \emph{PLOS ONE}, \strong{13}(1), 1-18. 
+#' 
+#' @examples
+#' # create a selection bias of the convergency strategy type with eta = 0.25 for which
+#' # the exact rejection probabilities are calculated 
+#' sbias <- selBias("CS", 0.25, "exact")
 #' 
 #' @export
 selBias <- function(type, eta, method, alpha = 0.05) { 
@@ -160,6 +197,22 @@ setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "m
 setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "normEndp"),
           function(randSeq, issue, endp) {
             stopifnot(validObject(randSeq), validObject(issue), validObject(endp), randSeq@K == length(endp@mu))
+            if (issue@method == "sim") {
+              D <- data.frame(testDec(randSeq, issue, endp))
+              colnames(D) <- paste("testDec(", issue@type, ")", sep = "")
+              D
+            } else {
+              D <- data.frame(testDec(randSeq, issue, endp))
+              colnames(D) <- paste("P(rej)(", issue@type, ")", sep = "")
+              D
+            }
+          }
+)
+
+# @rdname getStat
+setMethod("getStat", signature(randSeq = "randSeq", issue = "selBias", endp = "expEndp"),
+          function(randSeq, issue, endp) {
+            stopifnot(validObject(randSeq), validObject(issue), validObject(endp), randSeq@K == length(endp@lambda))
             if (issue@method == "sim") {
               D <- data.frame(testDec(randSeq, issue, endp))
               colnames(D) <- paste("testDec(", issue@type, ")", sep = "")
@@ -206,6 +259,36 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
             issue[randSeq@M == 0] <- issue[randSeq@M == 0] + endp@mu[1]
             issue[randSeq@M == 1] <- issue[randSeq@M == 1] + endp@mu[2]
             issue
+          }
+)
+
+#' @rdname getExpectation
+setMethod("getExpectation", signature(randSeq = "randSeq", issue = "selBias",
+                                      endp = "expEndp"),
+          function(randSeq, issue, endp) {
+            stopifnot(randSeq@K == 2, randSeq@K == length(endp@lambda))
+            validObject(randSeq); validObject(issue); validObject(endp)
+            if (issue@type == "CS") {
+              # convergence strategy
+              issue <- t(apply(randSeq@M, 1, function(x) {
+                issue <- sign(cumsum(2*x - 1)) * issue@eta
+                issue <- issue[-length(issue)]
+                issue <- c(0, issue)
+                issue
+              }))
+            }
+            else if (issue@type == "DS") {
+              # convergence strategy
+              issue <- t(apply(randSeq@M, 1, function(x) {
+                issue <- sign(cumsum(2*x - 1)) * issue@eta * (-1)
+                issue <- issue[-length(issue)]
+                issue <- c(0, issue)
+                issue
+              }))
+            }
+            issue[randSeq@M == 0] <- exp(issue[randSeq@M == 0]) * endp@lambda[1]
+            issue[randSeq@M == 1] <- exp(issue[randSeq@M == 1]) * endp@lambda[2]
+            1/issue
           }
 )
 

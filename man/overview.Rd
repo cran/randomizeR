@@ -4,23 +4,28 @@
 \alias{overview}
 \title{Overview over the parameters used in the \code{randomizeR} package}
 \arguments{
+\item{a}{nonnegative parameter which controls the degree of randomness:
+For decreasing \code{a} the allocations become deterministic, while for increasing
+\code{a} the randomization procedure tends to complete randomization.}
+
+\item{accrualTime}{duration of the accrual period in a survival study.}
+
 \item{add}{integer representing the number of balls that are added to the
 urn in each step.}
 
-\item{alpha}{the level of the t.test in each simulation.}
+\item{alpha}{the significance level of the test in each simulation.}
 
-\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block. 
+\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block.
 This means that the vector \code{bc} will have one entry for each block.}
 
-\item{b}{numeric vector of length at most 2 specifying the weight(s) for the punishment of}
+\item{b}{numeric vector of length at most 2 specifying the weight(s) for the punishment of
+deviations from the target value.}
 
-\item{ini}{integer representing the initial urn composition.}
+\item{cenRate}{exponential censoring rate in a survival study.}
 
-\item{compr}{factor of compression for the sigmoid-time trend.}
+\item{cenTime}{total duration of a survival study (maximum length of followup).}
 
 \item{d}{effect size.}
-
-\item{delta}{first noncentrality parameter of the doubly noncentral t-distribution.}
 
 \item{df}{degrees of freedom (i.a. \code{N-2}).}
 
@@ -36,6 +41,8 @@ this is set to zero.}
 
 \item{groups}{character vector of labels for the different treatments.}
 
+\item{ini}{integer representing the initial urn composition.}
+
 \item{k}{length of the block to be permuted. \code{k} should be divisible by
 the number of treatment arms.}
 
@@ -44,7 +51,7 @@ against one control treatment).}
 
 \item{lb}{lower bound for the starting value of the poisson distribution.}
 
-\item{lambda}{(second) noncentrality parameter of the doubly noncentral t-distribution.}
+\item{lambda}{vector of the exponential rate parameters in each treatment group.}
 
 \item{method}{method that is used to generate the (random) allocation
 sequence. It can take values \code{PBR}, \code{RAR}, \code{HAD}, \code{PWR},
@@ -52,15 +59,15 @@ sequence. It can take values \code{PBR}, \code{RAR}, \code{HAD}, \code{PWR},
 
 \item{mti}{maximum tolerated imbalance in patient numbers during the trial.}
 
+\item{mu}{vector of the expected responses of the treatment groups, should have
+length \code{K}
+(i.e. one entry for each treatment group).}
+
 \item{N}{integer for the total sample size of the trial.}
 
 \item{name}{name of a variable.}
 
-\item{mu}{vector of the expected responses of the treatment groups, should have
-length \code{K} 
-(i.e. one entry for each treatment group).}
-
-\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}}
 or \code{\link{createParam}}.}
 
 \item{object}{any R object.}
@@ -71,7 +78,7 @@ Design).}
 \item{pr}{vector with patient responses, i.e. each patients resulting value
 after the treatment.}
 
-\item{q}{"cut-off" value in \code{[0.5,1]}. This is the ratio of patients up 
+\item{q}{"cut-off" value in \code{[0.5,1]}. This is the ratio of patients up
 from which the experimenter imposes selection bias on the data.}
 
 \item{r}{numeric indicating the number of random sequences to be generated at
@@ -82,6 +89,10 @@ all used block lengths (\code{bc}) have to be divisible by \code{sum(ratio)}.}
 
 \item{rb}{block lengths of the blocks that can be selected equiprobable at random.}
 
+\item{rho}{nonnegative parameter which my be adjusted according to how strongly it is
+desired to balance the experiment. If \code{rho = 1}, we have Wei's urn design with
+\code{alpha = 0}. If \code{rho = 0}, we have complete randomization.}
+
 \item{rsob}{randomization sequence (of one block).}
 
 \item{rs}{randomization sequence (of all blocks).}
@@ -89,16 +100,16 @@ all used block lengths (\code{bc}) have to be divisible by \code{sum(ratio)}.}
 \item{S}{matrix for the computation of the probabilities in the maximal
 procedure.}
 
-\item{saltus}{integer or  \code{missing} specifying the patient index (i.e. position)
+\item{saltus}{integer or \code{missing} specifying the patient index (i.e. position)
 of the step in case of step time trend.}
 
-\item{seed}{a single value, interpreted as an integer, that specifies the seed 
+\item{seed}{a single value, interpreted as an integer, that specifies the seed
 for the random number generation.}
 
-\item{sigma}{vector of the standard deviations in each the treatment group, 
+\item{sigma}{vector of the standard deviations in each treatment group,
 should have length \code{K} (i.e. one entry for each treatment group).}
 
-\item{SLs}{numeric vector of length at most 2 specifying the lower and/or upper 
+\item{SLs}{numeric vector of length at most 2 specifying the lower and/or upper
 specified border.}
 
 \item{theta}{factor of the time trend for further details see \code{type}.}
@@ -113,28 +124,16 @@ selection bias), \code{LinT} for linear time trend, \code{LogT} for
 log-linear time trend, \code{StepT} for step time trend, \code{SigT} for
 sigmoid time trend, \code{PWR} for knowledge of all up to the first
 observation in each block, \code{MTI} the next observation after reaching the
-maximal tolerated imbalance is reached will be known to the physican.}
+maximal tolerated imbalance is reached will be known to the physician.}
 
 \item{TV}{numeric specifying the optimal desired value called the target value.}
 
-\item{varEq}{\code{logical} parameter for the t.test: Shall the variances be treated 
-as equal (TRUE= t.test) or different (FALSE= Welch.test).}
-
 \item{ub}{upper bound for the last value of the poisson distribution.}
 
+\item{varEq}{\code{logical} parameter for the t.test: Shall the variances be treated
+as equal (TRUE= t.test) or different (FALSE= Welch.test).}
+
 \item{x}{a variable \code{x}.}
-
-\item{rho}{nonnegative parameter which my be adjusted according to how strongly it is 
-desired to balance the experiment. If \code{rho = 1}, we have Wei's urn design with
-\code{alpha = 0}. If \code{rho = 0}, we have complete randomization.}
-
-\item{a}{nonnegative parameter which my be adjusted according to how strongly it is 
-desired to balance the experiment. a = 0 gives the complete randomization, while the
-assignments become more deterministic as \code{a} increases.}
-
-\item{a}{nonnegative parameter which controls the degree of randomness: 
-For decreasing \code{a} the allocations become deterministic, while for increasing
-\code{a} this procedure tends to complete randomization.}
 }
 \description{
 This list of parameters yields a comprehensive overview of the parameters

@@ -19,5 +19,7 @@ Saves the parameters of a \code{randSeq} object in a \code{.csv} data
 sheet.
 }
 \seealso{
-Other saving functions: \code{\link{saveAssess}}
+Other saving functions: 
+\code{\link{saveAssess}()}
 }
+\concept{saving functions}

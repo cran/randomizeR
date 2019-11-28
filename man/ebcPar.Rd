@@ -21,7 +21,7 @@ Design).}
 Represents the randomization procedure Efron's Biased Coin Design.
 }
 \details{
-Flip a biased coin with probability \code{p} in favour of the treatment
+Flip a biased coin with probability \code{p} in favor of the treatment
 which is allocated less frequently. If both treatments have been assigned
 equally often a fair coin is tossed.
 }
@@ -30,12 +30,21 @@ B. Efron (1971) Forcing a sequential experiment to be balanced. \emph{Biometrika
 \strong{58}, 403-17.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

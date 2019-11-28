@@ -24,7 +24,7 @@ setClassUnion("desFunc", c("derFunc"))
 # --------------------------------------------
 
 #' Method defining the $ operator for the desFunc class
-#' 
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "desFunc",
           function(x, name) slot(x, name))

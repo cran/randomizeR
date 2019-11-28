@@ -7,12 +7,12 @@
 selBias(type, eta, method, alpha = 0.05)
 }
 \arguments{
-\item{type}{character string, should be one of \code{"CS"}, \code{"CS2"} or \code{"DS"}, see 
+\item{type}{character string, should be one of \code{"CS"}, \code{"CS2"} or \code{"DS"}, see
 Details.}
 
 \item{eta}{numeric specifying the magnitude of selection bias.}
 
-\item{method}{character string, should be one of \code{"sim"} or \code{"exact"}, see 
+\item{method}{character string, should be one of \code{"sim"} or \code{"exact"}, see
 Details.}
 
 \item{alpha}{significance level.}
@@ -25,43 +25,85 @@ issue of selection bias in a clinical trial.
 Represents the issue of selection bias in a clinical trial.
 }
 \details{
-Selection bias can be an issue in the design of a clinical trial. The 
+Selection bias can be an issue in the design of a clinical trial. The
 \code{selBias} function is a constructor function
 for an S4 object of the class \code{selBias} representing the issue of
 third order selection bias in a clinical trial. It supports two possible modes,
-\code{method="sim"} and \code{method="exact"}. This representation is 
-particularly useful in interaction with the \code{\link{assess}} function. 
+\code{method="sim"} and \code{method="exact"}. This representation is
+particularly useful in interaction with the \code{\link{assess}} function.
 
 \describe{
- \item{\code{method="sim"}}{Represents the simulated type-I-error rate given 
- the level \code{alpha}, the selection effect \code{eta} and the biasing 
- strategy \code{type}. When calling \code{assess} for a \code{selBias} object 
- with \code{method="sim"}, one test decision is computed for each sequence of
+\item{\code{method="sim"}}{Represents the simulated type-I-error rate given
+the level \code{alpha}, the selection effect \code{eta} and the biasing
+strategy \code{type}. When calling \code{assess} for a \code{selBias} object
+with \code{method="sim"}, one test decision is computed for each sequence of
 \code{randSeq}. The type-I-error rate (power) is the proportion of falsely
 (correctly) rejected null hypotheses.
- }
- \item{\code{method="exact"}}{Represents the exact type-I-error proabability 
- given the level \code{alpha}, the selection effect \code{eta} and the 
- biasing strategy \code{type}. When calling \code{assess} for a \code{selBias} 
- object with \code{method="exact"}, the exact \emph{p}-value of each 
- randomization sequence is computed. So far, this is only supported for
- normal endpoints. Then the type-I-error probability is
- the sum of the corresponding quantiles of the doubly noncentral t-distribution.
- }
 }
+\item{\code{method="exact"}}{Represents the exact type-I-error probability
+given the level \code{alpha}, the selection effect \code{eta} and the
+biasing strategy \code{type}. When calling \code{assess} for a \code{selBias}
+object with \code{method="exact"}, the \emph{p}-value of each randomization
+sequence is computed. For normal endpoints and two treatment groups these p-values
+are exact values which can be calculated from the sum of the corresponding quantiles
+of the doubly noncentral t-distribution. For more than two treatment groups, exact
+p-values are computed using a doubly noncentral F distribution. For exponential
+endpoints the p-values are obtained using an approximation formula.
+}
+}
+
+It also supports three types of selection bias:
+
+\describe{
+\item{\code{type="DS"}}{Refers to the divergence strategy according to
+Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+guesses that the upcoming treatment is the one that has so far been allocated
+\emph{more} frequently.
+}
+\item{\code{type="CS"}}{Refers to the convergence strategy according to
+Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+guesses that the upcoming treatment is the one that has so far been allocated
+\emph{less} frequently. In multi-arm trials, \code{type="CS"} refers to the first
+generalization of the convergence strategy according to Uschner et al (2018).
+The investigator guesses the treatment that had been allocated less frequently
+whenever all the treatments of the opposite group are larger than the smallest
+of the present group.
+}
+\item{\code{type="CS2"}}{In trials with two treatment arms, \code{type="CS2"}
+is equivalent to \code{type="CS"}. In multi-arm trials, \code{type="CS2"} refers
+to the second generalization of convergence strategy according to
+Uschner et al (2018).
+The investigator guesses the treatment that had been allocated less frequently
+whenever all the treatments of the opposite group are larger than the smallest
+of the present group.
+}
+}
+}
+\examples{
+# create a selection bias of the convergency strategy type with eta = 0.25 for which
+# the exact rejection probabilities are calculated 
+sbias <- selBias("CS", 0.25, "exact")
+
 }
 \references{
-D. Blackwell and J.L. Hodges Jr. (1957) Design for the control of 
-selection bias. \emph{Annals of Mathematical Statistics}, \strong{25}, 449-60. 
+D. Blackwell and J.L. Hodges Jr. (1957) Design for the control of
+selection bias. \emph{Annals of Mathematical Statistics}, \strong{25}, 449-60.
 
-M. Proschan (1994) Influence of selection bias on the type-I-error rate  
+M. Proschan (1994) Influence of selection bias on the type-I-error rate
 under random permuted block designs. \emph{Statistica Sinica}, \strong{4}, 219-31.
+
+D. Uschner, R.-D. Hilgers, N. Heussen (2018) The impact of selection bias in
+randomized multi-arm parallel group clinical trials \emph{PLOS ONE}, \strong{13}(1), 1-18.
 }
 \seealso{
-Compute exact or simulated type-I-error: \code{\link{assess}}.
+Compute exact or simulated rejection probability: \code{\link{assess}}.
 
-Other issues: \code{\link{chronBias}},
-  \code{\link{combineBias}}, \code{\link{corGuess}},
-  \code{\link{imbal}}, \code{\link{issue}},
-  \code{\link{setPower}}
+Other issues: 
+\code{\link{chronBias}},
+\code{\link{combineBias}()},
+\code{\link{corGuess}},
+\code{\link{imbal}},
+\code{\link{issue}},
+\code{\link{setPower}()}
 }
+\concept{issues}

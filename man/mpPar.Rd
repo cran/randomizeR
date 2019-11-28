@@ -24,21 +24,30 @@ Represents the Maximal Procedure.
 }
 \details{
 Fix the total sample size \code{N} and the \code{mti}. Afterwards, the patients
-are assigend to each treatment arm according to the \code{ratio}.
+are assigned to each treatment arm according to the \code{ratio}.
 All randomization sequences are equiprobable.
 }
 \references{
 V.W. Berger, A. Ivanova and M.D. Knoll (2003) Minimizing predictability while
-retaining balance through the use of less restrective randomization
+retaining balance through the use of less restrictive randomization
 procedures. \emph{Statistics in Medicine}, \strong{19}, 3017-28.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{hadaPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

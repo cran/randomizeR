@@ -70,8 +70,8 @@
   \multicolumn{2}{l}{\textbf{2 \quad Assessment of a Randomization Procedure}} \\
   \multicolumn{2}{l}{Assess one randomization procedure according to several specified issues} \\
   \hline \hline
-  \texttt{assess(\dots)} & Evaluates the behaviour of randomization sequences with respect to certain issues\\
-  \texttt{summary(assess(\dots))} & Summary of assessessments (for each issue) of one RP 
+  \texttt{assess(\dots)} & Evaluates the behavior of randomization sequences with respect to certain issues\\
+  \texttt{summary(assess(\dots))} & Summary of assessments (for each issue) of one RP 
   \end{tabularx}
 }
 % % % % % % % % % % % %  

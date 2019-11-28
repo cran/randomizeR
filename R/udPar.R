@@ -64,7 +64,7 @@ validateudpar <- function(object) {
 # Class definition for udPar
 # --------------------------------------------
 
-# Randomization paramters generic 
+# Randomization parameters generic 
 setClass("udPar",
          slots = c(ini = "numeric", add = "numeric"),
          contains = "randPar",
@@ -83,7 +83,7 @@ setClass("udPar",
 #' An urn is filled with a number of \code{ini} balls of both of the treatments.
 #' Afterwards, a ball is drawn randomly from the urn. Finally, \code{add} balls
 #' are added to the urn from the opposite treatment. This procedure is repeated until
-#' \code{N} patients are assigend.
+#' \code{N} patients are assigned.
 #' 
 #' @family randomization procedures
 #' 
@@ -109,7 +109,7 @@ udPar <- function(N, ini, add, groups = LETTERS[1:2]) {
 
 # Wei's Urn design
 # 
-# Computes a randomisation sequence based on Weis Urn Design
+# Computes a randomization sequence based on Weis Urn Design
 #
 # @inheritParams overview
 # @param ini integer representing the initial urn composition.
@@ -136,7 +136,6 @@ urnRand <- function(N, ini, add) {
 # --------------------------------------------
 # Methods for udPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "udPar"),
           function(obj) {
@@ -200,7 +199,7 @@ setMethod("genSeq", signature(obj = "udPar", r = "missing", seed = "numeric"),
 )
 
 
-#' @rdname generateRandomSequences 
+#' @rdname generateRandomSequences
 setMethod("genSeq", signature(obj = "udPar", r = "numeric", seed = "missing"),
           function(obj, r, seed) {
 	    seed <- sample(.Machine$integer.max, 1)
@@ -236,7 +235,6 @@ setMethod("genSeq", signature(obj = "udPar", r = "missing", seed = "missing"),
 		            seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "udPar"),

@@ -17,3 +17,4 @@ First non centrality parameter, a single numeric value
 \description{
 Calculate first non centrality parameter of the doubly non central F-distribution
 }
+\keyword{internal}

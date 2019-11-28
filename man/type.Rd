@@ -10,7 +10,7 @@ type(obj)
 \item{obj}{a bias object (i.e. S4 object inheriting from \code{bias})}
 }
 \value{
-Character string specifying the type of bias \code{obj} represents, e.g. \code{"linT"} in 
+Character string specifying the type of bias \code{obj} represents, e.g. \code{"linT"} in
 case of chronological bias.
 }
 \description{

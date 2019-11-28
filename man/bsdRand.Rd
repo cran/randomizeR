@@ -15,7 +15,7 @@ bsdRand(N, mti, K = 2)
 against one control treatment).}
 }
 \value{
-A vector with the allocation sequence for a clinical trial. 
+A vector with the allocation sequence for a clinical trial.
 It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 is allocated to treatment A (resp. B).
 }
@@ -26,3 +26,4 @@ Sampling algorithm for BSD
 J. F. Soares and C. F. Jeff Wu (1983) Some Restricted Randomization Rules in
 Sequential Designs. Comm. in Stat., 12, 2017-34.
 }
+\keyword{internal}

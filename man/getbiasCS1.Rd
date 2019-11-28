@@ -2,7 +2,7 @@
 % Please edit documentation in R/doublyF.R
 \name{getbiasCS1}
 \alias{getbiasCS1}
-\title{Biasing Policy for a Group of Favoured Treatments}
+\title{Biasing Policy for a Group of Favored Treatments}
 \usage{
 getbiasCS1(R, K, pref)
 }
@@ -19,3 +19,4 @@ vector with the selection bias for each patient
 \description{
 Calculate vector with the selection bias for each patient
 }
+\keyword{internal}

@@ -4,36 +4,36 @@
 \alias{randPar}
 \title{Settings for randomization procedures}
 \description{
-Randomization procedures in randomizeR are represented by objects that inherit 
+Randomization procedures in randomizeR are represented by objects that inherit
 from \code{randPar}. The representation can then be used in order to
-generate randomization sequences. In order generate a representation of a 
+generate randomization sequences. In order generate a representation of a
 randomization procedure, call \code{\link{createParam}} or one of the following
 functions.
 }
 \section{Supported randomization procedures}{
- 
+
 \itemize{
-  \item Complete Randomization (\code{\link{crPar}})
-  \item Random Allocation Rule (\code{\link{rarPar}})
-  \item Permuted Block Randomization (\code{\link{pbrPar}})
-  \item Permuted Block Randomization with random block length (\code{\link{rpbrPar}})
-  \item Truncated Binomial Design (\code{\link{tbdPar}})
-  \item Truncated Binomial Design with random block length (\code{\link{rtbdPar}})
-  \item Efron's Biased Coin Design (\code{\link{ebcPar}})
-  \item Big Stick Design (\code{\link{bsdPar}})
-  \item Maximal Procedure (\code{\link{mpPar}})
-  \item Wei's Urn Design (\code{\link{udPar}})
-  \item Chen's Design (\code{\link{chenPar}})
-  \item Generalized Biased Coin Design (\code{\link{gbcdPar}})
-  \item Accelerated Biased Coin Design (\code{\link{abcdPar}})
-  \item Bayesian Biased Coin Design (\code{\link{bbcdPar}})
-  \item Hadamard Randomization (\code{\link{hadaPar}})
+\item Complete Randomization (\code{\link{crPar}})
+\item Random Allocation Rule (\code{\link{rarPar}})
+\item Permuted Block Randomization (\code{\link{pbrPar}})
+\item Permuted Block Randomization with random block length (\code{\link{rpbrPar}})
+\item Truncated Binomial Design (\code{\link{tbdPar}})
+\item Truncated Binomial Design with random block length (\code{\link{rtbdPar}})
+\item Efron's Biased Coin Design (\code{\link{ebcPar}})
+\item Big Stick Design (\code{\link{bsdPar}})
+\item Maximal Procedure (\code{\link{mpPar}})
+\item Wei's Urn Design (\code{\link{udPar}})
+\item Chen's Design (\code{\link{chenPar}})
+\item Generalized Biased Coin Design (\code{\link{gbcdPar}})
+\item Accelerated Biased Coin Design (\code{\link{abcdPar}})
+\item Bayesian Biased Coin Design (\code{\link{bbcdPar}})
+\item Hadamard Randomization (\code{\link{hadaPar}})
 }
 }
 
 \seealso{
 Generate randomization sequences \code{\link{genSeq}}.
-Calculate the the complete set of randomization sequences of a randomization 
+Calculate the the complete set of randomization sequences of a randomization
 procedure.
 \code{\link{getAllSeq}}.
 }

@@ -24,12 +24,12 @@ setClass("combinedBiasStepTrend", slots = c(saltus = "numeric"),
          contains = "combinedBias")
 
 
-#' Combined additive bias criterion
+#' Combined bias criterion
 #'
 #' This class combines a \code{selBias} object and a \code{chronBias} object
-#' to a new object. In the analysis within the new object
-#' the two types of bias are treated as additive.
-#' effect.
+#' to a new object. In the analysis within the new object the 
+#' two types of bias are treated as additive effect for normal endpoints
+#' and as multiplicative effect for exponential endpoints. 
 #' 
 #' @param selBias object of class \code{selBias}
 #' @param chronBias object of class \code{chronBias}
@@ -82,12 +82,30 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
             chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
             if(randSeq@K == 2)
-              expectationSB <- getExpectation(randSeq, selBias)
+              expectationSB <- getExpectation(randSeq, selBias, endp)
             else
               expectationSB <- makeBiasedExpectation(randSeq, endp@mu, selBias)
-            expectationCB <- getExpectation(randSeq, chronBias, endp)
+            expectationCB <- getExpectation(randSeq, chronBias)
             expectationSB + expectationCB
 })
+
+#' @rdname getExpectation
+setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias",
+                                      endp = "expEndp"),
+          function(randSeq, issue, endp) {
+            stopifnot(randSeq@K == 2)
+            validObject(randSeq); validObject(endp)
+            chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@alpha)
+            selBias   <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
+            expectationSB <- getExpectation(randSeq, selBias, endp)
+            expectationCB <- getExpectation(randSeq, chronBias, endp)
+            # Combined expectation
+            expectationCombined <- expectationSB * expectationCB
+            expectationCombined[randSeq@M == 0] <- expectationCombined[randSeq@M == 0] * endp@lambda[1]
+            expectationCombined[randSeq@M == 1] <- expectationCombined[randSeq@M == 1] * endp@lambda[2]
+            expectationCombined
+})
+
 
 #' @rdname getExpectation
 setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBiasStepTrend",
@@ -99,7 +117,7 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
                                    issue@alpha)
             selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
             if(randSeq@K == 2)
-              expectationSB <- getExpectation(randSeq, selBias)
+              expectationSB <- getExpectation(randSeq, selBias, endp)
             else {
               if(dim(randSeq@M)[1]){
                 R_ <- genSeq(crPar(randSeq@N, randSeq@K))
@@ -115,9 +133,27 @@ setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBias
             expectationSB + expectationCB
 })
 
+#' @rdname getExpectation
+setMethod("getExpectation", signature(randSeq = "randSeq", issue = "combinedBiasStepTrend",
+                                      endp = "expEndp"),
+          function(randSeq, issue, endp) {
+            stopifnot(randSeq@K == 2, randSeq@K == length(endp@lambda))
+            validObject(randSeq); validObject(endp)
+            chronBias <- chronBias(issue@typeCB, issue@theta, issue@method, issue@saltus,
+                                   issue@alpha)
+            selBias <- selBias(issue@typeSB, issue@eta, issue@method, issue@alpha)
+            expectationSB <- getExpectation(randSeq, selBias, endp)
+            expectationCB <- getExpectation(randSeq, chronBias, endp)
+            # Combined expectation
+            expectationCombined <- expectationSB * expectationCB
+            expectationCombined[randSeq@M == 0] <- expectationCombined[randSeq@M == 0] * endp@lambda[1]
+            expectationCombined[randSeq@M == 1] <- expectationCombined[randSeq@M == 1] * endp@lambda[2]
+            expectationCombined
+})
+
 # @rdname getStat
 setMethod("getStat", signature(randSeq = "randSeq", issue = "combinedBias",
-                               endp = "normEndp"),
+                               endp = "endpoint"),
           function(randSeq, issue, endp) {
             stopifnot(validObject(randSeq), validObject(endp))
             if (issue@method == "sim") {
@@ -137,7 +173,7 @@ setMethod("getStat", signature(randSeq = "randSeq", issue = "combinedBias",
 
 # @rdname getStat
 setMethod("getStat", signature(randSeq = "randSeq", issue = "combinedBiasStepTrend",
-                               endp = "normEndp"),
+                               endp = "endpoint"),
           function(randSeq, issue, endp) {
             stopifnot(validObject(randSeq), validObject(endp))
             if (issue@method == "sim") {

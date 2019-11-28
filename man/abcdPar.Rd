@@ -9,9 +9,9 @@ abcdPar(N, a, groups = LETTERS[1:2])
 \arguments{
 \item{N}{integer for the total sample size of the trial.}
 
-\item{a}{nonnegative parameter which my be adjusted according to how strongly it is 
-desired to balance the experiment. a = 0 gives the complete randomization, while the
-assignments become more deterministic as \code{a} increases.}
+\item{a}{nonnegative parameter which controls the degree of randomness:
+For decreasing \code{a} the allocations become deterministic, while for increasing
+\code{a} the randomization procedure tends to complete randomization.}
 
 \item{groups}{character vector of labels for the different treatments.}
 }
@@ -27,18 +27,27 @@ treatment is dependent from the absolute difference between the two treatment al
 up to the current step.
 }
 \references{
-A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential 
+A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential
 allocation of two treatments.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}
 \strong{53}, No. 4, 651-664
 }
 \seealso{
-Other randomization procedures: \code{\link{bbcdPar}},
-  \code{\link{bsdPar}}, \code{\link{chenPar}},
-  \code{\link{crPar}}, \code{\link{createParam}},
-  \code{\link{ebcPar}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

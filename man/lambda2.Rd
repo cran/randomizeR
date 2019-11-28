@@ -17,3 +17,4 @@ Second non centrality parameter, a single numeric value
 \description{
 Calculate second non centrality parameter of the doubly non central F-distribution
 }
+\keyword{internal}

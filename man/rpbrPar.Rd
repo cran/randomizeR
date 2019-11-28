@@ -4,8 +4,14 @@
 \alias{rpbrPar}
 \title{Representing Randomized Permuted Block Randomization}
 \usage{
-rpbrPar(N, rb, K = 2, ratio = rep(1, K), groups = LETTERS[1:K],
-  filledBlock = FALSE)
+rpbrPar(
+  N,
+  rb,
+  K = 2,
+  ratio = rep(1, K),
+  groups = LETTERS[1:K],
+  filledBlock = FALSE
+)
 }
 \arguments{
 \item{N}{integer for the total sample size of the trial.}
@@ -33,7 +39,7 @@ Fix the possible random block lengths \code{rb}, the number of treatment groups 
 the sample size \code{N} and the vector of the \code{ratio}. Afterwards, one block length is
 randomly selected of the random block lengths. The patients are assigned
 according to the ratio to the corresponding treatment groups. This procedure is repeated
-until \code{N} patients are assigned. Within each block all possbible
+until \code{N} patients are assigned. Within each block all possible
 randomization sequences are equiprobable.
 }
 \references{
@@ -41,12 +47,21 @@ W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials
 Wiley.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{hadaPar}},
-  \code{\link{mpPar}}, \code{\link{pbrPar}},
-  \code{\link{rarPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

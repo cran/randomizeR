@@ -9,7 +9,7 @@ context("Correct Seed for K = 3")
 
 test_that("correct random seed is used for K = 3", {
   N      <- sample(seq(3, 52, 3), 1)           # Sample number of patients
-  r      <- sample(30, 1)                      # Sample number of randomisation sequences
+  r      <- sample(30, 1)                      # Sample number of randomization sequences
   mti    <- sample(ceiling(N/2), 1)            # Sample maximum tolerated imbalance
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # Sample biased coin parameter
   nr     <- sample(8, 1)                       # Sample number of blocks 

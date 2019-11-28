@@ -1,10 +1,9 @@
  \documentclass[nojss]{jss}
 
-\usepackage[latin1]{inputenc} 
 \usepackage{graphicx} % subfigures
 \usepackage{subcaption} % Figures
 \usepackage{booktabs} % nice tables
-%\usepackage{multirow}
+\usepackage{multirow}
 %\usepackage{csquotes} % quotes
 
 
@@ -14,10 +13,10 @@
 
 %% almost as usual
 \author{Diane Uschner\\RWTH Aachen University \And 
-	David Schindler\\RWTH Aachen University \AND 
-	Nicole Heussen \\RWTH Aachen University \And
-	Ralf-Dieter Hilgers\\RWTH Aachen University
-}
+        David Schindler\\RWTH Aachen University \AND 
+				Nicole Heussen \\RWTH Aachen University \And
+				Ralf-Dieter Hilgers\\RWTH Aachen University
+				}
 
 \title{\pkg{randomizeR}: An R Package for the Assessment and Implementation of Randomization in Clinical Trials}
 %\title{randomizeR: An R Package for the Assessment of Randomization Procedures and the Generation of Randomization Sequences}
@@ -32,23 +31,23 @@
 
 %% an abstract and keywords
 \Abstract{
-	This introduction to the \proglang{R} package \pkg{randomizeR} is a slightly
-	modified version of \cite{Uschner2018}.
-	
-	Randomization in clinical trials is the key design technique to ensure the comparability
-	of treatment groups. 
-	%
-	Although there exist a large number of software products which assist the researcher
-	to implement randomization, no tool which covers a wide range of 
-	procedures and allows the comparative evaluation of the procedures under practical
-	restrictions has been proposed in the literature. 
-	
-	The R package \pkg{randomizeR} addresses this need.
-	%
-	%
-	The paper includes a detailed description of the \pkg{randomizeR} package that serves
-	as a tutorial for the generation of randomization sequences and the assessment of randomization procedures. 
-	%Two parts: 1) Assessment of a randomization procedure 2) Implementation of the randomization procedure, i.e. Generation of randomization sequences
+This introduction to the \proglang{R} package \pkg{randomizeR} is a slightly
+modified version of \cite{Uschner2016}.
+
+Randomization in clinical trials is the key design technique to ensure the comparability
+of treatment groups. 
+%
+Although there exist a large number of software products which assist the researcher
+to implement randomization, no tool which covers a wide range of 
+procedures and allows the comparative evaluation of the procedures under practical
+restrictions has been proposed in the literature. 
+
+The R package \pkg{randomizeR} addresses this need.
+%
+%
+The paper includes a detailed description of the \pkg{randomizeR} package that serves
+as a tutorial for the generation of randomization sequences and the assessment of randomization procedures. 
+%Two parts: 1) Assessment of a randomization procedure 2) Implementation of the randomization procedure, i.e. Generation of randomization sequences
 }
 
 \Keywords{restricted randomization procedure, selection bias, chronological bias, \proglang{R}}
@@ -67,13 +66,13 @@
 %% The address of (at least) one author should be given
 %% in the following format:
 \Address{
-	Diane Uschner\\
-	Department of Medical Statistics\\
-	RWTH Aachen University\\
+  Diane Uschner\\
+  Department of Medical Statistics\\
+  RWTH Aachen University\\
 	Pauwelsstra\ss e 30\\
-	52068 Aachen, Germany\\
-	E-mail: \email{duschner@ukaachen.de}\\
-	URL: \url{http://www.ideal.rwth-aachen.de/}
+  52068 Aachen, Germany\\
+  E-mail: \email{duschner@ukaachen.de}\\
+  URL: \url{http://www.ideal.rwth-aachen.de/}
 }
 %% It is also possible to add a telephone and fax number
 %% before the e-mail in the following format:
@@ -98,18 +97,19 @@
 
 <<setup, include = FALSE, cache = FALSE>>=
 library(knitr)
+# set global chunk options
 knitr::render_sweave() 
+#opts_chunk$set(prompt=TRUE, comment=NA) #$ remove highlight and background to get standard knitr look.
 options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
+#options(replace.assign=TRUE, width=90, prompt="R> ")
 set.seed(1986)
 @
 
 \section{Introduction}
-%# set global chunk options
-%#opts_chunk$set(prompt=TRUE, comment=NA) #$ remove highlight and background to get standard knitr look.
-%#options(replace.assign=TRUE, width=90, prompt="R> ")
+
 Randomization is a design technique to ensure the comparability
 of treatment groups in clinical trials by introducing a deliberate element of 
-chance. \cite{Armitage1982} states the three main goals that are supposed to be achieved by randomization. First, 
+chance. \cite{Armitage1982} states the three main goals that are supposed to be achieved by randomization: First, 
 it tends to balance known and unknown covariates and, thus, to produce 
 structural equality of the treatment groups. Second, by ensuring effective 
 blinding of treatment allocations from investigators and patients, randomization helps to 
@@ -123,7 +123,7 @@ Since that time, regulators have advocated the use of randomization in their
 guidelines \citep[see for example][]{ICHE9} and several different randomization 
 procedures have been proposed in the literature.
 It has been noticed that different randomization procedures behave differently, e.g.,
-%It has been noticed that different randomization procedures have different properties, e.g.,
+%It has been noticed that different randomization procedures have different properties, e.g.
 concerning their susceptibility to bias and their potential to control power and type-I-error probability.
 An overview containing the latest developments can be found in \cite{Rosenberger2016}. 
 
@@ -138,39 +138,30 @@ while \cite{Kennes2012} show that larger blocks are better to control selection 
 
 The  choice of an adequate randomization procedure is crucial to achieve favorable properties 
 such as control of power and type-I-error rate, especially for small sample sizes 
-where asymptotic assumptions do not hold. However, no software package exists that 
-assists the user in choosing a randomization procedure based on scientifically sound criteria, 
-as we revealed in a literature review (see Appendix~\ref{appendix}). 
+where asymptotic assumptions do not hold.
 %
-The \proglang{R} package \pkg{randomizeR} addresses this need. It combines the assessment of randomization 
-procedures on the basis of scientifically sound criteria with the generation of randomization 
-lists for clinical trials, creation of randomization protocols, extensive documentation and 
-open source license. In addition, it contains fourteen randomization procedures. 
+The R package \pkg{randomizeR} assists clinical trialists in making a scientifically 
+sound choice based on these criteria. It combines the assessment of randomization procedures with the 
+generation of randomization lists for clinical trials. 
 %
 Existing software tools such as the \pkg{blockrand} package by \cite{Snow2013}
 implement only a very limited number of randomization procedures. The special class of 
 response-adaptive randomization procedures is not included in \pkg{randomizeR},
 but has currently been implemented for trials with time-to-event outcome in the 
-\proglang{MATLAB} package \pkg{RARtool} by \cite{Ryeznik2015}.
-%
-%We conducted a literature review (See Appendix~\ref{appendix}) that revealed that no software package for the 
-%assessment of the practical properties of restricted randomization procedures exists, 
-%particularly not for the assessment of their exact properties in small clinical trials.
-%The existing packages include a very low number of randomization procedures. In 
-%most cases a detailed documentation is not available. In these cases it remains unclear 
-%which procedures are actually implemented in these packages, making these packages
-%useless in practice.
+MTLAB package \pkg{RARtool} by \cite{Ryeznik2015}.
+To our knowledge, no software package for the assessment of the practical 
+properties of randomization procedures exists, particularly not for the assessment 
+of their exact properties in small clinical trials. 
 
-This article gives a detailed description of the \pkg{randomizeR} package. 
+This article gives a detailed description of \pkg{randomizeR}. 
 %
-It is organized as follows. Section~\ref{sec:assessment} presents the background 
-for assessing the properties of randomization procedures such as susceptibility 
-to bias with references to existing literature. Particularly, the randomization procedures
-are presented in Section~\ref{ssec:rand-proc}. Section~\ref{sec:package} 
+It is organized as follows. Section \ref{sec:assessment} gives the background for assessing
+the properties of randomization procedures, such as susceptibility to bias. The randomization procedures
+are presented in Section \ref{ssec:rand-proc}. Section \ref{sec:package} 
 shows how \pkg{randomizeR} implements the methods from the background 
-chapter. Particularly, Section~\ref{ssec:gen-one-seq} provides a tutorial
+chapter. Particularly, Section \ref{ssec:gen-one-seq} provides a tutorial
 for the generation of randomization lists with \pkg{randomizeR}, and 
-Section~\ref{sec:assessment-randomizeR} illustrates the assessment of 
+\ref{sec:assessment-randomizeR} illustrates the assessment of 
 randomization procedures with respect to the different types of bias and other criteria.
 
 \section{Assessing the properties of randomization procedures} \label{sec:assessment}
@@ -178,7 +169,7 @@ randomization procedures with respect to the different types of bias and other c
 \subsection{Notation and model}
 %
 % Design Stage, N patients.
-We consider the case of a two armed clinical trial with parallel group design and total sample size $N$.
+We consider the case of a two armed clinical trial with parallel group design.
 %
 Let $A$ and $B$ be treatments that influence a continuous outcome $Y$.
 %
@@ -211,7 +202,7 @@ H_0: \mu_A=\mu_B  \quad \text{vs.} \quad H_1: \mu_A\neq \mu_B.
 When the response $Y_i$ of patient $i$ is 
 influenced by an unobserved quantity $b_i$, we call $b_i$ \textit{bias} of the $i$-th 
 patient. Bias includes selection bias or chronological bias, or both, as proposed in 
-the Section~\ref{ssec:cb} and Section~\ref{ssec:sb}. 
+the sections \ref{ssec:cb} and \ref{ssec:sb}. 
 %
 % Design stage, want to choose RP such that misspecification does not matter.
 We investigate how the randomization 
@@ -271,11 +262,9 @@ rate of the $t$~test when the responses are influenced by  a trend $\tau(i, \var
 \begin{align}\label{eq:timetrend}
 Y_i \sim \mathcal{N} (\mu_A \cdot T_i + \mu_B \cdot (1 - T_i) + \tau(i,\vartheta), \sigma^2 ).
 \end{align}
-The parameter $\vartheta$ denotes the strength of the time trend.
-\cite{Tamm2014} proposed three shapes of trend that are summarized in Table~\ref{tab:shapes-of-trend}. 
-For the step trend, they introduce an index $1\leq n_0\leq N$ where the trend function $\tau(i, \vartheta)$
-jumps from zero to $\vartheta$. Hence, the function $1_{\{i\geq n_0\}}$ yields the value one if $i\geq n_0$ and zero if $i < n_0$.
-The function $\log$ denotes the natural logarithm.
+\cite{Tamm2014} proposed three shapes of trend that are summarized in Table \ref{tab:shapes-of-trend}. 
+Here $\log$ denotes the natural logarithm and $1_{\{i\geq n_0\}}$ is the indicator function
+yielding the value one if $i\geq n_0$ and zero if $i < n_0$.
 %
 \begin{table}%
 \centering
@@ -293,7 +282,6 @@ Step & $\tau(i,\vartheta)= 1_{\{i\geq n_0\}}\cdot \vartheta, n_0 \in \{1,\dots,N
 \caption{The three types of time trend included in \pkg{randomizeR}.}
 \label{tab:shapes-of-trend}
 \end{table}
-
 
 
 \subsubsection{Susceptibility to selection bias}
@@ -329,13 +317,13 @@ patient is assigned to the treatment that has so far been observed more often.
 %
 At the beginning of the trial and when there is a tie, the investigator guesses the next allocation at random.
 
-The expected number of correct guesses $\E(CG(t))$ reflects the predictability of a 
+The expected number of correct guesses $E(CG(t))$ reflects the predictability of a 
 sequence $t\in\Omega$.
 %
 The overall predictability of a randomization procedure $\mathcal{M}$ is given by the average 
 proportion of correct guesses:
 \[
-avpCG_{\mathcal{M}} := \frac{1}{N} \cdot \E_\mathcal{M} (\E(CG(t))).
+avpCG_{\mathcal{M}} := \frac{1}{N} \cdot E_\mathcal{M} ( E(CG(t))).
 \]
 
 \cite{Proschan1994} proposed to measure the influence of selection bias on the 
@@ -356,7 +344,7 @@ denotes the selection effect.
 \subsubsection{Balancing behavior}
 According to \cite{ICHE9}, it is desirable for a randomization procedure to 
 balance the group sizes throughout the trial as well as at the end of the trial, 
-while avoiding predictability. Table~\ref{tab:types-of-imbalance} summarizes
+while avoiding predictability. Table \ref{tab:types-of-imbalance} summarizes
 the measures for the imbalance that have been proposed in the literature
 \citep[see for example][]{Atkinson2014}.
 %
@@ -396,9 +384,9 @@ are implemented in \pkg{randomizeR}. For a comprehensive overview we refer to \c
 <<random-walk,echo=F, out.width='.6\\textwidth', message=F>>=
 library(randomizeR)
 #R<- genSeq(crPar(10),seed=126)
-rs<- genSeq(crPar(10),seed=808898100)
+R<- genSeq(crPar(10),seed=808898100)
 par(cex=1.5)
-plotSeq(rs,plotAllSeq = T)
+plotSeq(R,plotAllSeq = T)
 @
 \caption{Random walk of the randomization sequences of CR.}%
 \label{fig:random-walk}%
@@ -407,7 +395,7 @@ plotSeq(rs,plotAllSeq = T)
 Complete Randomization (CR) is equivalent to tossing a fair coin for the 
 allocation of each patient. CR leads to $2^N$ equi-probable sequences where $N$
 denotes the total sample size.
-Figure~\ref{fig:random-walk} shows a randomization sequence produced by a CR in 
+Figure \ref{fig:random-walk} shows a randomization sequence produced by a CR in 
 heavy black, along with all possible sequences in light gray.
 
 Using Random Allocation Rule (RAR), patients are allocated by drawing $N$ times 
@@ -488,7 +476,7 @@ The Hadamard Randomization (HADA) proposed by \cite{bailey2003} uses the rows
 of a special Hadamard matrix $H \in \{0,1\}^{11\times 12}$ for the allocation of patients. Rows from $H$
 are sampled until the number of allocations reaches the planned sample size $N$.
 
-Table~\ref{tab:rand-proc} in the next chapter shows how the presented randomization 
+Table \ref{tab:rand-proc} in the next chapter shows how the presented randomization 
 procedures can be used in \pkg{randomizeR}.
 
 
@@ -506,20 +494,20 @@ response based assessment criteria:
 
 %Both can be conducted exactly or by simulation. 
 
-\begin{description}
-	\item[\textbf{Complete or simulated reference set:}]
+\begin{itemize}
+	\item \textbf{Complete or simulated reference set:}
 		%
 		%
 		In case of $N \leq 24$, it is possible to generate the set of all possible allocation sequences $\{0,1\}^N$,
 		assess the eligibility of an allocation sequence and, independently, calculate 
 		the associated probabilities for the allocation sequences by the randomization algorithm.
 		This results in the \textit{complete set} of the sequences. The function 
-		\code{getAllSeq} provides this functionality, see Section~\ref{ssec:gen-mult-sec}.
+		\code{getAllSeq} provides this functionality, see Section \ref{ssec:gen-mult-sec}.
 
 		In case of $N>24$, the complete set cannot be calculated in reasonable time.
 		Instead, a number $r$ of allocation sequences is generated undergoing the 
 		randomization algorithm of the particular randomization procedure. The function
-		\code{genSeq} provides this functionality, see Section~\ref{ssec:gen-mult-sec}.
+		\code{genSeq} provides this functionality, see Section \ref{ssec:gen-mult-sec}.
 		%
 		Formally, the relative frequencies of the allocation sequences can be used to estimate the 
 		true probabilities of allocation sequences. Note therefore that, in a simulation, 
@@ -528,8 +516,8 @@ response based assessment criteria:
 		smaller sample sizes, and procedures where the exact approach is not available
 		in the literature, i.e., Block Randomization with random block constellation and Hadamard Randomization.
 
-\item[\textbf{Exact or simulated response based assessment criteria:}]
-		%For each randomization sequences, the criteria from Section~\ref{ssec:criteria} 
+\item \textbf{Exact or simulated response based assessment criteria:}
+		%For each randomization sequences, the criteria from Section \ref{ssec:criteria} 
 		%can be assessed.
 		The susceptibility of a randomization procedure to bias can be measured as the
 		distortion of the type-I- or type-II-error probability. 
@@ -537,10 +525,10 @@ response based assessment criteria:
 		The \textit{exact method} computes the distribution of the exact rejection 
 		probabilities. For each randomization sequence in the reference set, the
 		rejection probability of  Student's $t$~test is calculated using the knowledge on 
-		the $b_i$ from Model~\ref{eq:biasmodel} \citep[see][Chapter 4]{Langer2014}. 
+		the $b_i$ from Model \ref{eq:biasmodel} \citep[see][Chapter 4]{Langer2014}. 
 		%
 		The \textit{simulation method} simulates a response vector for each allocation
-		sequence in the reference set according to Model~\ref{eq:biasmodel} and derives a test decision of Student's $t$~test.
+		sequence in the reference set according to Model \ref{eq:biasmodel} and derives a test decision of Student's $t$~test.
 		The type-I- or type-II-error \textit{rate} is computed as the proportion of falsely rejected test decisions. 
 		%
 		%%
@@ -553,7 +541,7 @@ response based assessment criteria:
 		This method was used for example by \cite{Proschan1994}. Section 
 		\ref{ssec:ass-rand-proc} shows how the exact and simulated type-I- and type-II-error
 		probabilities can be assessed with \pkg{randomizeR}.
-\end{description}
+\end{itemize}
 
 Any combination of the above methods can be used. For example, a simulated 
 reference set can be used to assess the distribution of the exact rejection 
@@ -562,11 +550,11 @@ reference set is usually used in the literature. For small sample sizes, the
 combination of exact reference set with distribution of exact error 
 probabilities yields most accurate results.
 
-All sampling algorithms use \proglang{R}'s standard random number generator, the 
+All sampling algorithms use R's standard random number generator, the 
 Mersenne-Twister \citep{RCT2016}.
 
 
-\section[The randomizeR package]{The \pkg{randomizeR} package}\label{sec:package}
+\section{The randomizeR package}\label{sec:package}
 
 \subsection{Overview}
 
@@ -577,16 +565,19 @@ according to the aforementioned criteria.
 The previous chapter was dedicated to introducing the basic terms and literature
 from the field. In the present chapter, we show how \pkg{randomizeR} addresses
 these purposes.
-%
-The current version~1.3 of \pkg{randomizeR} is based on \proglang{R} 3.3.0. It can be loaded in an \proglang{R} 
+
+The current version of \pkg{randomizeR} is based on R 3.3.0. It can be loaded in an R 
 session via:
-<<loading, message=FALSE, echo=1>>=
+<<loading>>=
 library("randomizeR")
+@
+
+<<load-ggplot, message=FALSE, echo=FALSE>>=
 library(ggplot2)
 theme_update(text=element_text(size=24), axis.title.y=element_text(margin=margin(0,13,0,0)),  axis.title.x=element_text(margin=margin(13,0,0,0)))
 @
 
-All the main components of \pkg{randomizeR} are implemented using the \proglang{S4} object 
+All the main components of \pkg{randomizeR} are implemented using the  S4 object 
 oriented system. 
 
 \subsection{Generating randomization sequences}
@@ -600,7 +591,7 @@ The second purpose is the generation of multiple sequences
 in order to assess the properties of a randomization procedure. 
 %
 Both purposes can be regarded as functions that use the randomization procedure 
-itself as basis for their behaviour. They are therefore implemented as methods 
+itself as basis for their behavior. They are therefore implemented as methods 
 that take an object representing the randomization procedure as input.
 
 \subsubsection{Representing randomization procedures}
@@ -614,66 +605,66 @@ N <- 10
 @
 The function \code{crPar} is a so-called constructor function, namely a function
 that generates an object of the class \code{crPar} and prepares it for use. 
-The object \code{params} then contains all the information about the randomization 
+The object \code{param} then contains all the information about the randomization 
 procedure. 
 %
 %The number of treatment arms \code{K} and the names of the 
 %treatment groups names \code{groups} are set default, but can be passed to 
 %\code{crPar} if other values are desired. 
 %
-Table~\ref{tab:rand-proc} summarizes the constructor functions for the 
-randomization procedures described in Section~\ref{ssec:rand-proc}. In \pkg{randomizeR}
-an overview over the implemented randomization procedures is shown by calling \code{?randPar}.
+Table \ref{tab:rand-proc} summarizes the constructor functions for the 
+randomization procedures described in Section \ref{ssec:rand-proc}. In \pkg{randomizeR}
+an overview over the implemented randomization procedures is shown by \code{?randPar}.
 
 \begin{table}%
-	\begin{tabular}{lll}
-		\toprule
-		Randomization procedure & Constructor function & Parameters\\
-		\midrule
-		Complete Randomization (CR) & \code{crPar(N)} & \code{N} sample size\\
-		\addlinespace
-		Random Allocation Rule (RAR) & \code{rarPar(N)} & \code{N} sample size\\
-		\addlinespace
-		Permuted Block Randomization (PBR) & \code{pbrPar(bc)} & \code{bc} block constellation\\
-		\addlinespace
-		Rand. Permuted Block Randomization (RPBR) & \code{rpbrPar(N, rb)} & \code{N} sample size \\ 
-		& & \code{rb} random block lengths \\
-		\addlinespace
-		Truncated Binomial Design (TBD) & \code{tbdPar(bc)} & \code{bc} block constellation\\
-		\addlinespace
-		Rand. Truncated Binomial Design (RTBD) & \code{rtbdPar(N, rb)} & \code{N} sample size \\ 
-		& & \code{rb} random block lengths \\
-		\addlinespace
-		Maximal Procedure (MP) & \code{mpPar(N, mti)} & \code{N} sample size \\ 
-		& & \code{mti} max. tolerated imbalance\\
-		\addlinespace
-		Big Stick Design (BSD) & \code{bsdPar(N, mti)} & \code{N} sample size \\ 
-		& & \code{mti} max. tolerated imbalance\\
-		\addlinespace
-		Efrons Biased Coin Design (EBC) & \code{ebcPar(N, p)} & \code{N} sample size \\ 
-		& & \code{p} biased coin probability\\
-		\addlinespace
-		Chen's Design (CHEN) & \code{chenPar(N, mti, p)} & \code{N} sample size \\ 
-		& & \code{mti} max. tolerated imbalance\\
-		& & \code{p} biased coin probability\\
-		\addlinespace
-		Generalized Biased Coin Design (GBCD) & \code{gbcdPar(N, rho)} & \code{N} sample size \\ 
-		& & \code{rho} balance factor\\
-		\addlinespace
-		Adjustable Biased Coin Design (ABCD) & \code{abcdPar(N, a)} & \code{N} sample size \\ 
-		& & \code{a} balance factor\\
-		Bayesian Biased Coin Design (BBCD) & \code{bbcdPar(N, a)} & \code{N} sample size \\ 
-		& & \code{a} balance factor\\
-		\addlinespace
-		Wei's Urn Design (UD) & \code{udPar(N, ini, add)} & \code{N} sample size \\ 
-		& & \code{ini} initial urn composition\\
-		& & \code{add} adjustment in each step\\
-		\addlinespace
-		Hadamard Randomization (HADA) & \code{hadaPar(N)} & \code{N} sample size\\
-		\bottomrule
-	\end{tabular}
-	\caption{Randomization procedures included in \pkg{randomizeR}.}
-	\label{tab:rand-proc}
+\begin{tabular}{lll}
+\toprule
+Randomization procedure & Constructor function & Parameters\\
+\midrule
+Complete Randomization (CR) & \code{crPar(N)} & \code{N} sample size\\
+\addlinespace
+Random Allocation Rule (RAR) & \code{rarPar(N)} & \code{N} sample size\\
+\addlinespace
+Permuted Block Randomization (PBR) & \code{pbrPar(bc)} & \code{bc} block constellation\\
+\addlinespace
+\multirow{2}{*} {Rand. Permuted Block Randomization (RPBR)} & \multirow{2}{*} {\code{rpbrPar(N, rb)}} & \code{N} sample size \\ 
+& & \code{rb} random block lengths \\
+\addlinespace
+Truncated Binomial Design (TBD) & \code{tbdPar(bc)} & \code{bc} block constellation\\
+\addlinespace
+\multirow{2}{*} {Rand. Truncated Binomial Design (RTBD)} & \multirow{2}{*} {\code{rtbdPar(N, rb)}} & \code{N} sample size \\ 
+& & \code{rb} random block lengths \\
+\addlinespace
+\multirow{2}{*} {Maximal Procedure (MP)} & \multirow{2}{*} {\code{mpPar(N, mti)}} & \code{N} sample size \\ 
+& & \code{mti} max. tolerated imbalance\\
+\addlinespace
+\multirow{2}{*} {Big Stick Design (BSD)} & \multirow{2}{*} {\code{bsdPar(N, mti)}} & \code{N} sample size \\ 
+& & \code{mti} max. tolerated imbalance\\
+\addlinespace
+\multirow{2}{*} {Efrons Biased Coin Design (EBC)} & \multirow{2}{*} {\code{ebcPar(N, p)}} & \code{N} sample size \\ 
+& & \code{p} biased coin probability\\
+\addlinespace
+\multirow{3}{*} {Chen's Design (CHEN)} & \multirow{3}{*} {\code{chenPar(N, mti, p)}} & \code{N} sample size \\ 
+& & \code{mti} max. tolerated imbalance\\
+& & \code{p} biased coin probability\\
+\addlinespace
+\multirow{2}{*} {Generalized Biased Coin Design (GBCD)} & \multirow{2}{*} {\code{gbcdPar(N, rho)}} & \code{N} sample size \\ 
+& & \code{rho} balance factor\\
+\addlinespace
+\multirow{2}{*} {Adjustable Biased Coin Design (ABCD)} & \multirow{2}{*} {\code{abcdPar(N, a)}} & \code{N} sample size \\ 
+& & \code{a} balance factor\\
+\multirow{2}{*} {Bayesian Biased Coin Design (BBCD)} & \multirow{2}{*} {\code{bbcdPar(N, a)}} & \code{N} sample size \\ 
+& & \code{a} balance factor\\
+\addlinespace
+\multirow{3}{*} {Wei's Urn Design (UD)} & \multirow{3}{*} {\code{udPar(N, ini, add)}} & \code{N} sample size \\ 
+& & \code{ini} initial urn composition\\
+& & \code{add} adjustment in each step\\
+\addlinespace
+Hadamard Randomization (HADA) & \code{hadaPar(N)} & \code{N} sample size\\
+\bottomrule
+\end{tabular}
+\caption{Randomization procedures included in \pkg{randomizeR}.}
+\label{tab:rand-proc}
 \end{table}
 
 
@@ -687,35 +678,35 @@ using Complete Randomization with sample size $N=10$ as above:
 <<echo=2:3>>=
 set.seed(112)
 params <- crPar(N)
-(rs <- genSeq(params))
+(R <- genSeq(params))
 @
 
 To ensure the reproducibility of the results and to enhance the reporting of the
 randomization procedure, the function \code{genSeq} saves all the information 
-that was used for the generation of the randomization sequence in the object \code{rs} along with the
+that was used for the generation of the randomization sequence in the object \code{R} along with the
 randomization sequence itself.
 
-In order to obtain the randomization sequence stored in the object \code{rs}, we can use the 
+In order to obtain the randomization sequence stored in the object \code{R}, we can use the 
 function \code{getRandList}:
 <<>>=
-getRandList(rs)
+getRandList(R)
 @
 The randomization sequence and the other information stored in the object 
-\code{rs} can conveniently be saved to a \code{.csv} file by using the \code{saveRand} function:
-<<eval=F>>=
-saveRand(rs, file="myRandList.csv")
+\code{R} can conveniently be saved to a \code{.csv} file by using the \code{saveRand} function:
+<<results=F>>=
+saveRand(R, file="myRandList.csv")
 @
 
-Figure~\ref{fig:random-walk} in Section~\ref{ssec:rand-proc} shows the random walk of 
-the randomization sequence \code{rs}. This figure can be 
+Figure \ref{fig:random-walk} in Section \ref{ssec:rand-proc} shows the random walk of 
+the randomization sequence \code{R}. This figure can be 
 generated using the function \code{plotSeq} in \pkg{randomizeR}:
 %
 <<plotSeq,fig.keep='none'>>=
-plotSeq(rs, plotAllSeq = T)
+plotSeq(R, plotAllSeq = T)
 @
 %
 The function \code{genSeq} can generate randomization sequences for all 
-randomization procedures from Table~\ref{tab:rand-proc}. The function \code{genSeq} 
+randomization procedures from Table \ref{tab:rand-proc}. The function \code{genSeq} 
 has a method for each randomization procedure. For all randomization procedures, 
 its output is an object of a class extending the class \code{randSeq}. 
 
@@ -723,7 +714,7 @@ its output is an object of a class extending the class \code{randSeq}.
 \subsubsection{Generation of a set of sequences} \label{ssec:gen-mult-sec}
 
 Randomization procedures can be assessed based on the set of sequences they produce 
-(see Section~\ref{ssec:implementation}).
+(see Section \ref{ssec:implementation}).
 \pkg{randomizeR} provides two ways to generate multiple randomization sequences 
 from a specific procedure. 
 
@@ -746,8 +737,7 @@ intensive or algorithmically not feasible, the function \code{genSeq} can be
 used to generate a simulated reference set. For example for sample size $N=50$ 
 and Complete Randomization, a simulated reference set of size $r=10,000$
 is generated by
-<<echo=2:4>>=
-set.seed(1986)
+<<>>=
 N <- 50
 params <- crPar(N)
 (randomSeqs <- genSeq(params, r = 10000))
@@ -763,11 +753,11 @@ duplicates. More probable sequences will occur more frequently.
 true probability of occurrence randomization of sequences. \code{getProb} 
 takes any object that inherits from \code{randSeq}:
 
-<<echo=2:3, width=70>>=
+<<echo=2:3>>=
 myPaste <- function(R) {apply(R, 1, function(x) paste(x, collapse = ""))}
 p <- getProb(allSeqs)
 head(data.frame(Sequences = myPaste(getRandList(allSeqs)), 
-Probability = round(p, 6)))
+	        Probability = round(p, 6)))
 @
 If applied to an object resulting from \code{getAllSeq}, the 
 resulting probabilities will always sum up to one. In contrary, if applied to 
@@ -781,11 +771,11 @@ to the true probabilities if the sample is large enough.
 
 \subsection{Assessing randomization procedures} \label{ssec:ass-rand-proc}
 
-Most of the assessment criteria in Section~\ref{ssec:criteria} depend on the 
-assumtion of normally distributed responses according to Model~\ref{eq:model}. 
+Most of the assessment criteria in Section \ref{ssec:criteria} depend on the 
+assumption of normally distributed responses according to \eqref{eq:model}. 
 Assume that both treatments have equal expectation $\mu_A = \mu_B = 0$ and 
 variances $\sigma_A = \sigma_B = 1$. Then we can use the function \code{normEndp} 
-representing the normal endpoint to pass these assumtions to \pkg{randomizeR} by setting
+representing the normal endpoint to pass these assumptions to \pkg{randomizeR} by setting
 <<model, results='hide'>>=
 muA <- muB <- 0
 sigmaA <- sigmaB <- 1
@@ -807,14 +797,14 @@ simulated by generating responses that are influenced by the trend (\code{method
 %
 The function \code{chronBias} is a constructor function for objects of the
 class \code{chronBias}. The object \code{cb} contains all the information about the bias. 
-Table~\ref{tab:criteria} summarizes the constructor functions for all the criteria
-of assessment presented in Section~\ref{ssec:criteria}. In \pkg{randomizeR}
-an overview over the implemented assessment criteria is shown by calling \code{?issues}.
+Table \ref{tab:criteria} summarizes the constructor functions for all the criteria
+of assessment presented in Section \ref{ssec:criteria}. In \pkg{randomizeR}
+an overview over the implemented assessment criteria is shown by \code{?issues}.
 
 %%If \code{method = "exact"}, the exact rejection probability of a randomization
 %%sequence is calculated, yielding the true distribution of the power loss due
 %%to imbalance of a randomization sequence. If \code{method = "sim"}, the 
-%%test decision is simulated as described in Section~\ref{ssec:model}. % paragraph~\ref{sssec:testdec}.
+%%test decision is simulated as described in section \ref{ssec:model}. % paragraph \ref{sssec:testdec}.
 %
 %
 %The output is formally an S4 object representing the correct guesses. The 
@@ -822,37 +812,38 @@ an overview over the implemented assessment criteria is shown by calling \code{?
 %according to the guessing strategy.
 
 \begin{table}%
-	\begin{tabular}{lll}
-		\toprule
-		Criterion & Constructor Function & Parameters\\
-		\midrule
-		Chronological Bias & \code{chronBias(type,theta, method)} & \code{type} of trend\\
-		& & \code{theta} strength of trend\\
-		& & \code{method} of assessment\\
-		\addlinespace
-		Selection Bias & \code{selBias(type,eta, method)} & \code{type} of guessing strategy\\
-		& & \code{eta} selection effect \\
-		& & \code{method} of assessment\\
-		\addlinespace
-		Correct Guesses & \code{corGuess(type)} & \code{type} of guessing strategy\\
-		\addlinespace
-		Imbalance & \code{imbal(type)} & \code{type} of imbalance\\
-		\addlinespace
-		Combined Bias & \code{combineBias(selBias, chronBias)} & \code{selBias} object\\
-		& & \code{chronBias} object\\
-		\addlinespace
-		Power loss due to imbalance & \code{setPower(d, method)} & \code{d} detectable effect\\
-		& & \code{method} of assessment\\
-		\bottomrule
-	\end{tabular}
-	\caption{Criteria for the assessment.}
-	\label{tab:criteria}
+\begin{tabular}{lll}
+\toprule
+Criterion & Constructor Function & Parameters\\
+\midrule
+\multirow{3}{*}{Chronological Bias} & \multirow{3}{*}{\code{chronBias(type,theta, method)}} & \code{type} of trend\\
+  & & \code{theta} strength of trend\\
+	& & \code{method} of assessment\\
+\addlinespace
+\multirow{3}{*}{Selection Bias} & \multirow{3}{*}{\code{selBias(type,eta, method)}} & \code{type} of guessing strategy\\
+  & & \code{eta} selection effect \\
+	& & \code{method} of assessment\\
+\addlinespace
+Correct Guesses & \code{corGuess(type)} & \code{type} of guessing strategy\\
+\addlinespace
+Imbalance & \code{imbal(type)} & \code{type} of imbalance\\
+\addlinespace
+\multirow{2}{*}{Combined Bias} & \multirow{2}{*}{\code{combineBias(selBias, chronBias)}} & \code{selBias} object\\
+  & & \code{chronBias} object\\
+\addlinespace
+\multirow{2}{*}{Power loss due to imbalance} & \multirow{2}{*}{\code{setPower(d, method)}} & \code{d} detectable effect\\
+	& & \code{method} of assessment\\
+	\bottomrule
+\end{tabular}
+\caption{Criteria for the assessment.}
+\label{tab:criteria}
 \end{table}
+
 
 
 \subsubsection{Assessment of a randomization procedure}\label{sec:assessment-randomizeR}
 The \pkg{randomizeR} package includes the function \code{assess} to evaluate the 
-behavior of a randomization procedure with respect to one or more of the criteria from Section~\ref{ssec:criteria}.
+behavior of a randomization procedure with respect to one or more of the criteria from Section \ref{ssec:criteria}.
 
 For example, if we want to evaluate the behavior of the Big Stick Design with
 sample size $N=12$ and imbalance tolerance $mti=2$ with respect to chronological 
@@ -872,7 +863,7 @@ pw <- setPower(d, method = "exact")
 The function \code{assess} yields the true rejection probability for each 
 criterion and each randomization sequence.
 <<assessment>>=
-(Assessment <-assess(bsdSeq, sb, cb, pw, endp = normalEndpoint))
+(A <-assess(bsdSeq, sb, cb, pw, endp = normalEndpoint))
 @
 In the case of the Big Stick Design with sample size $N=12$ and maximum tolerated
 imbalance $mti=2$, there are 972 possible sequences.
@@ -889,7 +880,7 @@ The \code{summary} of the assessment shows the important characteristics of the
 distribution of the allocation sequences such as mean, standard deviation, minimum, maximum and the quantiles 
 for each criterion:
 <<summary-assess>>=
-summary(Assessment)
+summary(A)
 @
 For example, the five percent quantile \code{x05} of the 
 probability of rejection in the presence of a linear time trend \code{linT}
@@ -900,7 +891,7 @@ the literature.
 \subsubsection{Comparison of randomization procedures}
 
 \pkg{randomizeR} provides the function \code{compare} for the comparison of several 
-randomization procedures with respect to one of the criteria from Section~\ref{ssec:criteria}. 
+randomization procedures with respect to one of the criteria from Section \ref{ssec:criteria}. 
 %
 For example, assume we are in the same setting as above ($N=12$) and want to compare 
 the Big Stick Design, the Maximal Procedure with $mti=2$ and the Permuted Block Randomization with block size four
@@ -917,19 +908,19 @@ Then the following code compares the aforementioned procedures with respect to
 selection bias:
 
 <<comparison>>=
-(Comparison <- compare(sb, bsdSeq, mpSeq, pbrSeq, endp = normalEndpoint))
+(C <- compare(sb, bsdSeq, mpSeq, pbrSeq, endp = normalEndpoint))
 @
 
 The distribution of a criterion for a particular randomization procedure can be
-visualized and compared between different randomization procedures via boxplot (Figure~\ref{fig:comp-box}) or
-violin plot (Figure~\ref{fig:comp-viol}):
+visualized and compared between different randomization procedures via boxplot (Figure \ref{fig:comp-box}) or
+violin plot (Figure \ref{fig:comp-viol}):
 <<plot-comparison-hide, fig.keep='none', warning=FALSE>>=
-plot(Comparison)
-plot(Comparison, y = "boxplot")
+plot(C)
+plot(C, y = "boxplot")
 @
 
 For the generation of boxplot and violin plot, we used the functions 
-\code{geom_boxplot} and \code{geom_violin} of the \proglang{R} package \pkg{ggplot2} 
+\code{geom_boxplot} and \code{geom_violin} of the R package \pkg{ggplot2} 
 proposed by \cite{Wickham2009}.
 
 \begin{figure}%
@@ -937,7 +928,7 @@ proposed by \cite{Wickham2009}.
 \centering
 	\begin{subfigure}[b]{0.45\textwidth}
 <<plot-comparison-show-violin, echo=FALSE>>=
-plot(Comparison)
+plot(C)
 @
 	\caption{Violin plot}
 	\label{fig:comp-viol}
@@ -946,7 +937,7 @@ plot(Comparison)
 \begin{subfigure}[b]{0.45\textwidth}
 %<<plot-comparison-show-box, echo=FALSE, warning=FALSE, dev='pdf', dev.args=list(pointsize=22)>>=
 <<plot-comparison-show-box, echo=FALSE, warning=FALSE>>=
-plot(Comparison, y='boxplot')
+plot(C, y='boxplot')
 @
 	\caption{Boxplot}
 	\label{fig:comp-box}
@@ -955,12 +946,14 @@ plot(Comparison, y='boxplot')
 \label{}%
 \end{figure}
 
+
+
 \section{Summary and further research}
 
-\pkg{randomizeR} is an \proglang{R} package that facilitates the generation
+\pkg{randomizeR} is an R package that facilitates the generation
 of randomization lists for a large number of randomization procedures and 
 makes the assessment of randomization procedures with respect to various criteria
-possible. The package currently implements fifteen randomization procedures and six
+possible. The package currently implements 15 randomization procedures and six
 criteria for the assessment of the procedures. It assists researchers at the 
 design stage of a clinical trial by letting the choice of a randomization 
 procedure and the implementation of the design go hand in hand. 
@@ -973,112 +966,10 @@ may be extended to other endpoints such as time-to-event data, or to more than
 two treatment groups. Finally, randomization tests may be implemented to enable 
 randomization based inference independent of parametric assumptions. 
 
-\section*{Acknowledgement}
+\section*{Acknowledgment}
 This research has received funding within the IDeAl FP7 project from the 
 European Union's Seventh Framework Programme for research, technological 
 development and demonstration under Grant Agreement no 602552. 
-
-\appendix
-\section{Review of Software packages}\label{appendix}
-We conducted a google search with the keywords "+randomization +software 
-clinical trial", "+randomization +service clinical trial" and 
-"+randomization +package clinical trial" that yielded a total of 310 results 
-including many duplicates. We only considered software that provided access 
-over the world wide web, e.g. via download or via a browser-based 
-web application. We refer to this software as "tools". Results that required getting in touch with the 
-authors in order to access the tool were excluded. We also excluded
-tools that only included response- and covariate-adaptive randomization procdedures. 
-Fifteen software packages were left from the initial 310 results. Clearly, not all software
-tools on the world wide web were identified in this search, but we are confident that we
-captured a substantial part. The results of the literature review are shown in Table~\ref{tab:lit-rev}. We used the following
-criteria and abbreviations for the evaluation:
-
-%%Name & Platform & Open-Source & Documentation & Number of Procedures & Download Protocols & Assessment & Last modification \\ 
-\begin{table}%
-	\begin{tabular}{ l l l l l l l r}
-		\toprule
-		%Name & Platform & Lic & Docu & Protocol & A\&C & \# Proc \\ 
-		Name & No & Doc & Protocol & A\&C & License & Platform \\
-		\midrule
-			randomizer.org \citep{Urbaniak2013} & 1 & u & y & n & pf & Web \\
-			randomization.com \citep{Dallal2017} & 3 & X & n & n & pf & Web \\
-			GraphPad QuickCalcs \citep{Graphpad2017} & 1 & u & n & n & pf & Web \\
-			Sealed Envelope \citep{SealedEnvelope2016} & 1 & u & y & y & pc/pf & Web \\
-			OpenEpi \citep{Dean2013} & 1 & t & n & n & o & Web \\
-			randomizer.at \citep{Errath2017} & 3 & X & n & n & pc/pf & Web \\
-			WinPepi \citep{Abrahamson2011} & 2 & u & n & n & pf & Windows \\
-			RITA \citep{Evidat2013} & 4 & X & y & n & pc & Windows \\
-			Randomization \citep{Piantadosi2016} & 1 & X & n & n & pf & Windows \\
-			Clinstat \citep{Bland2017} & 2 & u & y & n & pc & MS-Dos \\
-			\pkg{blockrand} \citep{Snow2013} & 1 & u & n & n & o & R \\
-			\pkg{experiment} \citep{experiment2013} & 2 & t & n & n & o & R \\
-			\pkg{randPack} \citep{randPack2016} & 2 & t & n & n & o & R \\
-			\pkg{RALLOC} \citep{Ryan2011} & 1 & u & n & n & pc & Stata \\
-			Randomizer for Clinical Trial \citep{Bournique2016} & 1 & X & n & n & pc/pf & iOS \\
-			\bottomrule	
-	\end{tabular}
-	\caption{Results of a google search to identify software tools for randomization in clinical trials, evaluated by the 
-		number of included randomization procedures (No) and the availability of documentation (Doc), randomization protocol, 
-		assessment and comparison (A\&C), the license and the platform of the software tool.}
-	\label{tab:lit-rev}
-\end{table}
-%\end{appendices}
-
-
-\begin{description}
-	\item[Number of available procedures (No)] The number of restricted randomization procedures supported by 
-	the software tool.
-	\item[Documentation (Doc)] The type of documentation provided by the software tool, such as manuals for the end user (u),
-	technical documentation of codes and algorithms including references to relevant literature (t), or
-	no documentation freely available on the website (X).	
-	\item[Protocol] The randomization protocol with the details of the randomization procedure 
-	and randomization sequence can be saved to a file (y/n).
-	\item[Assessment and comparison (A\&C)] Randomization procedures can be assessed and compared with respect 
-	to criteria from the literature (y/n).
-	\item[License] The license the tool is published under: open source license (o), 
-	proprietary but available free of charge (pf), proprietary and commercial (pc), or 
-	proprietary and commercial, but a light version is available free of charge (pc/pf).
-	\item[Platform] The computing requirements necessary to run the software tool.
-\end{description}
-
-
-The most striking result from Table~\ref{tab:lit-rev} is the low number of randomization procedures
-supported in the available software tools. Twelve out of fifteen tools provide 
-only one or two randomization procedures. In most cases, these are permuted block randomization 
-or complete randomization. None of the tools provide more than four randomization procedures. Despite being crucial 
-for statisticians as well as clinical trialists, the state of the available
-documentation is poor. Only three software
-tools implement detailed technical documentation, while seven of the remaining tools 
-provide manuals for the end user. However, both types of documentation are needed in 
-order to ensure the correct usage and functionality of the tools. The other five 
-tools did not provide or reference any documentation on their website. Without 
-documentation on the method used to generate the random allocation sequence, 
-the type of randomization and details of any restriction as recommended by 
-the CONSORT 2010 Statement \citep{CONSORT2010}, the possible effects of bias 
-on the data cannot be assessed, and the validity of the trial can be compromised. 
-Only four tools provided the functionality to generate and save a protocol of the 
-randomization that includes this information. 
-
-One of the investigated software tools allowed the assessment of the implemented 
-randomization procedure. Namely, it allows the assessment of the average amount of final 
-imbalance using permuted block randomization with random block sizes by simulation. 
-%The comparison of randomization procedures is not included in any of the assessed tools.
-The remaining tools do not implement any type of assessment or comparison of randomization procedures,
-making it hard for the user to choose a randomization procedure based on objective criteria.
-
-Another important point for the availability of a tool is its license. Only four of the investigated software 
-tools were published under open source license. The remaining eleven tools are proprietary and therefore restrict the inspection, 
-modification and redistribution of the programme code, which results in tools that are a black box for their users.
-In addition, three of the proprietary tools provide only a commercial version and might not be accessible to all possible users.
-
-Lastly, five of the tools rely on a specific operating system. Only the web-applications, 
-the R packages and the stata module have the advantage of running independent of the operating system.
-Clearly, less system requirements lead to better availability for a larger variety of users.
-
-In conclusion, none of the existing software tools combines a large number of randomization
-procedures with extensive documentation, availability of randomization protocols and assessment of 
-randomization procedures as well as accessibility via open source license and cross-platform availability.
-
 
 \bibliography{references}
 \end{document}

@@ -17,8 +17,6 @@ NULL
 # --------------------------------------------
 
 # Validity check function for objects of the desirability class
-# 
-# @inheritParams overview 
 #
 # @return Returns a \code{TRUE}, if the settings of the object are valid.
 validateProbUnDes <- function(object) {
@@ -32,7 +30,7 @@ validateProbUnDes <- function(object) {
 # Class definition for probUnDesirable
 # --------------------------------------------
 
-# probUnDesirable paramters generic
+# probUnDesirable parameters generic
 setClass("probUnDesirable",
          slots = c(D = "data.frame", design = "character", N = "numeric", K = "numeric", 
                    desFuncs = "character", weights = "numeric"),
@@ -44,7 +42,7 @@ setClass("probUnDesirable",
 # --------------------------------------------
 
 #' Method defining the $ operator for the probUnDesirable class
-#' 
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "probUnDesirable",
           function(x, name) slot(x, name))
@@ -81,14 +79,12 @@ setMethod("show", "probUnDesirable", function(object) {
 # Generic functions for using objects of type desScores
 # --------------------------------------------
 
-#' Computing the probability of having desirabilty scores of zero
+#' Computing the probability of having desirability scores of zero
 #' 
-#' Computing the probability of having desirabilty scores of zero for each desirability
+#' Computing the probability of having desirability scores of zero for each desirability
 #' function applied to an issue. 
 #' 
 #' @family desirability topics
-#'
-#' @inheritParams overview
 #' 
 #' @param desScore an object of the class \code{desScores}, i.e. an object resulting from
 #' applying the function \code{\link{getDesScores}}
@@ -96,12 +92,12 @@ setMethod("show", "probUnDesirable", function(object) {
 #' @details
 #'
 #' The function \code{probUnDes} expects an object that results from the \code{\link{getDesScores}}
-#' function. For each issue it computes the probabiliy that it achieves an undesirable score, 
+#' function. For each issue it computes the probability that it achieves an undesirable score, 
 #' i.e. a desirability score of 0. In doing so, it weights the zero desirability scores 
 #' with the probability that the sequence occurs. 
 #'
 #' @examples 
-#' # Compare Random Allocation Rule to Big Stick Design with respect to different issues
+#' # compare Random Allocation Rule to Big Stick Design with respect to different issues
 #' # and their corresponding desirability functions
 #' RAR <- getAllSeq(rarPar(4))
 #' issue1 <- corGuess("CS")

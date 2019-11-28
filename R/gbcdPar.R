@@ -40,7 +40,7 @@ validategbcdPar <- function(object) {
 # Class definition for gbcdPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("gbcdPar",
          slots = c(rho = "numeric"),
          contains = "randPar",
@@ -89,7 +89,7 @@ gbcdPar <- function(N, rho, groups = LETTERS[1:2]) {
 #' It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 #' is allocated to treatment A (resp. B).
 #' 
-#' @export
+#' @keywords internal
 #' 
 #' @references 
 #' R. L. Smith (1984) Sequential treatment allocation using biased coin designs. 
@@ -122,7 +122,6 @@ gbcdRand <- function(N, rho, K = 2) {
 # --------------------------------------------
 # Methods for gbcdPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "gbcdPar"),
           function(obj) {

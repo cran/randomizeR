@@ -2,7 +2,7 @@
 % Please edit documentation in R/doublyT.R
 \name{doublyTValues}
 \alias{doublyTValues}
-\title{Calculation of the biased type-one-error (resp. power) of Student`s t-test}
+\title{Calculation of the biased type-one-error probability (resp. power) of Student`s t-test}
 \usage{
 doublyTValues(randSeq, bias, endp)
 }
@@ -14,17 +14,10 @@ doublyTValues(randSeq, bias, endp)
 \item{endp}{object of the class endpoint.}
 }
 \value{
-the biased type-one-error (resp. power) of all randomization sequences.
+the biased type-one-error probability (resp. power) of all randomization sequences.
 }
 \description{
-Computes the biased type-one-error (resp. power) of Student`ts t-test due to shifts in the expectation vectors 
+Computes the biased type-one-error probability (resp. power) of Student`s t-test due to shifts in the expectation vectors
 in both treatment groups.
 }
-\examples{
-myPar <- crPar(4)
-M <- getAllSeq(myPar)
-cs <- selBias("CS", 1, "exact")
-endp <- normEndp(mu = c(0, 0), sigma = c(1, 1))
-doublyTValues(M, cs, endp)
-
-}
+\keyword{internal}

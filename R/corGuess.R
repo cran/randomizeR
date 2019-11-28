@@ -68,9 +68,9 @@ setClass("corGuess",
 #' following values:
 #' \describe{
 #'   \item{\code{"CS"}}{refers to "convergence strategy", i.e. the investigator
-#'   predicts the treatment which has hitherto occured less often.}
+#'   predicts the treatment which has hitherto occurred less often.}
 #'   \item{\code{"DS"}}{refers to "divergence strategy", i.e. the investigator
-#'   predicts the treatment which has hitherto occured more often.}
+#'   predicts the treatment which has hitherto occurred more often.}
 #' }
 #' 
 #' @return

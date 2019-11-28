@@ -23,7 +23,7 @@ NULL
 # representing the design.
 # 
 # @slot N total number of patients included in the trial
-# @slot M matrix containing randomisation sequences of length \code{N} in its
+# @slot M matrix containing randomization sequences of length \code{N} in its
 # rows. 
 setClass("crSeq", contains = "randSeq")
 
@@ -52,7 +52,6 @@ setMethod("getProb", signature = c(obj = "crSeq"),
             else "Only supported for K=2."
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "crSeq"),
@@ -60,4 +59,3 @@ setMethod("getDesign",
             "CR"
           }
 )
-

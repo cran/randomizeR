@@ -9,7 +9,7 @@ gbcdPar(N, rho, groups = LETTERS[1:2])
 \arguments{
 \item{N}{integer for the total sample size of the trial.}
 
-\item{rho}{nonnegative parameter which my be adjusted according to how strongly it is 
+\item{rho}{nonnegative parameter which my be adjusted according to how strongly it is
 desired to balance the experiment. If \code{rho = 1}, we have Wei's urn design with
 \code{alpha = 0}. If \code{rho = 0}, we have complete randomization.}
 
@@ -25,19 +25,28 @@ Represents the randomization procedure Generalized Biased Coin Design.
 Generalization of Wei's urn and Efron's biased coin design.
 }
 \references{
-R. L. Smith (1984) Sequential treatment allocation using biased coin designs. 
+R. L. Smith (1984) Sequential treatment allocation using biased coin designs.
 \emph{Journal of the Royal Statistical Society B},
 \strong{46}, 519-543. \cr
 W. F. Rosenberger and J. M. Lachin (2002) Randomization in Clinical Trials. \emph{Wiley},
 64-65
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

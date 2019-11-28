@@ -9,7 +9,7 @@ plotSeq(sequences, plotAllSeq = FALSE, emph = NA, rs = NA)
 \arguments{
 \item{sequences}{object of type randSeq}
 
-\item{plotAllSeq}{logical. If \code{plotAllSeq=TRUE}, the complete set of 
+\item{plotAllSeq}{logical. If \code{plotAllSeq=TRUE}, the complete set of
 randomization sequences will be plotted in light gray.}
 
 \item{emph}{integer indicating which sequence should be highlighted in blue.}

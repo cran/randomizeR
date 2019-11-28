@@ -25,7 +25,7 @@ NULL
 # 
 # @slot N total number of patients included in the trial
 # @slot mti The maximum tolerated imbalance during the trial
-# @slot M matrix containing randomisation sequences of length \code{N} in its rows.
+# @slot M matrix containing randomization sequences of length \code{N} in its rows.
 # 
 setClass("mpSeq", slots = c(mti = "numeric"), contains = "randSeq")
 

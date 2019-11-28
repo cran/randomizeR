@@ -2,7 +2,7 @@
 % Please edit documentation in R/derFunc.R
 \name{TV}
 \alias{TV}
-\title{Function returning the sample size slot of an S4 object}
+\title{Function returning the target value slot of an S4 object}
 \usage{
 TV(obj)
 }
@@ -10,5 +10,5 @@ TV(obj)
 \item{obj}{object inheriting from derFunc}
 }
 \description{
-Function returning the sample size slot of an S4 object
+Function returning the target value slot of an S4 object
 }

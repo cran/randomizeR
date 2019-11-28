@@ -20,7 +20,7 @@ bsdPar(N, mti, groups = LETTERS[1:2])
 Represents the randomization procedure Big Stick Design.
 }
 \details{
-Tossing a fair coin as long as the difference in group sizes doesn`t
+Tossing a fair coin as long as the difference in group sizes does not
 exceed the \code{mti}. If the \code{mti} is reached a deterministic
 allocation is done, so that the difference in group sizes is reduced.
 }
@@ -29,12 +29,21 @@ J. F. Soares and C. F. Jeff Wu (1983) Some Restricted Randomization Rules in
 Sequential Designs. \emph{Comm. in Stat.}, \strong{12}, 2017-34.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{chenPar}},
-  \code{\link{crPar}}, \code{\link{createParam}},
-  \code{\link{ebcPar}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

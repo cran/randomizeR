@@ -15,3 +15,4 @@ Hat matrix, i.e. \code{M * (M^T M)^{-1} M^T}
 \description{
 Calculate hat matrix
 }
+\keyword{internal}

@@ -30,7 +30,7 @@ validateAssessment <- function(object) {
 # Class definition for assessment
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("assessment",
          slots = c(D = "data.frame", design = "character", N = "numeric", K = "numeric",
                    groups = "character"),
@@ -41,8 +41,8 @@ setClass("assessment",
 # Accesssor functions for asssessment
 # --------------------------------------------
 
-#' Method defining the $ operator for the assessemnt class
-#' 
+#' Method defining the $ operator for the assessment class
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "assessment",
           function(x, name) slot(x, name))
@@ -101,13 +101,13 @@ setMethod("show", "assessment", function(object) {
 #' @details
 #' Randomization sequences behave differently with respect to issues
 #' like selection bias, chronological bias, or loss in power estimation.
-#' The \code{assess} function evaluates the behaviour of randomization 
+#' The \code{assess} function evaluates the behavior of randomization 
 #' sequences with respect to these issues. 
 #' The first argument should be a result of one of the functions 
 #' \code{\link{genSeq}} or \code{\link{getAllSeq}}.
 #' The second argument should be any number of \code{\link{issues}} arising 
 #' in a clinical trial. The last argument \code{endp} may be provided if 
-#' the assessment should take the distribution of the treamtent groups
+#' the assessment should take the distribution of the treatment groups
 #' into account, e.g. for power evaluation.
 #'
 #' @examples 
@@ -123,12 +123,17 @@ setMethod("show", "assessment", function(object) {
 #' sequence <- genSeq(bsdPar(10, 2), seed = 1909)
 #' assess(sequence, issue1)
 #'
-#' # assess the same sequence with respect to selection bias
+#' # assess the same sequence with respect to selection bias and power for a normal endpoint
 #' endp <- normEndp(c(2, 2), c(1, 1))
 #' issue5 <- selBias("CS", 4, "exact")
 #' issue6 <- setPower(2, "exact")
 #' assess(sequence, issue1, issue5, issue6, endp = endp)
 #'
+#' # assess the same sequence with respect to selection bias for an exponential endpoint
+#' endp <- expEndp(lambda = c(0.5, 0.5), cenRate=0.1, accrualTime=1, cenTime=5)
+#' issue7 <- selBias("CS", 0.1, "exact")
+#' assess(sequence, issue1, issue7, endp = endp)
+#' 
 #' # recommended plot for the assessment of rejection probabilities
 #' RP <- getAllSeq(crPar(6))
 #' cB <- chronBias(type = "linT", theta = 1/6, method = "exact")
@@ -208,22 +213,22 @@ setMethod("assess", signature(randSeq = "randSeq", endp = "missing"),
             }
             
             if (randSeq@K > 2){
-              stop("Only Selection and Chronological Bias can be evaluated for K > 2")
+              stop("Only Selection and Chronological Bias can be evaluated for K > 2.")
             }
             stopifnot(all(sapply(L, function(x)  is(x, "issue"))))
             stopifnot(all(sapply(randSeq@ratio, function(x) x == 1)))
             D <- data.frame("Sequence" = apply(getRandList(randSeq), 1, function(x) paste(x, sep = "", collapse = "")))
-            if (.hasSlot(randSeq, "seed")) { 
+            if (.hasSlot(randSeq, "seed")) {
               D$Relative_Frequency <- 1/dim(randSeq@M)[1]
             } else {
               D$Probability <- getProb(randSeq)
             }
-            
+
             D <- cbind(D, do.call(cbind, lapply(L, function(x)  getStat(randSeq, x))))
-            
+
             new("assessment",
                 D = D, design = getDesign(randSeq),
-                N = randSeq@N, K = randSeq@K, groups = randSeq@groups)   
+                N = randSeq@N, K = randSeq@K, groups = randSeq@groups)
           }
 )
 
@@ -239,17 +244,35 @@ setMethod("assess", signature(randSeq = "randSeq", endp = "endpoint"),
               showwarning <- F
               temp <- sapply(L, function(x){ 
                 if(is(x, "corGuess") || is(x, "imbal") || is(x, "power")){
-                  showwarning <- T
-                  x
+                  return(x)
                 }
               })
-              if(!is.null(as.vector(unlist(temp))))
-                L <- L[-as.vector(unlist(temp))]
-              
-              if(showwarning == T)
-                warning("Only Selection and Chronological Bias can be evaluated for K > 2")
+              if(!is.null(as.vector(unlist(temp)))){
+                showwarning <- T
+                L <- L[!L %in% as.vector(unlist(temp))]
+              }
+              if(showwarning == T){
+                warning("Only Selection and Chronological Bias can be evaluated for K > 2.")                
+              }
             }
-            stopifnot(all(sapply(L, function(x) is(x, "issue"))))
+            
+            if (is(endp, "expEndp")){
+              showwarning <- F
+              temp <- sapply(L, function(x){
+                if(is(x, "power")){
+                  return(x)
+                }
+              })
+              if(!is.null(as.vector(unlist(temp)))){
+                showwarning <- T
+                L <- L[!L %in% as.vector(unlist(temp))]
+              }
+              if(showwarning == T){
+                warning("The power issue cannot be evaluated for exponential endpoints.")
+              }
+            }
+            
+            stopifnot(all(sapply(L, function(x) is(x, "issue")))) 
             stopifnot(all(sapply(randSeq@ratio, function(x) x == 1)))
             D <- data.frame("Sequence" = apply(getRandList(randSeq), 1, function(x) paste(x, sep = "", collapse = "")))
             if (.hasSlot(randSeq, "seed")) { 

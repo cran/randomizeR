@@ -17,7 +17,7 @@ plotEv(evaluation, labels, cols)
 Plot of an \code{evaluation} object.
 }
 \examples{
-# Compare Random Allocation Rule to Big Stick Design with respect to different issues
+# compare Random Allocation Rule to Big Stick Design with respect to different issues
 # and their corresponding desirability functions
 issue1 <- corGuess("CS")
 issue2 <- chronBias(type = "linT", theta = 1/4, method = "exact")
@@ -36,7 +36,11 @@ plotEv(E)
 
 }
 \seealso{
-Other desirability topics: \code{\link{derFunc}},
-  \code{\link{evaluate}}, \code{\link{getDesScores}},
-  \code{\link{plotDes}}, \code{\link{probUnDes}}
+Other desirability topics: 
+\code{\link{derFunc}},
+\code{\link{evaluate}()},
+\code{\link{getDesScores}()},
+\code{\link{plotDes}()},
+\code{\link{probUnDes}()}
 }
+\concept{desirability topics}

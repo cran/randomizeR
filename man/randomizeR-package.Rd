@@ -6,40 +6,50 @@
 \alias{randomizeR}
 \title{Randomization for Clinical Trials}
 \description{
-This tool enables the user to choose a randomization procedure based on 
-sound scientific criteria. It comprises the generation of randomization 
-sequences as well the assessment of randomization procedures based on 
-carefully selected criteria. Furthermore, randomizeR provides a function for 
+This tool enables the user to choose a randomization procedure based on
+sound scientific criteria. It comprises the generation of randomization
+sequences as well the assessment of randomization procedures based on
+carefully selected criteria. Furthermore, randomizeR provides a function for
 the comparison of randomization procedures.
 }
 \section{Acknowledgement}{
 
-This research is embedded in the 
-\href{http://www.ideal.rwth-aachen.de/}{IDeAl project}, which has received 
-funding from the European Union's Seventh Framework Programme for 
-research, technological development and demonstration under Grant Agreement 
+This research is embedded in the
+\href{http://www.ideal.rwth-aachen.de/}{IDeAl project}, which has received
+funding from the European Union's Seventh Framework Programme for
+research, technological development and demonstration under Grant Agreement
 no 602552.
 }
 
 \references{
-W. F. Rosenberger and J. M. Lachin (2012) \emph{Randomization in Clinical Trials - Theory and Practice}. 
+W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials}.
 Wiley.
 
-D. Schindler (2016) \emph{Assessment of Randomization Procedures in the Presence of 
+#' D. Uschner, D. Schindler, R. D. Hilgers and N. Heussen (2018). "randomizeR: An R Package
+for the Assessment and Implementation of Randomization in Clinical Trials." \emph{Journal
+of Statistical Software}, \strong{85}(8), pp. 1-22. doi: 10.18637/jss.v085.i08
+(URL: \url{http://doi.org/10.18637/jss.v085.i08}).
+
+D. Schindler (2016) \emph{Assessment of Randomization Procedures in the Presence of
 Selection and Chronological Bias}. PhD Thesis.
 
-Uschner D, Schindler D, Hilgers R and Heussen N (2018). "randomizeR: An R Package for the
-Assessment and Implementation of Randomization in Clinical Trials." \emph{Journal of Statistical
-Software}, \strong{85}(8), pp. 1-22. doi: 10.18637/jss.v085.i08 (URL: \url{http://doi.org/10.18637/jss.v085.i08}).
+D. Uschner, R. D. Hilgers, N. Heussen (2018). "The impact of selection bias in randomized
+multi-arm parallel group clinical trials." PLOS ONE, 13(1): e0192065.
+doi: 10.1371/journal.pone.0192065  (URL: \url{https://doi.org/10.1371/journal.pone.0192065}).
+
+M. V. Rueckbeil, R. D. Hilgers, N. Heussen (2019). "Randomization in survival studies: An
+evaluation method that takes into account selection and chronological bias." PLOS ONE, 14(6):
+e0217946. doi: 10.1371/journal.pone.0217946 (URL: \url{https://doi.org/10.1371/journal.pone.0217946}).
 }
 \seealso{
 For functionality for randomization procedures, see \code{\link{randPar}} and
 \code{\link{genSeq}}.
 For the criteria for the assessment of randomization procedures, see
-\code{\link{issues}}. 
-For the assessment and comparison of randomization procedures, see 
+\code{\link{issues}}.
+For the assessment and comparison of randomization procedures, see
 \code{\link{assess}} and \code{\link{compare}}.
 }
 \author{
-David Schindler \email{dschindler@ukaachen.de}, Diane Uschner \email{duschner@ukaachen.de}, Ralf-Dieter Hilgers, Nicole Heussen
+David Schindler \email{dv.schindler@gmail.com}, Diane Uschner \email{Diane.Uschner@gmail.com},
+Ralf-Dieter Hilgers, Nicole Heussen, Marcia Viviane Rueckbeil \email{marcia.rueckbeil@rwth-aachen.de}
 }

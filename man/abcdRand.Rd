@@ -9,15 +9,15 @@ abcdRand(N, a, K = 2)
 \arguments{
 \item{N}{integer for the total sample size of the trial.}
 
-\item{a}{nonnegative parameter which my be adjusted according to how strongly it is 
-desired to balance the experiment. a = 0 gives the complete randomization, while the
-assignments become more deterministic as \code{a} increases.}
+\item{a}{nonnegative parameter which controls the degree of randomness:
+For decreasing \code{a} the allocations become deterministic, while for increasing
+\code{a} the randomization procedure tends to complete randomization.}
 
 \item{K}{number of treatment groups (e.g. K=2 if we compare one experimental
 against one control treatment).}
 }
 \value{
-A vector with the allocation sequence for a clinical trial. 
+A vector with the allocation sequence for a clinical trial.
 It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 is allocated to treatment A (resp. B).
 }
@@ -25,8 +25,9 @@ is allocated to treatment A (resp. B).
 Sampling algorithm for abcd
 }
 \references{
-A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential 
+A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential
 allocation of two treatments.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}
 \strong{53}, No. 4, 651-664
 }
+\keyword{internal}

@@ -3,7 +3,7 @@
 #' Calculate Design Matrix from randomization sequence
 #' 
 #' @param R randomization sequence, object of type randSeq
-#' 
+#' @keywords internal
 #' @return \code{makeDesignMatrix} converts the randomization sequence \code{R} 
 #' to its Matrix form. The resulting matrix has \code{K} columns, one for 
 #' each treatment group, and \code{N} rows, one for each subject. If a subject \code{i}
@@ -17,14 +17,14 @@ makeDesignMatrix <- function(R){
 }
 
 
-#' Biasing Policy for a Group of Favoured Treatments 
+#' Biasing Policy for a Group of Favored Treatments 
 #' 
 #' Calculate vector with the selection bias for each patient
 #' 
 #' @param R randomization sequence, a integer vector with entries 1, \dots, K, of length N
 #' @param K number of treatment groups, a single integer value
 #' @param pref preferred groups for the guessing
-#' 
+#' @keywords internal
 #' @return vector with the selection bias for each patient
 getbiasCS1 <- function(R, K, pref){
   Gsize <- sapply(seq_len(K)-1, function(x) c(0,cumsum(R[-length(R)] == x)))
@@ -38,7 +38,7 @@ getbiasCS1 <- function(R, K, pref){
 #' @param R randomization sequence, a integer vector with entries 1, \dots, K, of length N
 #' @param K number of treatment groups, a single integer value
 #' @param avoid avoided groups for the guessing
-#' 
+#' @keywords internal
 #' @return vector with the selection bias for each patient
 getbiasCS2 <- function(R, K, avoid){
   Gsize <- sapply(seq_len(K)-1, function(x) c(0,cumsum(R[-length(R)] == x)))
@@ -50,10 +50,8 @@ getbiasCS2 <- function(R, K, avoid){
 #' @param R randomization sequence, an object of type randSeq
 #' @param mu vector of length K containing the expectation values of groups 1, \dots, K
 #' @param bias selection or chronological bias object, containing eta(or theta) and alpha
-#' 
+#' @keywords internal
 #' @return vector of length N with the biased expectation for each patient.
-#' 
-#' @export
 makeBiasedExpectation <-  function(R, mu, bias){
   eta <- bias@eta
   means <- as.vector(makeDesignMatrix(R) %*% mu)
@@ -70,7 +68,7 @@ makeBiasedExpectation <-  function(R, mu, bias){
 #' Calculate hat matrix
 #' 
 #' @param M Design Matrix representing the randomization sequence
-#' 
+#' @keywords internal
 #' @return Hat matrix, i.e. \code{M * (M^T M)^{-1} M^T} 
 hatMatrix <- function(M){
   A <- t(M)%*%M
@@ -82,7 +80,7 @@ hatMatrix <- function(M){
 #' 
 #' @param H Hat Matrix
 #' @param EY (Biased) expectation of the responses
-#' 
+#' @keywords internal
 #' @return First non centrality parameter, a single numeric value
 lambda1 <- function(H, EY){
   ovMean <- matrix(rep(1/length(EY), length(EY)^2), ncol=length(EY))
@@ -93,7 +91,7 @@ lambda1 <- function(H, EY){
 #' 
 #' @param H Hat Matrix
 #' @param EY (Biased) expectation of the responses
-#' 
+#' @keywords internal
 #' @return Second non centrality parameter, a single numeric value
 lambda2 <- function(H, EY){
   t(EY) %*% (diag(length(EY)) - H) %*% EY
@@ -108,7 +106,7 @@ lambda2 <- function(H, EY){
 #' @param lambda2 second non centrality parameter, a single numeric value
 #' @param acc accuracy; last index of the approximation of the infinite sum
 #' @param ex exactness; break early, if the summands are smaller than \code{10^(-ex)}
-#' 
+#' @keywords internal
 #' @return Probability of observing a value larger than x
 doublyF_opt <- function(x, df1, df2, lambda1, lambda2, acc=100, ex = 5){
   c <- exp(-(lambda1 +lambda2)/2)
@@ -133,7 +131,7 @@ doublyF_opt <- function(x, df1, df2, lambda1, lambda2, acc=100, ex = 5){
 #' @param R object of type randSeq representing the randomization procedure
 #' @param bias selection or chronological bias object, containing eta(or theta) and alpha
 #' @param endp endpoint object, containing mu and sigma
-#' 
+#' @keywords internal
 #' @return data frame containing the non centrality parameters, the degrees of
 #' freedom, the \code{1-alpha} quantile corresponding to the central f distribution and
 #' a numeric value for probability of false rejection of the null 
@@ -168,13 +166,13 @@ doublyF_value <- function(R, bias, endp){
 }
 
 
-#' Check function for occurance of all treatment groups in the sequence
+#' Check function for occurrence of all treatment groups in the sequence
 #'
-#' checks wheather each group has its value comming up at least once in the sequence
+#' checks whether each group has its value coming up at least once in the sequence
 #' 
 #' @param seq randomization sequence as inverted matrix
 #' @param K number of treatment arms
-#' 
+#' @keywords internal
 #' @return TRUE if all groups represented, FAlSE otherwise
 hasAllGroups <- function(seq, K){
   for(i in 0:(K-1)){
@@ -194,11 +192,9 @@ hasAllGroups <- function(seq, K){
 #' @param randSeq the object containing the randomization sequences
 #' @param bias selection bias object, containing eta and alpha
 #' @param endp endpoint object, containing mu and sigma
-#' 
+#' @keywords internal
 #' @return data frame with the sequences and their corresponding ncps and rejection
 #' probabilities.
-#'
-#' @export
 doublyF_values <- function(randSeq, bias, endp){
   seq <- randSeq@M
 

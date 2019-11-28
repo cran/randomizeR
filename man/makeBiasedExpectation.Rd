@@ -19,3 +19,4 @@ vector of length N with the biased expectation for each patient.
 \description{
 Calculate Expectation vector
 }
+\keyword{internal}

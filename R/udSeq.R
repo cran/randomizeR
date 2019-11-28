@@ -26,7 +26,7 @@ NULL
 # @slot ini integer representing the initial urn composition.
 # @slot add integer representing the number of balls that are added to the
 # urn in each step.
-# @slot M matrix containing randomisation sequences of length \code{N} in its rows.
+# @slot M matrix containing randomization sequences of length \code{N} in its rows.
 #
 setClass("udSeq", slots= c(ini = "numeric", add = "numeric"), contains = "randSeq")
 
@@ -69,7 +69,6 @@ setMethod("getProb", signature = c(obj = "udSeq"),
             else "Only supported for K=2."
           }  
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "udSeq"),

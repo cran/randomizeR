@@ -4,16 +4,12 @@
 \alias{doublyT}
 \title{Approximation of the distribution function of the doubly noncentral t-distribution}
 \usage{
-doublyT(x, df, delta, lambda, lb = 0, ub)
+doublyT(x, df, lambda1, lambda2, lb = 0, ub)
 }
 \arguments{
 \item{x}{a variable \code{x}.}
 
 \item{df}{degrees of freedom (i.a. \code{N-2}).}
-
-\item{delta}{first noncentrality parameter of the doubly noncentral t-distribution.}
-
-\item{lambda}{(second) noncentrality parameter of the doubly noncentral t-distribution.}
 
 \item{lb}{lower bound for the starting value of the poisson distribution.}
 
@@ -25,3 +21,4 @@ Distribution value of the doubly noncentral t-distribution at \code{x}.
 \description{
 Computes the value of the distribution function of the doubly noncentral t-distribution at \code{x}.
 }
+\keyword{internal}

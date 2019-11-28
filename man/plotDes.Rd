@@ -19,7 +19,7 @@ plotDes(desScore, labels, colAv = "red", quantiles = FALSE)
 Plot of an \code{desScore} object.
 }
 \examples{
-# Compute the desirability scores of the full set of PBR(4)
+# compute the desirability scores of the full set of PBR(4)
 sequences <- getAllSeq(rarPar(4))
 issue1 <- corGuess("CS")
 issue2 <- chronBias("linT", 1/4, "exact")
@@ -35,7 +35,11 @@ plotDes(D, quantiles = TRUE)
 
 }
 \seealso{
-Other desirability topics: \code{\link{derFunc}},
-  \code{\link{evaluate}}, \code{\link{getDesScores}},
-  \code{\link{plotEv}}, \code{\link{probUnDes}}
+Other desirability topics: 
+\code{\link{derFunc}},
+\code{\link{evaluate}()},
+\code{\link{getDesScores}()},
+\code{\link{plotEv}()},
+\code{\link{probUnDes}()}
 }
+\concept{desirability topics}

@@ -29,7 +29,7 @@ validateChronBiasStepT <- function(object) {
 # Class definition for chronBiasStepT
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("chronBiasStepT",
          slots = c(saltus = "numeric"),
          contains = "chronBias",

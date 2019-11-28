@@ -19,3 +19,4 @@ vector with the selection bias for each patient
 \description{
 Calculate vector with the selection bias for each patient
 }
+\keyword{internal}

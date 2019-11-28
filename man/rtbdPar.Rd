@@ -23,9 +23,9 @@ Represents the randomization procedure Randomized Truncated Binomial Design.
 }
 \details{
 Fix the possible random block lengths \code{rb} and the sample size of the trial \code{N}.
- Afterwards, one block length is
+Afterwards, one block length is
 randomly selected of the random block lengths. In this block a fair coin is tossed
-for the patient assignments until half of the patients have been assigend to one of
+for the patient assignments until half of the patients have been assigned to one of
 the treatment arms. Afterwards, the block is filled with the
 other treatment. This procedure is repeated
 until \code{N} patients are assigned.
@@ -35,12 +35,21 @@ W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials
 Wiley.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{hadaPar}},
-  \code{\link{mpPar}}, \code{\link{pbrPar}},
-  \code{\link{rarPar}}, \code{\link{rpbrPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

@@ -58,7 +58,7 @@ validateChenPar <- function(object) {
 # Class definition for chenPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("chenPar",
          slots = c(mti="numeric", p = "numeric"),
          contains = "randPar",
@@ -73,9 +73,9 @@ setClass("chenPar",
 #' Represents the randomization procedure Chen's Design.
 #'
 #' @details
-#' Flip a biased coin with probability \code{p} in favour of the treatment
-#' which is allocated less frequently as long as the difference in group sizes doesn`t
-#' exceed the \code{mti}. If the \code{mti} is reached a deterministic
+#' Flip a biased coin with probability \code{p} in favor of the treatment
+#' which is allocated less frequently as long as the difference in group sizes does
+#' not exceed the \code{mti}. If the \code{mti} is reached a deterministic
 #' allocation is done, so that the difference in group sizes is reduced.
 #' If both treatments have been assigned equally often a fair coin is tossed.
 #' 
@@ -108,7 +108,7 @@ chenPar <- function(N, mti = N, p = 0.5, groups = LETTERS[1:2]) {
 #' It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 #' is allocated to treatment A (resp. B).
 #' 
-#' @export
+#' @keywords internal
 #' 
 #' @references 
 #' Chen Yung-Pin (1999) Biased coin design with imbalance tolerance.
@@ -137,7 +137,6 @@ chenRand <- function(N, mti, p, K = 2) {
 # --------------------------------------------
 # Methods for chenPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "chenPar"),
           function(obj) {
@@ -194,7 +193,7 @@ setMethod("genSeq", signature(obj = "chenPar", r = "numeric", seed = "missing"),
 )
 
 
-#' @rdname generateRandomSequences
+#' @rdname generateRandomSequences 
 setMethod("genSeq", signature(obj = "chenPar", r = "missing", seed = "numeric"),
           function(obj, r, seed) {
             set.seed(seed)
@@ -227,7 +226,6 @@ setMethod("genSeq", signature(obj = "chenPar", r = "missing", seed = "missing"),
                 seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "chenPar"),

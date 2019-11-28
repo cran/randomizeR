@@ -7,7 +7,7 @@
 saveAssess(obj, file = "assessObject.csv")
 }
 \arguments{
-\item{obj}{object of class assessmentment, e.g. the output of the \code{\link{assess}} function.}
+\item{obj}{object of class assessment, e.g. the output of the \code{\link{assess}} function.}
 
 \item{file}{A connection, or a character string naming the file to write to.}
 }
@@ -19,5 +19,7 @@ Saves the full information of an \code{assess} object in a \code{.csv} data
 sheet.
 }
 \seealso{
-Other saving functions: \code{\link{saveRand}}
+Other saving functions: 
+\code{\link{saveRand}()}
 }
+\concept{saving functions}

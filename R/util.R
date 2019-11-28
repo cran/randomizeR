@@ -16,7 +16,7 @@
 # 
 # @param obj object of class ebcPar
 #
-# @return A matrix containing all \code{2^N} randomisation sequences in the
+# @return A matrix containing all \code{2^N} randomization sequences in the
 # rows, where \code{N=N(obj)} is the total sample size.
 compltSet <- function(obj) {
   if (N(obj) > 24) stop("Full reference set only computeable up to N=24. Use the parameter r in genSeq to simulate several sequences.")

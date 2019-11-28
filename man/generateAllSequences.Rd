@@ -2,7 +2,6 @@
 % Please edit documentation in R/randPar.R, R/abcdPar.R, R/bbcdPar.R,
 %   R/ebcPar.R, R/bsdPar.R, R/chenPar.R, R/crPar.R, R/gbcdPar.R, R/hadaPar.R,
 %   R/mpPar.R, R/pbrPar.R, R/rarPar.R, R/tbdPar.R, R/udPar.R
-\docType{methods}
 \name{generateAllSequences}
 \alias{generateAllSequences}
 \alias{getAllSeq}
@@ -50,77 +49,43 @@ getAllSeq(obj)
 \S4method{getAllSeq}{udPar}(obj)
 }
 \arguments{
-\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}}
 or \code{\link{createParam}}.}
 }
 \value{
-An object inheriting from \linkS4class{randSeq}, representing the set 
+An object inheriting from \linkS4class{randSeq}, representing the set
 of randomization sequences for the given parameters.
-The output consists of the parameters used for the generation of the 
+The output consists of the parameters used for the generation of the
 randomization sequences (see \code{\link{createParam}}) and the matrix \code{M}
 that stores the randomization sequences in its rows.
 }
 \description{
-Computes all randomization sequences for the given randomization procedure, 
-and stores them in an object along with the parameters belonging to the 
+Computes all randomization sequences for the given randomization procedure,
+and stores them in an object along with the parameters belonging to the
 randomization procedure.
 }
 \details{
-\code{getAllSeq} is a generic function which dispatches different 
-methods depending on the type of input. The set of sequences of a procedure 
+\code{getAllSeq} is a generic function which dispatches different
+methods depending on the type of input. The set of sequences of a procedure
 is computed by enumerating all possible sequences and eliminating those that
-are not possible in the randomization procedure specified by \code{obj}. The 
+are not possible in the randomization procedure specified by \code{obj}. The
 parameters of the randomization procedure are saved along with the sequences
 to ensure reproducibility of the results.
 }
 \examples{
-# CR
-myPar <- crPar(6)
-getAllSeq(myPar)
-
-# EBC
+# all randomization sequences of Efron's Biased Coin Design with p = 0.667 for N = 6
 myPar <- ebcPar(6, 0.667)
 getAllSeq(myPar)
 
-# BSD
+# all randomization sequences of Big Stick Design with mti = 2 for N = 6
 myPar <- bsdPar(6, 2)
 getAllSeq(myPar)
 
-# PBR
+# all randomization sequences of Permuted Block Randomization with block sizes 4 and 2
 myPar <- pbrPar(c(4, 2))
 getAllSeq(myPar)
 
-# RAR
-myPar <- rarPar(8)
-getAllSeq(myPar)
 
-# MP 
-myPar <- mpPar(8, 2)
-getAllSeq(myPar)
-
-# HAD
-myPar <- hadaPar(8)
-getAllSeq(myPar)
-
-# TBD
-myPar <- tbdPar(8)
-getAllSeq(myPar)
-
-# GBCD
-myPar <- gbcdPar(8, 2)
-getAllSeq(myPar)
-
-# ABCD
-myPar <- abcdPar(8, 3)
-getAllSeq(myPar)
-
-# BBCD
-myPar <- bbcdPar(8, 5)
-getAllSeq(myPar)
-
-# CHEN
-myPar <- chenPar(8, 2, 0.667)
-getAllSeq(myPar)
 
 }
 \seealso{

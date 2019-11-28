@@ -13,7 +13,7 @@ test_that("Output has correct number of sequences (without seed).", {
   # thus coincides with the number of randomization sequences set earlier.
   
   N      <- sample(seq(2, 50, 2), 1)           # Sample number of patients
-  r      <- sample(30, 1)                      # Sample number of randomisation sequences
+  r      <- sample(30, 1)                      # Sample number of randomization sequences
   mti    <- sample(N/2, 1)                     # Sample maximum tolerated imbalance
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # Sample biased coin parameter
   nr     <- sample(10,1)                       # Sample number of blocks 
@@ -85,7 +85,7 @@ test_that("Output has correct number of sequences (with seed)", {
   # and thus coincides with the number randomization sequences set earlier.
   
   N      <- sample(seq(2, 50, 2), 1)           # Sample number of patients
-  r      <- sample(30, 1)                      # Sample number of randomisation sequences
+  r      <- sample(30, 1)                      # Sample number of randomization sequences
   mti    <- sample(N/2, 1)                     # Sample maximum tolerated imbalance
   p      <- sample(seq(0.5001, 1, 0.05), 1)    # biased coin parameter
   seed   <- sample(.Machine$integer.max, 1)    # Sample seed

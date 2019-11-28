@@ -77,8 +77,8 @@ setClass("power",
 #' @details
 #' The attained power of an individual randomization sequence can be an issue
 #' in the design of a clinical trial. The power of a randomization sequence is
-#' is computed dependent on the effect size \code{d} and the difference in 
-#' group sizes in the end if. 
+#' computed depending on the effect size \code{d} and the difference in 
+#' group sizes. 
 #' 
 #' If \code{method="sim"}, the object represents the simulated power of an
 #' individual randomization sequence. When calling \code{assess} for a 

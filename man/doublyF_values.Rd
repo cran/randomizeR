@@ -21,3 +21,4 @@ probabilities.
 calculates the non-centrality parameters of the F-distribution under third
 order selection bias.
 }
+\keyword{internal}

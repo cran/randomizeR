@@ -6,7 +6,7 @@
 \title{An S4 Class for the representation of  randomization sequences}
 \description{
 This set of classes provides functionality of storing randomization
-sequences of different randomization procedures along with the parameters 
+sequences of different randomization procedures along with the parameters
 representing the design.
 }
 \section{Slots}{

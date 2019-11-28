@@ -2,13 +2,13 @@
 % Please edit documentation in R/randPar.R
 \name{method}
 \alias{method}
-\title{Function returning the allocation ratio slot of an S4 object}
+\title{Function returning the method of an S4 object}
 \usage{
 method(obj)
 }
 \arguments{
-\item{obj}{object of class randPar}
+\item{obj}{object inheriting from randPar}
 }
 \description{
-Function returning the allocation ratio slot of an S4 object
+Function returning the method of an S4 object
 }

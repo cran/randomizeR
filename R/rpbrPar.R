@@ -55,7 +55,7 @@ validaterpbrPar <- function(object) {
 # Class definition for pbrPar
 # --------------------------------------------
 
-# Randomization paramters class
+# Randomization parameters class
 setClass("rpbrPar",
          slots = c(rb = "numeric", filledBlock = "logical"),
          contains = "randPar",
@@ -75,7 +75,7 @@ setClass("rpbrPar",
 #' the sample size \code{N} and the vector of the \code{ratio}. Afterwards, one block length is
 #' randomly selected of the random block lengths. The patients are assigned
 #' according to the ratio to the corresponding treatment groups. This procedure is repeated
-#' until \code{N} patients are assigned. Within each block all possbible
+#' until \code{N} patients are assigned. Within each block all possible
 #' randomization sequences are equiprobable.
 #' 
 #' @family randomization procedures
@@ -181,7 +181,6 @@ setMethod("genSeq", signature(obj = "rpbrPar", r = "numeric", seed = "missing"),
 		            seed = seed)
           }
 )
-
 
 #' @rdname getDesign
 setMethod("getDesign", 

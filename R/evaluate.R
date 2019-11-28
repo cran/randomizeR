@@ -17,8 +17,6 @@ NULL
 # --------------------------------------------
 
 # Validity check function for objects of the desirability class
-# 
-# @inheritParams overview 
 #
 # @return Returns a \code{TRUE}, if the settings of the object are valid.
 validateEvaluation <- function(object) {
@@ -32,7 +30,7 @@ validateEvaluation <- function(object) {
 # Class definition for evaluation
 # --------------------------------------------
 
-# Evaluation paramters generic
+# Evaluation parameters generic
 setClass("evaluation",
          slots = c(D = "data.frame", desFuncs = "character", weights = "numeric", 
                    statistic = "character"),
@@ -44,7 +42,7 @@ setClass("evaluation",
 # --------------------------------------------
 
 #' Method defining the $ operator for the evaluation class
-#' 
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "evaluation",
           function(x, name) slot(x, name))
@@ -95,8 +93,6 @@ setMethod("show", "evaluation", function(object) {
 #' Evaluation of several randomization procedures with respect to certain desirability
 #' functions applied to specified issues.
 #'
-#'
-#' @inheritParams overview
 #' 
 #' @param ... at least one object of the class \code{desScores} or a list of objects of 
 #' the class \code{desScores}.
@@ -110,13 +106,13 @@ setMethod("show", "evaluation", function(object) {
 #' randomization procedures. It expects a number of objects that result when applying the 
 #' \code{getDesScores} function to an assess object and specified desirability functions. 
 #' The \code{evaluate} function summarizes the desirability scores of each randomization 
-#' procedure on the basis of a prespecified statistic and encorporates them into a data 
+#' procedure on the basis of a prespecified statistic and incorporates them into a data 
 #' frame. If no statistic is specified then it is automatically set to \code{mean}. If 
 #' the function is applied to only one object it corresponds simply to 
 #' \code{summary(getDesScores(...))}.
 #'
 #' @examples 
-#' # Compare Random Allocation Rule to Big Stick Design with respect to different issues
+#' # compare Random Allocation Rule to Big Stick Design with respect to different issues
 #' # and their corresponding desirability functions
 #' issue1 <- corGuess("CS")
 #' issue2 <- corGuess("DS")
@@ -270,7 +266,7 @@ setMethod("evaluate", signature(statistic = "character"),
 #' @param cols colors of the lines representing the  desirability scores in the plot. Can be \code{NULL}.
 #' 
 #' @examples 
-#' # Compare Random Allocation Rule to Big Stick Design with respect to different issues
+#' # compare Random Allocation Rule to Big Stick Design with respect to different issues
 #' # and their corresponding desirability functions
 #' issue1 <- corGuess("CS")
 #' issue2 <- chronBias(type = "linT", theta = 1/4, method = "exact")

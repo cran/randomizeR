@@ -1,50 +1,78 @@
 Package: randomizeR
 Title: Randomization for Clinical Trials
-Version: 1.4.2
-Date: 2018-06-14
-Authors@R: c(
-    person(given="David", family="Schindler", email="dschindler@ukaachen.de", role="aut"),
-    person(given="Diane", family="Uschner", email="duschner@ukaachen.de", role=c("aut","cre")),
-    person(given="Martin", family="Manolov", email="martin.manolov@rwth-aachen.de", role="ctb"),
-	person(given="Thi Mui", family="Pham", email="thi.mui.pham@rwth-aachen.de", role="ctb"),
-	person(given="Ralf-Dieter", family="Hilgers", email="rhilgers@ukaachen.de", role=c("aut","ths")),
-	person(given="Nicole", family="Heussen", email="nheussen@ukaachen.de", role=c("aut","ths"))
-    )
+Version: 2.0.0
+Date: 2019-11-15
+Encoding: UTF-8
+Authors@R: 
+    c(person(given = "David",
+             family = "Schindler",
+             role = "aut",
+             email = "dv.schindler@gmail.com"),
+      person(given = "Diane",
+             family = "Uschner",
+             role = c("aut", "cre"),
+             email = "Diane.Uschner@gmail.com"),
+      person(given = "Marcia Viviane",
+             family = "Rueckbeil",
+             role = "ctb",
+             email = "marcia.rueckbeil@rwth-aachen.de"),
+      person(given = "Martin",
+             family = "Manolov",
+             role = "ctb",
+             email = "martin.manolov@rwth-aachen.de"),
+      person(given = "Thi Mui",
+             family = "Pham",
+             role = "ctb",
+             email = "thi.mui.pham@rwth-aachen.de"),
+      person(given = "Michael",
+             family = "Martini",
+             role = "ctb",
+             email = "michael.martini1@rwth-aachen.de"),
+      person(given = "Ralf-Dieter",
+             family = "Hilgers",
+             role = c("aut", "ths"),
+             email = "rhilgers@ukaachen.de"),
+      person(given = "Nicole",
+             family = "Heussen",
+             role = c("aut", "ths"),
+             email = "nheussen@ukaachen.de"))
 Description: This tool enables the user to choose a randomization procedure
     based on sound scientific criteria. It comprises the generation of
     randomization sequences as well the assessment of randomization procedures
     based on carefully selected criteria. Furthermore, 'randomizeR' provides a
     function for the comparison of randomization procedures.
-Depends: R (>= 3.3.0), methods, ggplot2, plotrix
+Depends: R (>= 3.6.0), methods, ggplot2, plotrix, survival
 License: GPL (>= 3)
 LazyData: true
 Collate: 'getDesign.R' 'randPar.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
-        'getExpectation.R' 'normEndp.R' 'endpoint.R' 'util.R'
-        'getStat.R' 'power.R' 'imbalance.R' 'corGuess.R' 'doublyF.R'
-        'testDec.R' 'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R'
-        'issue.R' 'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R'
-        'bsdPar.R' 'bsdSeq.R' 'chenPar.R' 'chenSeq.R'
-        'chronBiasStepT.R' 'combinedBias.R' 'compare.R' 'crPar.R'
-        'crSeq.R' 'createParam.R' 'derFunc.R' 'desFunc.R'
-        'getDesFunc.R' 'derringerLs.R' 'derringerRs.R' 'derringerTs.R'
-        'desScores.R' 'desirability.R' 'ebcSeq.R' 'evaluate.R'
-        'gbcdPar.R' 'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'mpPar.R'
-        'mpSeq.R' 'pbrPar.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R'
-        'rpbrSeq.R' 'randomBlockSeq.R' 'randomizeROverview.R'
-        'randomizeRPackage.R' 'rarPar.R' 'rarSeq.R' 'rpbrPar.R'
-        'tbdPar.R' 'rtbdPar.R' 'saveAssess.R' 'saveRand.R' 'tbdSeq.R'
-        'udPar.R' 'udSeq.R'
+        'survEndp.R' 'getExpectation.R' 'expEndp.R' 'normEndp.R'
+        'endpoint.R' 'util.R' 'getStat.R' 'power.R' 'imbalance.R'
+        'corGuess.R' 'logRankDistribution.R' 'doublyF.R' 'testDec.R'
+        'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R' 'issue.R'
+        'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R' 'bsdPar.R'
+        'bsdSeq.R' 'chenPar.R' 'chenSeq.R' 'chronBiasStepT.R'
+        'combinedBias.R' 'compare.R' 'crPar.R' 'crSeq.R'
+        'createParam.R' 'derFunc.R' 'desFunc.R' 'getDesFunc.R'
+        'derringerLs.R' 'derringerRs.R' 'derringerTs.R' 'desScores.R'
+        'desirability.R' 'ebcSeq.R' 'evaluate.R' 'gbcdPar.R'
+        'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'mpPar.R' 'mpSeq.R'
+        'pbrPar.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R' 'rpbrSeq.R'
+        'randomBlockSeq.R' 'randomizeROverview.R' 'randomizeRPackage.R'
+        'rarPar.R' 'rarSeq.R' 'rpbrPar.R' 'tbdPar.R' 'rtbdPar.R'
+        'saveAssess.R' 'saveRand.R' 'tbdSeq.R' 'udPar.R' 'udSeq.R'
 Suggests: testthat, knitr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.1
 NeedsCompilation: no
-Packaged: 2018-06-15 15:31:18 UTC; duschner
+Packaged: 2019-11-25 16:06:03 UTC; Marcia
 Author: David Schindler [aut],
   Diane Uschner [aut, cre],
+  Marcia Viviane Rueckbeil [ctb],
   Martin Manolov [ctb],
   Thi Mui Pham [ctb],
+  Michael Martini [ctb],
   Ralf-Dieter Hilgers [aut, ths],
   Nicole Heussen [aut, ths]
-Maintainer: Diane Uschner <duschner@ukaachen.de>
+Maintainer: Diane Uschner <Diane.Uschner@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-06-15 16:04:21 UTC
+Date/Publication: 2019-11-28 05:40:03 UTC

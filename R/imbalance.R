@@ -90,7 +90,7 @@ setClass("imbal",
 #' }
 #'
 #' @return
-#' \code{S4} object of class \code{imbal}, a formal represenation of the issue of
+#' \code{S4} object of class \code{imbal}, a formal representation of the issue of
 #' imbalance in a clinical trial.
 #'
 #' @references

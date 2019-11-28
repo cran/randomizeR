@@ -7,7 +7,7 @@
 seed(obj)
 }
 \arguments{
-\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}} 
+\item{obj}{object specifying the randomization procedure, see \code{\link{randPar}}
 or \code{\link{createParam}}.}
 }
 \description{

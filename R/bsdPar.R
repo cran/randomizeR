@@ -46,7 +46,7 @@ validatebsdPar <- function(object) {
 # Class definition for bsdPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("bsdPar",
          slots = c(mti = "numeric"),
          contains = "randPar",
@@ -61,7 +61,7 @@ setClass("bsdPar",
 #' Represents the randomization procedure Big Stick Design.
 #'
 #' @details
-#' Tossing a fair coin as long as the difference in group sizes doesn`t
+#' Tossing a fair coin as long as the difference in group sizes does not
 #' exceed the \code{mti}. If the \code{mti} is reached a deterministic
 #' allocation is done, so that the difference in group sizes is reduced.
 #' 
@@ -94,7 +94,7 @@ bsdPar <- function(N, mti, groups = LETTERS[1:2]) {
 #' It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 #' is allocated to treatment A (resp. B).
 #' 
-#' @export
+#' @keywords internal
 #' 
 #' @references 
 #' J. F. Soares and C. F. Jeff Wu (1983) Some Restricted Randomization Rules in
@@ -124,7 +124,6 @@ bsdRand <- function(N, mti, K = 2) {
 # --------------------------------------------
 # Methods for bsdPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "bsdPar"),
           function(obj) {
@@ -209,7 +208,6 @@ setMethod("genSeq", signature(obj = "bsdPar", r = "missing", seed = "missing"),
 		            seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "bsdPar"),

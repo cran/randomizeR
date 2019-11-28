@@ -65,7 +65,7 @@ validatempPar <- function(object) {
 # Class definition for mpPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("mpPar",
          slots = c(mti = "numeric"),
          contains = "randPar",
@@ -83,7 +83,7 @@ setClass("mpPar",
 #'
 #' @details
 #' Fix the total sample size \code{N} and the \code{mti}. Afterwards, the patients
-#' are assigend to each treatment arm according to the \code{ratio}.
+#' are assigned to each treatment arm according to the \code{ratio}.
 #' All randomization sequences are equiprobable.
 #'
 #' @family randomization procedures
@@ -97,7 +97,7 @@ setClass("mpPar",
 #'
 #' @references
 #' V.W. Berger, A. Ivanova and M.D. Knoll (2003) Minimizing predictability while
-#' retaining balance through the use of less restrective randomization
+#' retaining balance through the use of less restrictive randomization
 #' procedures. \emph{Statistics in Medicine}, \strong{19}, 3017-28. 
 mpPar <- function(N, mti, ratio = c(1, 1), groups = LETTERS[1:2]) {
   new("mpPar", N = N, mti = mti, K = 2, ratio = ratio, groups = groups)
@@ -226,7 +226,6 @@ countPathsToWell <- function(S, x, N) {
 # --------------------------------------------
 # Methods for mpPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "mpPar"),
           function(obj) {
@@ -319,7 +318,6 @@ setMethod("genSeq", signature(obj = "mpPar", r = "missing", seed = "missing"),
 		            seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "mpPar"),

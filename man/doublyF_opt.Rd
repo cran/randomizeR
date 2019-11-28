@@ -27,3 +27,4 @@ Probability of observing a value larger than x
 \description{
 Distribution function of the non central F-distribution
 }
+\keyword{internal}

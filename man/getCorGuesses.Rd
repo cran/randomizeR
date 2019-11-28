@@ -13,7 +13,7 @@ getCorGuesses(randSeq, guessing)
 }
 \value{
 Matrix of the guesses of the investigator following the specified guessing
- strategy. No guess is abbreviated with \code{"nG"}.
+strategy. No guess is abbreviated with \code{"nG"}.
 }
 \description{
 Calculates the guesses of the investigator of a randomization list following

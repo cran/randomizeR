@@ -85,7 +85,7 @@ bsd
 
 The objects \texttt{rar}, \texttt{pbr} and \texttt{bsd} now represent the randomization
 procedures RAR, PBR(4) and BSD(2) for $N=24$ and we can use them in our calculations.
-If you are interested in more randomzation procedures, you can similarly 
+If you are interested in more randomization procedures, you can similarly 
 choose any of the ten randomization procedures supported by \texttt{randomizeR}.
 The help page
 <<ra, eval=FALSE>>=
@@ -97,7 +97,7 @@ provides an overview over all randomization procedures implemented.
 randomization procedures are compared based on the randomization sequences they 
 produce along with their probability of occurrence. Naturally, the sampling 
 algorithms of \texttt{randomizeR} implement the randomization procedures such
-that the theoretical probabilities of occurence equal the sampled relative 
+that the theoretical probabilities of occurrence equal the sampled relative 
 frequencies. 
 
 For the comparison of \texttt{rar}, \texttt{pbr} and \texttt{bsd} we thus need

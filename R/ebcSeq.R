@@ -24,7 +24,7 @@ NULL
 # 
 # @slot N total number of patients included in the trial.
 # @slot p success probability of the biased coin.
-# @slot M matrix containing randomisation sequences of length \code{N} in its rows.
+# @slot M matrix containing randomization sequences of length \code{N} in its rows.
 setClass("ebcSeq", slots=c(p = "numeric"), contains = "randSeq")
 
 

@@ -5,9 +5,7 @@
 %   R/hadaPar.R, R/hadaSeq.R, R/mpPar.R, R/mpSeq.R, R/pbrPar.R, R/pbrSeq.R,
 %   R/rtbdSeq.R, R/rpbrSeq.R, R/rarPar.R, R/rarSeq.R, R/rpbrPar.R, R/tbdPar.R,
 %   R/rtbdPar.R, R/tbdSeq.R, R/udPar.R, R/udSeq.R
-\docType{methods}
 \name{getDesign}
-\alias{getDesign}
 \alias{getDesign}
 \alias{getDesign,abcdPar-method}
 \alias{getDesign,abcdSeq-method}

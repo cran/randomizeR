@@ -9,9 +9,9 @@ bbcdPar(N, a, groups = LETTERS[1:2])
 \arguments{
 \item{N}{integer for the total sample size of the trial.}
 
-\item{a}{nonnegative parameter which my be adjusted according to how strongly it is 
-desired to balance the experiment. a = 0 gives the complete randomization, while the
-assignments become more deterministic as \code{a} increases.}
+\item{a}{nonnegative parameter which controls the degree of randomness:
+For decreasing \code{a} the allocations become deterministic, while for increasing
+\code{a} the randomization procedure tends to complete randomization.}
 
 \item{groups}{character vector of labels for the different treatments.}
 }
@@ -31,12 +31,21 @@ clinical trials: the dominant biased coin design.
 \strong{13(2)}, 119-127
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bsdPar}}, \code{\link{chenPar}},
-  \code{\link{crPar}}, \code{\link{createParam}},
-  \code{\link{ebcPar}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

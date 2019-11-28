@@ -2,7 +2,7 @@
 % Please edit documentation in R/combinedBias.R
 \name{combineBias}
 \alias{combineBias}
-\title{Combined additive bias criterion}
+\title{Combined bias criterion}
 \usage{
 combineBias(selBias, chronBias)
 }
@@ -13,9 +13,9 @@ combineBias(selBias, chronBias)
 }
 \description{
 This class combines a \code{selBias} object and a \code{chronBias} object
-to a new object. In the analysis within the new object
-the two types of bias are treated as additive.
-effect.
+to a new object. In the analysis within the new object the
+two types of bias are treated as additive effect for normal endpoints
+and as multiplicative effect for exponential endpoints.
 }
 \examples{
 chronBias <- chronBias(type="linT", theta=1, method="sim")
@@ -24,8 +24,12 @@ combineBias(selBias, chronBias)
 
 }
 \seealso{
-Other issues: \code{\link{chronBias}},
-  \code{\link{corGuess}}, \code{\link{imbal}},
-  \code{\link{issue}}, \code{\link{selBias}},
-  \code{\link{setPower}}
+Other issues: 
+\code{\link{chronBias}},
+\code{\link{corGuess}},
+\code{\link{imbal}},
+\code{\link{issue}},
+\code{\link{selBias}},
+\code{\link{setPower}()}
 }
+\concept{issues}

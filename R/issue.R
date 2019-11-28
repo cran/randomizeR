@@ -21,15 +21,15 @@ NULL
 #' control certain properties in clinical trials. In the randomizeR package, 
 #' these properties are called \code{issues}.
 #' It is crucial to decide which of the issues is relevant in the present 
-#' clinical trial, because a randomization procedure that mananges well one issue
+#' clinical trial, because a randomization procedure that manages well one issue
 #' might behave very badly for another. The issues include
 #' \itemize{
 #' \item \strong{Selection bias} 
 #' 		can occur if future treatment allocations are predictable due to 
-#' 		restricted randomization and unmasking of past treatment assigments.
+#' 		restricted randomization and unmasking of past treatment assignments.
 #'		The influence of selection bias on the test decision is represented by 
 #'		the \code{\link{selBias}} class. The measure for the predictability of
-#'		a randomization procedure is impemented in the \code{\link{corGuess}} class
+#'		a randomization procedure is implemented in the \code{\link{corGuess}} class
 #'		representing the expected number of correct guesses.
 #' \item \strong{Chronological bias} 
 #' 		can occur if a time trend is present in the data. Time trends occur
@@ -42,7 +42,7 @@ NULL
 #' \item \strong{Balance}
 #' 		is important in order to ensure proper power estimation properties of
 #'    the treatments.
-#' 		However, a high degree of balance favours selection bias. Depending on the
+#' 		However, a high degree of balance favors selection bias. Depending on the
 #' 		clinical context, a randomization procedure should be chosen that admits 
 #' 		a suitable imbalance.
 #'		Imbalance bias is represented by the \code{\link{imbal}} class. The power
@@ -73,7 +73,7 @@ setClassUnion("issue", c("selBias", "chronBias", "corGuess", "imbal", "power"))
 # --------------------------------------------
 
 #' Method defining the $ operator for the issue class
-#' 
+#' @keywords internal
 #' @inheritParams overview
 setMethod("$", "issue",
           function(x, name) slot(x, name))

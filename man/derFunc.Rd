@@ -9,45 +9,52 @@ derFunc(TV, SLs, b)
 \arguments{
 \item{TV}{numeric specifying the optimal desired value called the target value.}
 
-\item{SLs}{numeric vector of length at most 2 specifying the lower and/or upper 
+\item{SLs}{numeric vector of length at most 2 specifying the lower and/or upper
 specified border.}
 
-\item{b}{numeric vector of length at most 2 specifying the weight(s) for the punishment of}
+\item{b}{numeric vector of length at most 2 specifying the weight(s) for the punishment of
+deviations from the target value.}
 }
 \value{
-\code{S4} object of class \code{derFunc}, a formal representation of desirability 
+\code{S4} object of class \code{derFunc}, a formal representation of desirability
 functions introduced by Derringer and Suich.
 }
 \description{
 Represents the Derringer-Suich desirability approach.
 }
 \details{
-derFunc represents the framework for left, right and two-sided desirability functions 
+derFunc represents the framework for left, right and two-sided desirability functions
 introduced by Derringer and Suich (1980). For all three different kinds of desirability
-functions the parameter \code{TV} must be specified. If the parameter \code{SLs} has 
+functions the parameter \code{TV} must be specified. If the parameter \code{SLs} has
 length 1, either the left- or right-sided desirability function is created depending
-from whether the value is smaller (left-sided) or greater (right-sided) than the target 
-value. By specifying \code{SLs} as a vector of length 2 a two-sided  desirability 
-function is created where the lower specified border is determined as the smaller value 
-of \code{SLs} and thus the upper specified border is determined as the greater value. 
-If there are no values specified for the weights, then they are automatically set to 1 
+from whether the value is smaller (left-sided) or greater (right-sided) than the target
+value. By specifying \code{SLs} as a vector of length 2 a two-sided  desirability
+function is created where the lower specified border is determined as the smaller value
+of \code{SLs} and thus the upper specified border is determined as the greater value.
+If there are no values specified for the weights, then they are automatically set to 1
 (linear loss). \cr
 }
 \examples{
-# Create an object of a left-sided desirability function
+# create an object of a left-sided desirability function
 dLeft <- derFunc(0.5, 0.3, 2)
-# Create an object of a right-sided desirability function
+
+# create an object of a right-sided desirability function
 dRight <- derFunc(0.5, 0.8, 1)
-# Create an object of a two-sided desirability function
+
+# create an object of a two-sided desirability function
 dLR <- derFunc(0.5, c(0.3, 0.9), c(3, 1))
 
 }
 \references{
-Derringer, G., and Suich, R., (1980) Simultaneous Optimization of Several Response 
+Derringer, G., and Suich, R., (1980) Simultaneous Optimization of Several Response
 Variables. \emph{Journal of Quality Technology}, \strong{12}, 214-219.
 }
 \seealso{
-Other desirability topics: \code{\link{evaluate}},
-  \code{\link{getDesScores}}, \code{\link{plotDes}},
-  \code{\link{plotEv}}, \code{\link{probUnDes}}
+Other desirability topics: 
+\code{\link{evaluate}()},
+\code{\link{getDesScores}()},
+\code{\link{plotDes}()},
+\code{\link{plotEv}()},
+\code{\link{probUnDes}()}
 }
+\concept{desirability topics}

@@ -2,7 +2,6 @@
 % Please edit documentation in R/randSeq.R, R/abcdSeq.R, R/bbcdSeq.R,
 %   R/bsdSeq.R, R/chenSeq.R, R/crSeq.R, R/ebcSeq.R, R/gbcdSeq.R, R/hadaSeq.R,
 %   R/mpSeq.R, R/pbrSeq.R, R/rarSeq.R, R/tbdSeq.R, R/udSeq.R
-\docType{methods}
 \name{getProbabilities}
 \alias{getProbabilities}
 \alias{calculateProbabilities}
@@ -52,7 +51,7 @@ getProb(obj)
 \S4method{getProb}{udSeq}(obj)
 }
 \arguments{
-\item{obj}{object of a class inheriting from randSeq. Formal representation 
+\item{obj}{object of a class inheriting from randSeq. Formal representation
 of a randomization sequences together with the parameters that belong to
 the procedure that generated the sequences.}
 }
@@ -64,12 +63,12 @@ myPar <- bsdPar(10, 2)
 M <- genSeq(myPar, 2)
 getProb(M)
 
-# All Sequences
+# all Sequences
 par <- pbrPar(bc=c(2,2))
 refSet <- getAllSeq(myPar)
 probs <- getProb(refSet)
 
-# Sequences with probabilities
+# sequences with probabilities
 cbind(probs, refSet$M)
 
 }

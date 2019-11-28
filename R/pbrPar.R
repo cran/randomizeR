@@ -46,7 +46,7 @@ validatepbrPar <- function(object) {
 # Class definition for pbrPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("pbrPar",
          slots = c(bc = "numeric"),
          contains = "randPar",
@@ -123,7 +123,6 @@ blockSeq <- function(k, K = 2, ratio = rep(1, K)) {
 # --------------------------------------------
 # Methods for pbrPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", 
           signature(obj = "pbrPar"),
@@ -218,7 +217,6 @@ setMethod("genSeq",
 		            seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "pbrPar"),

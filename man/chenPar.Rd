@@ -23,9 +23,9 @@ Design).}
 Represents the randomization procedure Chen's Design.
 }
 \details{
-Flip a biased coin with probability \code{p} in favour of the treatment
-which is allocated less frequently as long as the difference in group sizes doesn`t
-exceed the \code{mti}. If the \code{mti} is reached a deterministic
+Flip a biased coin with probability \code{p} in favor of the treatment
+which is allocated less frequently as long as the difference in group sizes does
+not exceed the \code{mti}. If the \code{mti} is reached a deterministic
 allocation is done, so that the difference in group sizes is reduced.
 If both treatments have been assigned equally often a fair coin is tossed.
 }
@@ -34,12 +34,21 @@ Chen Yung-Pin (1999) Biased coin design with imbalance tolerance.
 \emph{Comm. in Stat.}, \strong{15}, 953-975.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{crPar}}, \code{\link{createParam}},
-  \code{\link{ebcPar}}, \code{\link{gbcdPar}},
-  \code{\link{hadaPar}}, \code{\link{mpPar}},
-  \code{\link{pbrPar}}, \code{\link{rarPar}},
-  \code{\link{rpbrPar}}, \code{\link{rtbdPar}},
-  \code{\link{tbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

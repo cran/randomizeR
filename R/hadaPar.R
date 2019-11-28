@@ -16,7 +16,7 @@ NULL
 # Class definition for hadaPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("hadaPar", contains = "randPar")
 
 # --------------------------------------------
@@ -93,7 +93,6 @@ hadaRand <- function(bc) {
 # --------------------------------------------
 # Methods for hadaPar
 # --------------------------------------------
-
 #' @rdname generateAllSequences
 setMethod("getAllSeq", signature(obj = "hadaPar"),
           function(obj) {
@@ -171,7 +170,6 @@ setMethod("genSeq", signature(obj = "hadaPar", r = "missing", seed = "missing"),
 		            seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "hadaPar"),

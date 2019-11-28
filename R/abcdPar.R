@@ -40,7 +40,7 @@ validateabcdPar <- function(object) {
 # Class definition for abcdPar
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("abcdPar",
          slots = c(a = "numeric"),
          contains = "randPar",
@@ -90,7 +90,7 @@ abcdPar <- function(N, a, groups = LETTERS[1:2]) {
 #' It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 #' is allocated to treatment A (resp. B).
 #' 
-#' @export
+#' @keywords internal
 #' 
 #' @references
 #' A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential 
@@ -176,7 +176,6 @@ setMethod("genSeq", signature(obj = "abcdPar", r = "numeric", seed = "missing"),
           }
 )
 
-
 #' @rdname generateRandomSequences
 setMethod("genSeq", signature(obj = "abcdPar", r = "missing", seed = "numeric"),
           function(obj, r, seed) {
@@ -191,7 +190,6 @@ setMethod("genSeq", signature(obj = "abcdPar", r = "missing", seed = "numeric"),
                 seed = seed)
           }
 )
-
 
 #' @rdname generateRandomSequences
 setMethod("genSeq", signature(obj = "abcdPar", r = "missing", seed = "missing"),
@@ -208,7 +206,6 @@ setMethod("genSeq", signature(obj = "abcdPar", r = "missing", seed = "missing"),
                 seed = seed)
           }
 )
-
 #' @rdname getDesign
 setMethod("getDesign", 
           signature(obj = "abcdPar"),

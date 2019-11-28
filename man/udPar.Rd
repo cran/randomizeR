@@ -26,19 +26,28 @@ Represents Wei's Urn Design.
 An urn is filled with a number of \code{ini} balls of both of the treatments.
 Afterwards, a ball is drawn randomly from the urn. Finally, \code{add} balls
 are added to the urn from the opposite treatment. This procedure is repeated until
-\code{N} patients are assigend.
+\code{N} patients are assigned.
 }
 \references{
 L.J. Wei (1977) A Class of Designs for Sequential Clinical Trials.
 \emph{Journal of the American Statistical Association}, \strong{72}, 382-6.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{hadaPar}},
-  \code{\link{mpPar}}, \code{\link{pbrPar}},
-  \code{\link{rarPar}}, \code{\link{rpbrPar}},
-  \code{\link{rtbdPar}}, \code{\link{tbdPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{tbdPar}}
 }
+\concept{randomization procedures}

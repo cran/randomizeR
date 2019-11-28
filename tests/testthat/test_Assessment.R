@@ -13,9 +13,11 @@ test_that("assess returns valid object", {
 	i1 <- corGuess(type)
 	method <- sample(c("sim", "exact"), 1)
 	i2 <- selBias(type, 1, method)
-	# endp <- normEndp(c(0,0), c(1,1))
+	endp1 <- normEndp(c(0,0), c(1,1))
+	survendp <- expEndp(c(1,1),cenTime = qexp(1-10^{-5}, rate = min(1,1)),cenRate = min(c(1,1))*10^{-5} )
 	expect_is(assess(seqs, i1), "assessment")
-	expect_is(assess(seqs, i1, i2, endp = normEndp(c(0,0), c(1,1))), "assessment")
+	expect_is(assess(seqs, i1, i2, endp = endp1), "assessment")
+	expect_is(assess(seqs, i1, i2, endp = survendp), "assessment")
 	
 	type <- sample(c("imb", "absImb", "loss", "maxImb"),1)
 	i3 <- imbal(type)
@@ -31,12 +33,12 @@ test_that("assess returns valid object", {
 	seqs <- genSeq(crPar(12, 3), r = 1000)
 	i4 <- selBias("CS", 0.5, "exact", 0.05)
 	i5 <- selBias("CS", 0.5, "sim", 0.05)
-	endp <- normEndp(c(0,0,0), c(1,1,1))
-	expect_is(assess(seqs, i4, endp = endp), "assessment")
-	expect_is(assess(seqs, i5, endp = endp), "assessment")
+	endp2 <- normEndp(c(0,0,0), c(1,1,1))
+	expect_is(assess(seqs, i4, endp = endp2), "assessment")
+	expect_is(assess(seqs, i5, endp = endp2), "assessment")
 	expect_error(assess(seqs, i4, endp = normEndp(c(0,0), c(1,1))))
 	expect_error(assess(seqs, i5, endp = normEndp(c(0,0), c(1,1))))
-	expect_error(assess(seqs, selBias("DS", 0.5, "exact", 0.05),endp = endp))
+	expect_error(assess(seqs, selBias("DS", 0.5, "exact", 0.05),endp = endp2))
 	
 	
 	
@@ -70,15 +72,14 @@ test_that("assess returns valid object", {
 	seqs_2k <- list(genSeq(rarPar(10)), genSeq(rarPar(10), r = 100), getAllSeq(rarPar(10)))
 	seqs_3k <- list(genSeq(rarPar(12,3)), genSeq(rarPar(12,3), r = 100))
 	
-	endp1 <- normEndp(c(0,0), c(1,1))
-	endp2 <- normEndp(c(0,0,0), c(1,1,1))
-	
-	
 	seq <- seqs_2k[[sample(1:3, 1)]]
 	i <- sample(1:6, 1)
   expect_is(assess(seq, cbias_list[[i]], endp = endp1), "assessment")
   expect_is(assess(seq, sbias_list[[i]], endp = endp1), "assessment")
   expect_is(assess(seq, combias_list[[i*2]], endp = endp1), "assessment")
+  expect_is(assess(seq, cbias_list[[i]], endp = survendp), "assessment")
+  expect_is(assess(seq, sbias_list[[sample(1:4, 1)]], endp = survendp), "assessment")
+  expect_is(assess(seq, combias_list[[i]], endp = survendp), "assessment")
   
   seq <- seqs_3k[[sample(1:2, 1)]]
   i <- sample(1:6, 1)

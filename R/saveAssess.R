@@ -16,7 +16,7 @@
 #' @family saving functions
 #' 
 #' @inheritParams overview
-#' @param obj object of class assessmentment, e.g. the output of the \code{\link{assess}} function.
+#' @param obj object of class assessment, e.g. the output of the \code{\link{assess}} function.
 #'
 #' @return Creates a \code{.csv} data in the home folder.
 #'

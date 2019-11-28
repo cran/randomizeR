@@ -7,7 +7,7 @@
 tbdPar(bc = N, groups = LETTERS[1:2])
 }
 \arguments{
-\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block. 
+\item{bc}{vector which contains the lengths \code{k_1,...,k_l} of each block.
 This means that the vector \code{bc} will have one entry for each block.}
 
 \item{groups}{character vector of labels for the different treatments.}
@@ -19,7 +19,7 @@ S4 object of the class \code{tbdPar}.
 Represents the Truncated Binomial Design.
 }
 \details{
-A fair toin is tossed until half of the patients have been assigned to one of
+A fair coin is tossed until half of the patients have been assigned to one of
 the treatment arms. Afterwards, the randomization list is filled with the
 other treatment.
 }
@@ -28,12 +28,21 @@ W. F. Rosenberger and J. M. Lachin (2002) \emph{Randomization in Clinical Trials
 Wiley.
 }
 \seealso{
-Other randomization procedures: \code{\link{abcdPar}},
-  \code{\link{bbcdPar}}, \code{\link{bsdPar}},
-  \code{\link{chenPar}}, \code{\link{crPar}},
-  \code{\link{createParam}}, \code{\link{ebcPar}},
-  \code{\link{gbcdPar}}, \code{\link{hadaPar}},
-  \code{\link{mpPar}}, \code{\link{pbrPar}},
-  \code{\link{rarPar}}, \code{\link{rpbrPar}},
-  \code{\link{rtbdPar}}, \code{\link{udPar}}
+Other randomization procedures: 
+\code{\link{abcdPar}},
+\code{\link{bbcdPar}},
+\code{\link{bsdPar}},
+\code{\link{chenPar}},
+\code{\link{crPar}},
+\code{\link{createParam}()},
+\code{\link{ebcPar}},
+\code{\link{gbcdPar}},
+\code{\link{hadaPar}},
+\code{\link{mpPar}},
+\code{\link{pbrPar}},
+\code{\link{rarPar}},
+\code{\link{rpbrPar}},
+\code{\link{rtbdPar}},
+\code{\link{udPar}}
 }
+\concept{randomization procedures}

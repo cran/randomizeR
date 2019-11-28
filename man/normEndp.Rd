@@ -8,10 +8,10 @@ normEndp(mu, sigma)
 }
 \arguments{
 \item{mu}{vector of the expected responses of the treatment groups, should have
-length \code{K} 
+length \code{K}
 (i.e. one entry for each treatment group).}
 
-\item{sigma}{vector of the standard deviations in each the treatment group, 
+\item{sigma}{vector of the standard deviations in each treatment group,
 should have length \code{K} (i.e. one entry for each treatment group).}
 }
 \description{
@@ -19,11 +19,21 @@ Represents normally distributed endpoints in clinical trials.
 }
 \details{
 The \code{normEnd} function is a constructor function
-for an S4 object of the class \code{normEnd} representing 
+for an S4 object of the class \code{normEnd} representing
 a normally distributed endpoint in a clinical trial.
 In conjunction with the assess function, normal endpoints
 admit the calculation of the exact type-I-error probability and power.
 }
+\examples{
+# set the parameters of two normally distributed endpoints
+endp <- normEndp(mu = c(1, 2), sigma = c(1, 1))
+
+}
 \seealso{
 Compute exact or simulated type-I-error: \code{\link{assess}}.
+
+Other endpoint types: 
+\code{\link{expEndp}},
+\code{\link{survEndp}}
 }
+\concept{endpoint types}

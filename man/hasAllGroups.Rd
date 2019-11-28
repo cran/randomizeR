@@ -2,7 +2,7 @@
 % Please edit documentation in R/doublyF.R
 \name{hasAllGroups}
 \alias{hasAllGroups}
-\title{Check function for occurance of all treatment groups in the sequence}
+\title{Check function for occurrence of all treatment groups in the sequence}
 \usage{
 hasAllGroups(seq, K)
 }
@@ -15,5 +15,6 @@ hasAllGroups(seq, K)
 TRUE if all groups represented, FAlSE otherwise
 }
 \description{
-checks wheather each group has its value comming up at least once in the sequence
+checks whether each group has its value coming up at least once in the sequence
 }
+\keyword{internal}

@@ -1,4 +1,5 @@
 #' @include normEndp.R
+#' @include expEndp.R
 NULL
 
 ###############################################
@@ -12,7 +13,7 @@ NULL
 # Common representation of the endpoints.
 #
 # @name endpoint
-setClassUnion("endpoint", "normEndp")
+setClassUnion("endpoint", c("normEndp","expEndp"))
 
 
 # --------------------------------------------
@@ -33,8 +34,15 @@ sigma <- function(obj) {
   if (.hasSlot(obj, "sigma")) obj@sigma else stop("object has no slot named sigma.") 
 }
 
-#' Method defining the $ operator for the endpoint class
+#' Method returning the rate parameter of an expEndp S4 object
 #' 
+#' @param obj object of class expEndp
+lambda <- function(obj) {
+  if (.hasSlot(obj, "lambda")) obj@lambda else stop("object has no slot named lambda.") 
+}
+
+#' Method defining the $ operator for the endpoint class
+#' @keywords  internal
 #' @inheritParams overview
 setMethod("$", "endpoint",
           function(x, name) slot(x, name))

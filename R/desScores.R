@@ -35,7 +35,7 @@ validateDesScores <- function(object) {
 # Class definition for desScores
 # --------------------------------------------
 
-# Randomization paramters generic
+# Randomization parameters generic
 setClass("desScores",
          slots = c(D = "data.frame", design = "character", N = "numeric", K = "numeric",
                    groups = "character", desFuncs = "character", weights = "numeric"),
@@ -46,8 +46,8 @@ setClass("desScores",
 # Accesssor functions for desScores
 # --------------------------------------------
 
-#' Method defining the $ operator for the assessemnt class
-#' 
+#' Method defining the $ operator for the assessment class
+#' @keywords  internal
 #' @inheritParams overview
 setMethod("$", "desScores",
           function(x, name) slot(x, name))
@@ -100,8 +100,6 @@ setMethod("show", "desScores", function(object) {
 #' Applying desirability function on issues of individual randomization sequences.
 #'
 #' @family desirability topics
-#'
-#' @inheritParams overview
 #' 
 #' @param assess object of class \code{assessment}.
 #' @param ... at least one object of class \code{\link{derFunc}} or a list of objects of 
@@ -112,16 +110,16 @@ setMethod("show", "desScores", function(object) {
 #' @details
 #' Randomization sequences behave differently with respect to issues
 #' like selection bias, chronological bias, or loss in power estimation.
-#' The \code{getDesScores} function evaluates the behaviour of randomization 
+#' The \code{getDesScores} function evaluates the behavior of randomization 
 #' sequences with respect to these issues. The difference to the assess
-#' function is that it scales them to [0,1] and makes them easier interpretable.  
+#' function is that it scales them to \[0,1\] and makes them easier interpretable.  
 #' The first argument should be a result of the \code{\link{assess}} function.
 #' The second argument should be any number of \code{\link{derFunc}} objects
 #' that represent the desirability functions. The last argument \code{weights} 
 #' may be provided if the desirability functions should be weighted differently.  
 #'
 #' @examples 
-#' # Compute the desire-function for the full set of Random Allocation Rule for N=4 patients
+#' # compute the desire-function for the full set of Random Allocation Rule for N = 4
 #' sequences <- getAllSeq(rarPar(4))
 #' issue1 <- corGuess("CS")
 #' issue2 <- chronBias("linT", 0.25, "exact")
@@ -165,7 +163,7 @@ setGeneric("getDesScores", function(assess, ..., weights) standardGeneric("getDe
 #' Data frame with a summary of the desirability scores object. 
 #' 
 #' @examples 
-#' # Compute the desirability scores of the full set of PBR(4)
+#' # compute the desirability scores of the full set of PBR(4)
 #' seq <- getAllSeq(pbrPar(4))
 #' issue1 <- corGuess("CS")
 #' issue2 <- corGuess("DS")
@@ -307,7 +305,7 @@ setMethod("summary", signature(object = "desScores"), function(object) {
 #' @param quantiles \code{logical} whether the quantiles should be depicted in the plot.
 #' 
 #' @examples 
-#' # Compute the desirability scores of the full set of PBR(4)
+#' # compute the desirability scores of the full set of PBR(4)
 #' sequences <- getAllSeq(rarPar(4))
 #' issue1 <- corGuess("CS")
 #' issue2 <- chronBias("linT", 1/4, "exact")

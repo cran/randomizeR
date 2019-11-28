@@ -6,7 +6,7 @@ NULL
 #' 
 #' Represents any randomization procedure for a two-armed clinical trial.
 #' 
-#' @details Dending on the input of the user, \code{createParam} creates an object
+#' @details Depending on the input of the user, \code{createParam} creates an object
 #' representing a randomization procedures for a two-armed clinical trial
 #' (see also \code{\link{randPar}}).
 #' 
