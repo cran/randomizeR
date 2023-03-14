@@ -19,6 +19,10 @@ getDesFunc(obj)
 \arguments{
 \item{obj}{object of the class \code{desFunc}.}
 }
+\value{
+A \code{character} vector which specifies the used desirability
+function and its parameters
+}
 \description{
 Generates a \code{character} vector which specifies the used desirability function and
 its parameters

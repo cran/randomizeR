@@ -11,6 +11,10 @@ combineBias(selBias, chronBias)
 
 \item{chronBias}{object of class \code{chronBias}}
 }
+\value{
+A combined bias object that combines a \code{selBias} and
+a \code{chronBias} object
+}
 \description{
 This class combines a \code{selBias} object and a \code{chronBias} object
 to a new object. In the analysis within the new object the
@@ -21,7 +25,6 @@ and as multiplicative effect for exponential endpoints.
 chronBias <- chronBias(type="linT", theta=1, method="sim")
 selBias <- selBias(type="CS", eta=1, method="sim")
 combineBias(selBias, chronBias)
-
 }
 \seealso{
 Other issues: 

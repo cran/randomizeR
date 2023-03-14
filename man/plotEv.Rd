@@ -13,6 +13,9 @@ plotEv(evaluation, labels, cols)
 
 \item{cols}{colors of the lines representing the  desirability scores in the plot. Can be \code{NULL}.}
 }
+\value{
+A plot of an \code{evaluation} object
+}
 \description{
 Plot of an \code{evaluation} object.
 }
@@ -33,7 +36,6 @@ DesScore2 <- getDesScores(A2, d1, d2, weights = c(5/6, 1/6))
 
 E <- evaluate(DesScore, DesScore2)
 plotEv(E)
-
 }
 \seealso{
 Other desirability topics: 

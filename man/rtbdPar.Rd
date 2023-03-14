@@ -23,7 +23,7 @@ Represents the randomization procedure Randomized Truncated Binomial Design.
 }
 \details{
 Fix the possible random block lengths \code{rb} and the sample size of the trial \code{N}.
-Afterwards, one block length is
+ Afterwards, one block length is
 randomly selected of the random block lengths. In this block a fair coin is tossed
 for the patient assignments until half of the patients have been assigned to one of
 the treatment arms. Afterwards, the block is filled with the

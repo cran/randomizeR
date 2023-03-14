@@ -16,6 +16,9 @@ randomization sequences will be plotted in light gray.}
 
 \item{rs}{vector of a randomization sequence that should be highlighted.}
 }
+\value{
+A plot of all randomization sequences of a \code{randSeq} object.
+}
 \description{
 Plot all randomization sequences of a randSeq object
 }

@@ -15,6 +15,9 @@ plotDes(desScore, labels, colAv = "red", quantiles = FALSE)
 
 \item{quantiles}{\code{logical} whether the quantiles should be depicted in the plot.}
 }
+\value{
+a plot of an \code{desScore} object
+}
 \description{
 Plot of an \code{desScore} object.
 }
@@ -32,7 +35,6 @@ D <- getDesScores(A, d1, d2)
 summary(D)
 plotDes(D)
 plotDes(D, quantiles = TRUE)
-
 }
 \seealso{
 Other desirability topics: 

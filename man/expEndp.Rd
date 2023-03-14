@@ -15,6 +15,10 @@ expEndp(lambda, cenRate, accrualTime = 0, cenTime)
 
 \item{cenTime}{total duration of a survival study (maximum length of followup).}
 }
+\value{
+A \code{S4} object representing
+an exponentially distributed endpoint in a clinical trial.
+}
 \description{
 Represents exponentially distributed endpoints in clinical trials.
 }

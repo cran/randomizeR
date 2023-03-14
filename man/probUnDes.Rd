@@ -14,7 +14,7 @@ probUnDes(desScore)
 applying the function \code{\link{getDesScores}}}
 }
 \value{
-\code{S4} object of class \code{probUnDesirable} computing the probability of getting
+\code{S4} object of class \code{probUnDesirable} computing the probability of getting 
 undesirable scores, i.e. desirability scores of 0.
 }
 \description{
@@ -23,8 +23,8 @@ function applied to an issue.
 }
 \details{
 The function \code{probUnDes} expects an object that results from the \code{\link{getDesScores}}
-function. For each issue it computes the probability that it achieves an undesirable score,
-i.e. a desirability score of 0. In doing so, it weights the zero desirability scores
+function. For each issue it computes the probability that it achieves an undesirable score, 
+i.e. a desirability score of 0. In doing so, it weights the zero desirability scores 
 with the probability that the sequence occurs.
 }
 \examples{

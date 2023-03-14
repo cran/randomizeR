@@ -14,6 +14,9 @@ length \code{K}
 \item{sigma}{vector of the standard deviations in each treatment group,
 should have length \code{K} (i.e. one entry for each treatment group).}
 }
+\value{
+A \code{S4} object that represents a normally distributed endpoint in a clinical trial
+}
 \description{
 Represents normally distributed endpoints in clinical trials.
 }

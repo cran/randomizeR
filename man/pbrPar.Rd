@@ -27,7 +27,7 @@ Represents the randomization procedure Permuted Block Randomization.
 \details{
 Fix the block constellation \code{bc}, the number of treatment groups \code{K},
 and the vector of the \code{ratio}. Afterwards,
-in each block the patients are assigned according to the ratio to the
+in each block the patients are assigned according to the ratio to the 
 corresponding treatment groups. All generated randomization sequences
 are equiprobable.
 }

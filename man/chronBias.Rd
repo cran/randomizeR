@@ -34,60 +34,60 @@ chronological bias, s.a. time trends, in a clinical trial. It supports two possi
 \code{method="sim"} and \code{method="exact"}, and three different types of trend.
 
 If \code{method="sim"}, the object represents the simulated type-I-error rate given
-the level \code{alpha}, the selection effect \code{eta} and the biasing
-strategy \code{type}. When calling \code{assess} for a \code{chronBias} object
-with \code{method="sim"}, one test decision is computed for each sequence of
+ the level \code{alpha}, the selection effect \code{eta} and the biasing
+ strategy \code{type}. When calling \code{assess} for a \code{chronBias} object
+ with \code{method="sim"}, one test decision is computed for each sequence of
 \code{randSeq}. The type-I-error rate (power) is the proportion of falsely
 (correctly) rejected null hypotheses.
 
 If \code{method="exact"}, the object represents the exact type-I-error probability
-given the level \code{alpha}, the selection effect \code{eta} and the
-biasing strategy \code{type}. When calling \code{assess} for a \code{chronBias}
-object with \code{method="exact"}, the \emph{p}-value of each randomization
-sequence is computed. For normal endpoints and two treatment groups these p-values
-are exact values which can be calculated from the sum of the corresponding quantiles
-of the doubly noncentral t-distribution. For more than two treatment groups, exact
-p-values are computed using a doubly noncentral F distribution. For exponential
-endpoints the p-values are obtained using an approximation formula.
+ given the level \code{alpha}, the selection effect \code{eta} and the
+ biasing strategy \code{type}. When calling \code{assess} for a \code{chronBias}
+ object with \code{method="exact"}, the \emph{p}-value of each randomization
+ sequence is computed. For normal endpoints and two treatment groups these p-values
+ are exact values which can be calculated from the sum of the corresponding quantiles
+ of the doubly noncentral t-distribution. For more than two treatment groups, exact
+ p-values are computed using a doubly noncentral F distribution. For exponential
+ endpoints the p-values are obtained using an approximation formula.
 
 \subsection{Types of chronological bias}{
 \describe{
-\item{\code{type = "linT"}}{
-Represents linear time trend. Linear time trend means that the time trend function of the patients,
-i.e. expected response for normal endpoints, increases evenly by \code{theta/(N-1)} with
-every patient included in the study, until reaching \code{theta} after \code{N} patients.
-Linear time trend may occur as a result of gradually relaxing in- or exclusion criteria
-throughout the trial.
-It can be represented by the formula:
-\deqn{f(i) = (i-1)/(N-1) \theta}{f(i) = (i-1)/(N-1) \theta}
-}
-\item{\code{type = "logT"}}{
-Represents logarithmic time trend. Logarithmic time trend means that the time trend function of
-the patients, i.e. expected response for normal endpoints, increases logarithmically in the
-patient index by \code{theta/log(N)} with every patient included in the study, until reaching
-\code{theta} after \code{N} patients. Logarithmic time trend may occur as a result of a learning
-curve, i.e. in a surgical trial.
-It can be represented by the formula:
-\deqn{\log(i)/\log(N) \theta}{f(i) = log(i)/log(N) \theta}
-}
-\item{\code{type = "stepT"}}{
-Represents step trend. Step trend means that the expected response of the patients increases
-by \code{theta} after a given point (\code{"saltus"}) in the allocation process.
-Step trend may occur if a new device is used after the point \eqn{c} = \code{"saltus"}, or if
-the medical personal changes after this point.
-Step time trend can be represented by the formula:
-\deqn{f(i) = 1_{c < i \leq N} \theta}{f(i) = 1_{c < i \le N} \theta}
-}
+	 \item{\code{type = "linT"}}{
+   Represents linear time trend. Linear time trend means that the time trend function of the patients,
+   i.e. expected response for normal endpoints, increases evenly by \code{theta/(N-1)} with
+   every patient included in the study, until reaching \code{theta} after \code{N} patients.
+   Linear time trend may occur as a result of gradually relaxing in- or exclusion criteria
+   throughout the trial.
+   It can be represented by the formula:
+   \deqn{f(i) = (i-1)/(N-1) \theta}{f(i) = (i-1)/(N-1) \theta}
+  }
+	 \item{\code{type = "logT"}}{
+   Represents logarithmic time trend. Logarithmic time trend means that the time trend function of
+   the patients, i.e. expected response for normal endpoints, increases logarithmically in the
+   patient index by \code{theta/log(N)} with every patient included in the study, until reaching
+   \code{theta} after \code{N} patients. Logarithmic time trend may occur as a result of a learning
+   curve, i.e. in a surgical trial.
+   It can be represented by the formula:
+   \deqn{\log(i)/\log(N) \theta}{f(i) = log(i)/log(N) \theta}
+  }
+	 \item{\code{type = "stepT"}}{
+   Represents step trend. Step trend means that the expected response of the patients increases
+   by \code{theta} after a given point (\code{"saltus"}) in the allocation process.
+   Step trend may occur if a new device is used after the point \eqn{c} = \code{"saltus"}, or if
+   the medical personal changes after this point.
+   Step time trend can be represented by the formula:
+  \deqn{f(i) = 1_{c < i \leq N} \theta}{f(i) = 1_{c < i \le N} \theta}
+  }
 }
 }
 }
 \examples{
-# create a linear time trend with theta = 0.5 for which the exact rejection probabilities 
+# create a linear time trend with theta = 0.5 for which the exact rejection probabilities
 # are calculated
 cbias <- chronBias("linT", 0.5, "exact")
 
-# create a stepwise time trend with theta = 1 after 10 allocations for which the test 
-# decision is simulated  
+# create a stepwise time trend with theta = 1 after 10 allocations for which the test
+# decision is simulated
 cbias <- chronBias("stepT", 1, "sim", 10)
 
 }

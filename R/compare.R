@@ -174,11 +174,11 @@ setMethod("compare", signature(issue = "issue", endp = "missing"),
             if (!all(sapply(R, function(x)  is(x, "randSeq"))))
               stop("Not all ... objects of class randSeq.")
             
-            if (!all(sapply(R, function(x)  identical(x@K, 2))))
-              stop("Not all ... objects have K = 2.")
+            #if (!all(sapply(R, function(x)  identical(x@K, 2))))
+              #stop("Not all ... objects have K = 2.")
             
-            if (!all(sapply(R, function(x)  identical(x@ratio, c(1, 1)))))
-              stop("Not all ... objects have ratio = c(1, 1).")
+            #if (!all(sapply(R, function(x)  identical(x@ratio, c(1, 1)))))
+             # stop("Not all ... objects have ratio = c(1, 1).")
             
             output <- lapply(R, function(r) {
              assess(r, issue)  
@@ -208,11 +208,11 @@ setMethod("compare", signature(issue = "issue", endp = "endpoint"),
             if (!all(sapply(R, function(x)  is(x, "randSeq"))))
               stop("Not all ... objects of class randSeq.")
             
-            if (!all(sapply(R, function(x)  identical(x@K, 2))))
-              stop("Not all ... objects have K = 2.")
+            #if (!all(sapply(R, function(x)  identical(x@K, 2))))
+              #stop("Not all ... objects have K = 2.")
             
-            if (!all(sapply(R, function(x)  identical(x@ratio, c(1, 1)))))
-              stop("Not all ... objects have ratio = c(1, 1).")
+            #if (!all(sapply(R, function(x)  identical(x@ratio, c(1, 1)))))
+              #stop("Not all ... objects have ratio = c(1, 1).")
             
             output <- lapply(R, function(r) {
               assess(r, issue, endp = endp)  

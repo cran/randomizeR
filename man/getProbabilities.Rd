@@ -55,6 +55,10 @@ getProb(obj)
 of a randomization sequences together with the parameters that belong to
 the procedure that generated the sequences.}
 }
+\value{
+a matrix with theoretical probabilities for
+observed randomization sequences
+}
 \description{
 Calculate theoretical probability for observed randomization sequences
 }

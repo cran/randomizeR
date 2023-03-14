@@ -17,7 +17,7 @@ For decreasing \code{a} the allocations become deterministic, while for increasi
 against one control treatment).}
 }
 \value{
-A vector with the allocation sequence for a clinical trial.
+A vector with the allocation sequence for a clinical trial. 
 It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 is allocated to treatment A (resp. B).
 }
@@ -25,7 +25,7 @@ is allocated to treatment A (resp. B).
 Sampling algorithm for abcd
 }
 \references{
-A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential
+A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential 
 allocation of two treatments.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}
 \strong{53}, No. 4, 651-664

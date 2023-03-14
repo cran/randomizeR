@@ -7,7 +7,10 @@
 blocks(obj)
 }
 \arguments{
-\item{obj}{object of class pbrPAr}
+\item{obj}{object of class pbrPar}
+}
+\value{
+a vector with the lenghts of each block of a \code{pbrPar} object
 }
 \description{
 Function returning the block slot of an S4 object

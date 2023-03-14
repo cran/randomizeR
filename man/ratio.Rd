@@ -9,6 +9,9 @@ ratio(obj)
 \arguments{
 \item{obj}{object of class randPar}
 }
+\value{
+A vector containng the allocation ratio of an \code{S4} object
+}
 \description{
 Function returning the allocation ratio slot of an S4 object
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/logRankDistribution.R
 \name{logRankDecSim}
 \alias{logRankDecSim}
-\title{Simulation of the test decision of the log rank test}
+\title{logRankDecSim}
 \usage{
 logRankDecSim(randSeq, bias, endp)
 }
@@ -17,6 +17,6 @@ logRankDecSim(randSeq, bias, endp)
 a simulated test decision for each randomization sequence.
 }
 \description{
-Simulates one test decision of the log rank test in the presence of bias.
+logRankDecSim
 }
 \keyword{internal}

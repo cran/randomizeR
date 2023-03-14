@@ -16,7 +16,7 @@ doublyF_value(R, bias, endp)
 \value{
 data frame containing the non centrality parameters, the degrees of
 freedom, the \code{1-alpha} quantile corresponding to the central f distribution and
-a numeric value for probability of false rejection of the null
+a numeric value for probability of false rejection of the null 
 hypothesis of no difference in the presence of selection bias.
 }
 \description{

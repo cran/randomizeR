@@ -18,7 +18,7 @@ Design).}
 against one control treatment).}
 }
 \value{
-A vector with the allocation sequence for a clinical trial.
+A vector with the allocation sequence for a clinical trial. 
 It will contain a zero (resp. 1) at position \code{i}, when patient \code{i}
 is allocated to treatment A (resp. B).
 }

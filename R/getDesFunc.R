@@ -6,10 +6,10 @@ NULL
 # --------------------------------------------
 
 #' Type of Desirability function
-#' 
+#'
 #' Generates a \code{character} vector which specifies the used desirability function and
 #' its parameters
-#' 
+#'
 #' @param obj object of the class \code{desFunc}.
 #'
 #' @name getDesFunc
@@ -17,6 +17,7 @@ NULL
 
 
 #' @rdname getDesFunc
-#' 
+#' @returns A \code{character} vector which specifies the used desirability
+#' function and its parameters
 #' @export
 setGeneric("getDesFunc", function(obj) standardGeneric("getDesFunc"))

@@ -20,5 +20,7 @@ rows.}
 \item{\code{K}}{number of treatment groups}
 
 \item{\code{groups}}{character string of length K defining the names of the treatment groups}
+
+\item{\code{ratio}}{ratio of patients between the different groups}
 }}
 

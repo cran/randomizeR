@@ -20,7 +20,7 @@ Represents the randomization procedure Hadamard Randomization.
 \details{
 Hadamard randomization has been proposed by R.A. Bailey. The key idea is to
 use the columns of a special Hadamard Matrix as a randomization scheme. The
-implemented algorithm uses the Hadamard Matrix with \code{N=12} columns
+implemented algorithm uses the Hadamard Matrix with \code{N=12} columns 
 proposed in the paper, see references.
 }
 \note{

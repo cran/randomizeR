@@ -7,7 +7,7 @@
 imbal(type)
 }
 \arguments{
-\item{type}{character string, should be one of \code{"imb"}, \code{"absImb"},
+\item{type}{character string, should be one of \code{"imb"}, \code{"absImb"}, 
 \code{"loss"}, or \code{"maxImb"}, see Details.}
 }
 \value{
@@ -15,21 +15,21 @@ imbal(type)
 imbalance in a clinical trial.
 }
 \description{
-Represents the imbalance of the treatment assignments
+Represents the imbalance of the treatment assignments 
 of patients in a clinical trial.
 }
 \details{
 Balance of the treatment assignment of patients can
 be an issue in the design of a clinical trial. The \code{imbal} function is
 a constructor function for an S4 object of class \code{imbal} representing
-the issue of imbalance of a clinical trial. The parameter \code{type} can
-take the following values:
+the issue of imbalance of a clinical trial. The parameter \code{type} can 
+take the following values: 
 The \code{type}
 \describe{
-\item{\code{"imb"}}{the final imbalance, i.e. difference in group sizes at the end of a trial}
-\item{\code{"absImb"}}{the absolute value of the final imbalance}
-\item{\code{"loss"}}{the loss in power estimation, i.e. \code{imb^2/N}}
-\item{\code{"maxImb"}}{the maximal attained imbalance during the trial}
+  \item{\code{"imb"}}{the final imbalance, i.e. difference in group sizes at the end of a trial}
+  \item{\code{"absImb"}}{the absolute value of the final imbalance}
+ \item{\code{"loss"}}{the loss in power estimation, i.e. \code{imb^2/N}}
+  \item{\code{"maxImb"}}{the maximal attained imbalance during the trial}
 }
 }
 \references{

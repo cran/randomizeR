@@ -1,8 +1,7 @@
 Package: randomizeR
+Type: Package
 Title: Randomization for Clinical Trials
-Version: 2.0.0
-Date: 2019-11-15
-Encoding: UTF-8
+Version: 3.0.0
 Authors@R: 
     c(person(given = "David",
              family = "Schindler",
@@ -10,8 +9,16 @@ Authors@R:
              email = "dv.schindler@gmail.com"),
       person(given = "Diane",
              family = "Uschner",
-             role = c("aut", "cre"),
+             role = "aut",
              email = "Diane.Uschner@gmail.com"),
+      person(given = "Denis",
+             family = "Razsolkov",
+             role = "ctb",
+             email = "denis.razsolkov@rwth-aachen.de"),
+      person(given = "Dimitar",
+             family = "Mihaylov",
+             role = "ctb",
+             email = "dimitar.mihaylov@rwth-aachen.de"),
       person(given = "Marcia Viviane",
              family = "Rueckbeil",
              role = "ctb",
@@ -30,49 +37,54 @@ Authors@R:
              email = "michael.martini1@rwth-aachen.de"),
       person(given = "Ralf-Dieter",
              family = "Hilgers",
-             role = c("aut", "ths"),
+             role = c("aut", "ths","cre"),
              email = "rhilgers@ukaachen.de"),
       person(given = "Nicole",
              family = "Heussen",
              role = c("aut", "ths"),
              email = "nheussen@ukaachen.de"))
+Maintainer: Ralf-Dieter Hilgers <rhilgers@ukaachen.de>
 Description: This tool enables the user to choose a randomization procedure
     based on sound scientific criteria. It comprises the generation of
     randomization sequences as well the assessment of randomization procedures
     based on carefully selected criteria. Furthermore, 'randomizeR' provides a
     function for the comparison of randomization procedures.
-Depends: R (>= 3.6.0), methods, ggplot2, plotrix, survival
 License: GPL (>= 3)
-LazyData: true
-Collate: 'getDesign.R' 'randPar.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
-        'survEndp.R' 'getExpectation.R' 'expEndp.R' 'normEndp.R'
-        'endpoint.R' 'util.R' 'getStat.R' 'power.R' 'imbalance.R'
-        'corGuess.R' 'logRankDistribution.R' 'doublyF.R' 'testDec.R'
-        'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R' 'issue.R'
-        'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R' 'bsdPar.R'
-        'bsdSeq.R' 'chenPar.R' 'chenSeq.R' 'chronBiasStepT.R'
-        'combinedBias.R' 'compare.R' 'crPar.R' 'crSeq.R'
-        'createParam.R' 'derFunc.R' 'desFunc.R' 'getDesFunc.R'
-        'derringerLs.R' 'derringerRs.R' 'derringerTs.R' 'desScores.R'
-        'desirability.R' 'ebcSeq.R' 'evaluate.R' 'gbcdPar.R'
-        'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'mpPar.R' 'mpSeq.R'
-        'pbrPar.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R' 'rpbrSeq.R'
-        'randomBlockSeq.R' 'randomizeROverview.R' 'randomizeRPackage.R'
-        'rarPar.R' 'rarSeq.R' 'rpbrPar.R' 'tbdPar.R' 'rtbdPar.R'
-        'saveAssess.R' 'saveRand.R' 'tbdSeq.R' 'udPar.R' 'udSeq.R'
+Encoding: UTF-8
+Depends: R (>= 3.6.0), methods, ggplot2, plotrix, survival, mvtnorm
+Imports: pracma, cubature, mstate, purrr, rlang, magrittr, dplyr, coin,
+        PwrGSD
+Collate: 'getDesign.R' 'randPar.R' 'pbrPar.R' 'rarPar.R' 'POC.R'
+        'OBF.R' 'GSD.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
+        'getParameters.R' 'getExpectation.R' 'survEndp.R' 'expEndp.R'
+        'normEndp.R' 'endpoint.R' 'util.R' 'getStat.R' 'power.R'
+        'imbalance.R' 'corGuess.R' 'logRankDistribution.R' 'doublyF.R'
+        'testDec.R' 'doublyT.R' 'chronBias.R' 'selBias.R' 'bias.R'
+        'issue.R' 'assess.R' 'bbcdPar.R' 'bbcdSeq.R' 'ebcPar.R'
+        'bsdPar.R' 'bsdSeq.R' 'chenPar.R' 'chenSeq.R'
+        'chronBiasStepT.R' 'combinedBias.R' 'compare.R' 'crPar.R'
+        'crSeq.R' 'createParam.R' 'derFunc.R' 'desFunc.R'
+        'getDesFunc.R' 'derringerLs.R' 'derringerRs.R' 'derringerTs.R'
+        'desScores.R' 'desirability.R' 'ebcSeq.R' 'evaluate.R'
+        'gbcdPar.R' 'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'maccombo.R'
+        'mpPar.R' 'mpSeq.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R'
+        'rpbrSeq.R' 'randomBlockSeq.R' 'randomizeROverview.R'
+        'randomizeRPackage.R' 'rarSeq.R' 'rpbrPar.R' 'tbdPar.R'
+        'rtbdPar.R' 'saveAssess.R' 'saveRand.R' 'stratifiedAnalysis.R'
+        'tbdSeq.R' 'udPar.R' 'udSeq.R'
 Suggests: testthat, knitr
-VignetteBuilder: knitr
-RoxygenNote: 7.0.1
+RoxygenNote: 7.2.1
 NeedsCompilation: no
-Packaged: 2019-11-25 16:06:03 UTC; Marcia
+Packaged: 2023-03-14 13:04:34 UTC; denisr
 Author: David Schindler [aut],
-  Diane Uschner [aut, cre],
+  Diane Uschner [aut],
+  Denis Razsolkov [ctb],
+  Dimitar Mihaylov [ctb],
   Marcia Viviane Rueckbeil [ctb],
   Martin Manolov [ctb],
   Thi Mui Pham [ctb],
   Michael Martini [ctb],
-  Ralf-Dieter Hilgers [aut, ths],
+  Ralf-Dieter Hilgers [aut, ths, cre],
   Nicole Heussen [aut, ths]
-Maintainer: Diane Uschner <Diane.Uschner@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-11-28 05:40:03 UTC
+Date/Publication: 2023-03-14 15:40:03 UTC

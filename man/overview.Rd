@@ -134,6 +134,14 @@ maximal tolerated imbalance is reached will be known to the physician.}
 as equal (TRUE= t.test) or different (FALSE= Welch.test).}
 
 \item{x}{a variable \code{x}.}
+
+\item{allocRatio}{numerical vector that represents the allocation ratio for the different strata in a clinical trial}
+
+\item{strata}{numeric specifying the number of strata in a clinical trial}
+
+\item{maxcombo}{logical specifying if the maxcombo test is used}
+
+\item{weights}{numeric specifying the weights used for the test. Unless specified an unweighted test is conducted.}
 }
 \description{
 This list of parameters yields a comprehensive overview of the parameters

@@ -15,30 +15,30 @@ compare(issue, ..., endp)
 \arguments{
 \item{issue}{object of class \code{issue}.}
 
-\item{...}{at least one object of class \code{randSeq} or a list of
+\item{...}{at least one object of class \code{randSeq} or a list of 
 objects of class \code{randSeq}.}
 
 \item{endp}{object of class \code{endpoint}, or \code{missing}.}
 }
 \value{
-\code{S4} object of class \code{comparison} summarizing the comparison of the
+\code{S4} object of class \code{comparison} summarizing the comparison of the 
 randomization procedures.
 }
 \description{
-Compares randomization procedures based on a specified issue
+Compares randomization procedures based on a specified issue 
 in clinical trials.
 }
 \details{
 Randomization procedures behave differently with respect to issues
 like selection bias, chronological bias, or loss in power estimation.
-The \code{compare} function evaluates the behavior of randomization
-procedures with respect to one issue.
-Its first argument should represent one of the implemented
+The \code{compare} function evaluates the behavior of randomization 
+procedures with respect to one issue. 
+Its first argument should represent one of the implemented 
 \code{\link{issues}}.
 The second argument should be any number of objects of the class
 \code{randSeq}. These objects represent the randomization procedures
-for the planned comparison.
-The last argument \code{endp} may be provided if
+for the planned comparison. 
+The last argument \code{endp} may be provided if 
 the assessment should take the distribution of the treatment groups
 into account, e.g. for power evaluation.
 }

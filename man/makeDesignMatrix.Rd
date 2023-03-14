@@ -10,8 +10,8 @@ makeDesignMatrix(R)
 \item{R}{randomization sequence, object of type randSeq}
 }
 \value{
-\code{makeDesignMatrix} converts the randomization sequence \code{R}
-to its Matrix form. The resulting matrix has \code{K} columns, one for
+\code{makeDesignMatrix} converts the randomization sequence \code{R} 
+to its Matrix form. The resulting matrix has \code{K} columns, one for 
 each treatment group, and \code{N} rows, one for each subject. If a subject \code{i}
 is randomized to a certain treatment {j}, the entry of \code{(i,j)} of the
 matrix will be one, and all other entries in this row will be zero.

@@ -8,26 +8,26 @@ Illustrates the interplay between functions related to desirability indices.
 }
 \details{
 Currently, \code{randomizeR} encompasses the class of desirability functions introduced
-by Derringer and Suich (1980) and corresponding functions to evaluate and compare
-randomization sequences which have been assessed on the basis of desirability indices
+by Derringer and Suich (1980) and corresponding functions to evaluate and compare 
+randomization sequences which have been assessed on the basis of desirability indices 
 of specific issues:
 \itemize{
 \item \strong{\link{derFunc}}
-represents the class of desirability functions according to Derringer-Suich (1980).
+   represents the class of desirability functions according to Derringer-Suich (1980).
 \item \strong{\link{getDesScores}}
-can be applied to an object of class \code{assessment} together with prespecified
-desirability functions to compare the behavior of randomization sequences (on a
-common scale [0,1]).
+   can be applied to an object of class \code{assessment} together with prespecified
+   desirability functions to compare the behavior of randomization sequences (on a 
+   common scale \[0,1\]).
 \item \strong{\link{plotDes}}
-plots a \code{desScores} object on a radar chart.
+   plots a \code{desScores} object on a radar chart. 
 \item \strong{\link{evaluate}}
-performs a comparison of sequences from different randomization sequences on the
-basis of object of the class \code{desScores}.
+   performs a comparison of sequences from different randomization sequences on the 
+   basis of object of the class \code{desScores}.
 \item \strong{\link{plotEv}}
-plots an \code{evaluation} object on a radar chart.
+   plots an \code{evaluation} object on a radar chart. 
 \item \strong{\link{probUnDes}}
-computes the probability of undesired randomization sequences with respect to
-certain issues and desirability functions.
+   computes the probability of undesired randomization sequences with respect to 
+   certain issues and desirability functions.
 }
 }
 \examples{

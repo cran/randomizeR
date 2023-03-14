@@ -17,17 +17,17 @@ NULL
 #
 # @return Returns a \code{TRUE}, if the settings of the object are valid.
 validateNormEndp <- function(object) {
-  errors <- character() 
+  errors <- character()
   if (!(all(object@sigma > 0))) {
     msg <- ("The standard deviation must be positive.")
     errors <- c(errors, msg)
   }
-  
+
   if (!(length(object@sigma) == length(object@mu))) {
     msg <- ("sigma and mu should have same length.")
     errors <- c(errors, msg)
   }
-  
+
   if (length(errors) == 0) TRUE else errors
 }
 
@@ -37,7 +37,7 @@ validateNormEndp <- function(object) {
 # --------------------------------------------
 
 # Representation of the normal endpoints
-setClass("normEndp", 
+setClass("normEndp",
          slots = c(mu = "numeric", sigma = "numeric"),
          validity = validateNormEndp)
 
@@ -48,14 +48,14 @@ setClass("normEndp",
 # --------------------------------------------
 
 #' Representation of normally distributed endpoints
-#' 
+#'
 #' Represents normally distributed endpoints in clinical trials.
 #'
 #' @inheritParams overview
 #'
 #' @details
 #' The \code{normEnd} function is a constructor function
-#' for an S4 object of the class \code{normEnd} representing 
+#' for an S4 object of the class \code{normEnd} representing
 #' a normally distributed endpoint in a clinical trial.
 #' In conjunction with the assess function, normal endpoints
 #' admit the calculation of the exact type-I-error probability and power.
@@ -63,11 +63,13 @@ setClass("normEndp",
 #' @family endpoint types
 #'
 #' @seealso Compute exact or simulated type-I-error: \code{\link{assess}}.
-#' 
+#'
 #' @examples
 #' # set the parameters of two normally distributed endpoints
 #' endp <- normEndp(mu = c(1, 2), sigma = c(1, 1))
-#' 
+#'
+#' @return
+#' A \code{S4} object that represents a normally distributed endpoint in a clinical trial
 #' @export
 normEndp <- function(mu, sigma) {
   new("normEndp", mu = mu, sigma = sigma)
@@ -79,16 +81,16 @@ normEndp <- function(mu, sigma) {
 # --------------------------------------------
 
 #' @rdname getExpectation
-setMethod("getExpectation", signature(randSeq = "randSeq", issue = "missing", 
-                                      endp = "normEndp"), 
+setMethod("getExpectation", signature(randSeq = "randSeq", issue = "missing",
+                                      endp = "normEndp"),
           function(randSeq, endp) {
             stopifnot(randSeq@K == length(endp@mu))
             validObject(randSeq); validObject(normEndp)
-            expectation <- matrix(numeric(0), ncol = ncol(randSeq@M), 
+            expectation <- matrix(numeric(0), ncol = ncol(randSeq@M),
                       nrow = nrow(randSeq@M))
             for(i in 0:(randSeq@K-1)) {
               expectation[randSeq@M == i] <- endp@mu[i+1]
-            }  
+            }
             expectation
           }
 )

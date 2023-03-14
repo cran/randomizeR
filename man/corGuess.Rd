@@ -18,21 +18,21 @@ issue of correct guesses in a clinical trial.
 Represents the expected number of correct guesses of randomization sequences.
 }
 \details{
-Selection bias can be an issue in the design of a clinical trial. The
+Selection bias can be an issue in the design of a clinical trial. The 
 expected number of correct guesses is one measure for selection bias.
 The \code{corGuess} function is a constructor function
 for an S4 object of the class \code{corGuess} representing the issue of
-correct guesses in a clinical trial. The parameter \code{type} takes the
+correct guesses in a clinical trial. The parameter \code{type} takes the 
 following values:
 \describe{
-\item{\code{"CS"}}{refers to "convergence strategy", i.e. the investigator
-predicts the treatment which has hitherto occurred less often.}
-\item{\code{"DS"}}{refers to "divergence strategy", i.e. the investigator
-predicts the treatment which has hitherto occurred more often.}
+  \item{\code{"CS"}}{refers to "convergence strategy", i.e. the investigator
+  predicts the treatment which has hitherto occurred less often.}
+  \item{\code{"DS"}}{refers to "divergence strategy", i.e. the investigator
+  predicts the treatment which has hitherto occurred more often.}
 }
 }
 \references{
-D. Blackwell and J.L. Hodges Jr. (1957) Design for the control of
+D. Blackwell and J.L. Hodges Jr. (1957) Design for the control of 
 selection bias. \emph{Annals of Mathematical Statistics}, \strong{25}, 449-60.
 }
 \seealso{

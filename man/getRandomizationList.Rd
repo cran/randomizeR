@@ -11,6 +11,9 @@ getRandList(obj)
 \item{obj}{object specifying the randomization procedure, see \code{\link{randPar}}
 or \code{\link{createParam}}.}
 }
+\value{
+A matrix with all randomization sequences of a \code{S4} object
+}
 \description{
 Get the randomization list coded in its groups.
 }
@@ -18,5 +21,4 @@ Get the randomization list coded in its groups.
 myPar <- bsdPar(10, 2)
 M <- genSeq(myPar, 2)
 getRandList(M)
-
 }

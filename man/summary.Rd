@@ -30,7 +30,7 @@ Summary of assessments of a randomization procedure
 Summary of desirability scores of a randomization procedure
 }
 \details{
-For each issue the assessment of the sequences is summarized to permit a design-based
+For each issue the assessment of the sequences is summarized to permit a design-based 
 assessment of the randomization procedure.
 This approach uses the sequence-wise values of the assessment and the probabilities
 in order to give an overall summary.

@@ -4,7 +4,7 @@
 \alias{selBias}
 \title{Representing selection bias}
 \usage{
-selBias(type, eta, method, alpha = 0.05)
+selBias(type, eta, method, alpha = 0.05, delta = 0)
 }
 \arguments{
 \item{type}{character string, should be one of \code{"CS"}, \code{"CS2"} or \code{"DS"}, see
@@ -16,6 +16,9 @@ Details.}
 Details.}
 
 \item{alpha}{significance level.}
+
+\item{delta}{parameter of selection bias used for calculating shape and scale
+of the Weibull distribution with exponential endpoints}
 }
 \value{
 \code{S4} object of class \code{selBias}, a formal representation of the
@@ -33,55 +36,55 @@ third order selection bias in a clinical trial. It supports two possible modes,
 particularly useful in interaction with the \code{\link{assess}} function.
 
 \describe{
-\item{\code{method="sim"}}{Represents the simulated type-I-error rate given
-the level \code{alpha}, the selection effect \code{eta} and the biasing
-strategy \code{type}. When calling \code{assess} for a \code{selBias} object
-with \code{method="sim"}, one test decision is computed for each sequence of
+ \item{\code{method="sim"}}{Represents the simulated type-I-error rate given
+ the level \code{alpha}, the selection effect \code{eta} and the biasing
+ strategy \code{type}. When calling \code{assess} for a \code{selBias} object
+ with \code{method="sim"}, one test decision is computed for each sequence of
 \code{randSeq}. The type-I-error rate (power) is the proportion of falsely
 (correctly) rejected null hypotheses.
-}
-\item{\code{method="exact"}}{Represents the exact type-I-error probability
-given the level \code{alpha}, the selection effect \code{eta} and the
-biasing strategy \code{type}. When calling \code{assess} for a \code{selBias}
-object with \code{method="exact"}, the \emph{p}-value of each randomization
-sequence is computed. For normal endpoints and two treatment groups these p-values
-are exact values which can be calculated from the sum of the corresponding quantiles
-of the doubly noncentral t-distribution. For more than two treatment groups, exact
-p-values are computed using a doubly noncentral F distribution. For exponential
-endpoints the p-values are obtained using an approximation formula.
-}
+ }
+ \item{\code{method="exact"}}{Represents the exact type-I-error probability
+ given the level \code{alpha}, the selection effect \code{eta} and the
+ biasing strategy \code{type}. When calling \code{assess} for a \code{selBias}
+ object with \code{method="exact"}, the \emph{p}-value of each randomization
+ sequence is computed. For normal endpoints and two treatment groups these p-values
+ are exact values which can be calculated from the sum of the corresponding quantiles
+ of the doubly noncentral t-distribution. For more than two treatment groups, exact
+ p-values are computed using a doubly noncentral F distribution. For exponential
+ endpoints the p-values are obtained using an approximation formula.
+ }
 }
 
 It also supports three types of selection bias:
 
 \describe{
-\item{\code{type="DS"}}{Refers to the divergence strategy according to
-Blackwell and Hodges (1957). Under this guessing strategy, the investigator
-guesses that the upcoming treatment is the one that has so far been allocated
-\emph{more} frequently.
-}
-\item{\code{type="CS"}}{Refers to the convergence strategy according to
-Blackwell and Hodges (1957). Under this guessing strategy, the investigator
-guesses that the upcoming treatment is the one that has so far been allocated
-\emph{less} frequently. In multi-arm trials, \code{type="CS"} refers to the first
-generalization of the convergence strategy according to Uschner et al (2018).
-The investigator guesses the treatment that had been allocated less frequently
-whenever all the treatments of the opposite group are larger than the smallest
-of the present group.
-}
-\item{\code{type="CS2"}}{In trials with two treatment arms, \code{type="CS2"}
-is equivalent to \code{type="CS"}. In multi-arm trials, \code{type="CS2"} refers
-to the second generalization of convergence strategy according to
-Uschner et al (2018).
-The investigator guesses the treatment that had been allocated less frequently
-whenever all the treatments of the opposite group are larger than the smallest
-of the present group.
-}
+ \item{\code{type="DS"}}{Refers to the divergence strategy according to
+ Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+ guesses that the upcoming treatment is the one that has so far been allocated
+ *more* frequently.
+ }
+ \item{\code{type="CS"}}{Refers to the convergence strategy according to
+ Blackwell and Hodges (1957). Under this guessing strategy, the investigator
+ guesses that the upcoming treatment is the one that has so far been allocated
+ *less* frequently. In multi-arm trials, \code{type="CS"} refers to the first
+ generalization of the convergence strategy according to Uschner et al (2018).
+ The investigator guesses the treatment that had been allocated less frequently
+ whenever all the treatments of the opposite group are larger than the smallest
+ of the present group.
+ }
+ \item{\code{type="CS2"}}{In trials with two treatment arms, \code{type="CS2"}
+ is equivalent to \code{type="CS"}. In multi-arm trials, \code{type="CS2"} refers
+ to the second generalization of convergence strategy according to
+ Uschner et al (2018).
+ The investigator guesses the treatment that had been allocated less frequently
+ whenever all the treatments of the opposite group are larger than the smallest
+ of the present group.
+ }
 }
 }
 \examples{
 # create a selection bias of the convergency strategy type with eta = 0.25 for which
-# the exact rejection probabilities are calculated 
+# the exact rejection probabilities are calculated
 sbias <- selBias("CS", 0.25, "exact")
 
 }

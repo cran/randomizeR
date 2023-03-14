@@ -9,6 +9,9 @@ N(obj)
 \arguments{
 \item{obj}{object inheriting from randPar}
 }
+\value{
+the sample size slot of an \code{S4} object
+}
 \description{
 Function returning the sample size slot of an S4 object
 }

@@ -23,20 +23,20 @@ Represents the expected power of the individual randomization sequences.
 \details{
 The attained power of an individual randomization sequence can be an issue
 in the design of a clinical trial. The power of a randomization sequence is
-computed depending on the effect size \code{d} and the difference in
-group sizes.
+computed depending on the effect size \code{d} and the difference in 
+group sizes. 
 
 If \code{method="sim"}, the object represents the simulated power of an
-individual randomization sequence. When calling \code{assess} for a
+individual randomization sequence. When calling \code{assess} for a 
 \code{power} object with \code{method="sim"}, one test decision is computed
-for each randomization sequence of \code{randSeq}. The power is the
+for each randomization sequence of \code{randSeq}. The power is the 
 proportion of falsely (correctly) rejected null hypotheses.
 
-If \code{method="exact"}, the object represents the exact power of an
-individual randomization sequence. When calling \code{assess} for a
+If \code{method="exact"}, the object represents the exact power of an 
+individual randomization sequence. When calling \code{assess} for a 
 \code{power} object with \code{method="exact"}, the exact \emph{p}-value
 of each randomization sequence is computed. So far, this is only supported
-for normal endpoints. Then the power is the sum of the corresponding
+for normal endpoints. Then the power is the sum of the corresponding 
 quantiles of the noncentral t-distribution.
 }
 \seealso{

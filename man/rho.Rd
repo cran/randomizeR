@@ -9,6 +9,9 @@ rho(obj)
 \arguments{
 \item{obj}{object of class randPar}
 }
+\value{
+the value of the rho parameter of an \code{S4} object
+}
 \description{
 Function returning the adjusting parameter rho slot of an S4 object
 }

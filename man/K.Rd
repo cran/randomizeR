@@ -2,13 +2,16 @@
 % Please edit documentation in R/randPar.R
 \name{K}
 \alias{K}
-\title{Function returning the total sample size slot of an S4 object}
+\title{Function returning the number of trial arms slot of an S4 object}
 \usage{
 K(obj)
 }
 \arguments{
 \item{obj}{object of class randPar}
 }
+\value{
+The number of trial arms
+}
 \description{
-Function returning the total sample size slot of an S4 object
+Function returning the number of trial arms slot of an S4 object
 }

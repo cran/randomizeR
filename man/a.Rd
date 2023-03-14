@@ -9,6 +9,10 @@ a(obj)
 \arguments{
 \item{obj}{object of class randPar}
 }
+\value{
+the value of the adjusting parameter \code{a} of an
+\code{S4} object
+}
 \description{
 Function returning the adjusting parameter a slot of an S4 object
 }

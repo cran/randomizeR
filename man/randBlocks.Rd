@@ -7,7 +7,10 @@
 randBlocks(obj)
 }
 \arguments{
-\item{obj}{object of class pbrPAr}
+\item{obj}{object of class pbrPar}
+}
+\value{
+a vector with the lengths of each random block of a \code{pbrPar} object
 }
 \description{
 Function returning the block slot of an S4 object

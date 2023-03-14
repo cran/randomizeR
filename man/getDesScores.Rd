@@ -33,7 +33,7 @@ Randomization sequences behave differently with respect to issues
 like selection bias, chronological bias, or loss in power estimation.
 The \code{getDesScores} function evaluates the behavior of randomization
 sequences with respect to these issues. The difference to the assess
-function is that it scales them to [0,1] and makes them easier interpretable.
+function is that it scales them to \[0,1\] and makes them easier interpretable.
 The first argument should be a result of the \code{\link{assess}} function.
 The second argument should be any number of \code{\link{derFunc}} objects
 that represent the desirability functions. The last argument \code{weights}

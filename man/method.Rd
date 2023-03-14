@@ -9,6 +9,9 @@ method(obj)
 \arguments{
 \item{obj}{object inheriting from randPar}
 }
+\value{
+The method of an \code{S4} object
+}
 \description{
 Function returning the method of an S4 object
 }

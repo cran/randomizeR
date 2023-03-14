@@ -9,6 +9,9 @@ coin(obj)
 \arguments{
 \item{obj}{object extending class randPar or randSeq}
 }
+\value{
+The success probability of the biased coin
+}
 \description{
 Function returning the coin slot of an S4 object
 }

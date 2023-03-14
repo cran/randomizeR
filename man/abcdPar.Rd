@@ -27,7 +27,7 @@ treatment is dependent from the absolute difference between the two treatment al
 up to the current step.
 }
 \references{
-A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential
+A. B. Antognini and A. Giovagnoli (2004) A new 'biased coin design' for the sequential 
 allocation of two treatments.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}
 \strong{53}, No. 4, 651-664

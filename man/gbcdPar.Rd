@@ -25,7 +25,7 @@ Represents the randomization procedure Generalized Biased Coin Design.
 Generalization of Wei's urn and Efron's biased coin design.
 }
 \references{
-R. L. Smith (1984) Sequential treatment allocation using biased coin designs.
+R. L. Smith (1984) Sequential treatment allocation using biased coin designs. 
 \emph{Journal of the Royal Statistical Society B},
 \strong{46}, 519-543. \cr
 W. F. Rosenberger and J. M. Lachin (2002) Randomization in Clinical Trials. \emph{Wiley},

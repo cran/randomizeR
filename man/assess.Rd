@@ -15,28 +15,28 @@ assess(randSeq, ..., endp)
 \arguments{
 \item{randSeq}{object of class \code{randSeq}.}
 
-\item{...}{at least one object of class \code{issue} or just a list of objects
+\item{...}{at least one object of class \code{issue} or just a list of objects 
 of the class \code{issue}.}
 
 \item{endp}{object of class \code{endpoint}, or \code{missing}.}
 }
 \value{
-\code{S4} object of class \code{assessment} summarizing the assessment of the
+\code{S4} object of class \code{assessment} summarizing the assessment of the 
 randomization procedure.
 }
 \description{
-Assesses randomization sequences based on specified issues
+Assesses randomization sequences based on specified issues 
 in clinical trials.
 }
 \details{
 Randomization sequences behave differently with respect to issues
 like selection bias, chronological bias, or loss in power estimation.
-The \code{assess} function evaluates the behavior of randomization
-sequences with respect to these issues.
-The first argument should be a result of one of the functions
+The \code{assess} function evaluates the behavior of randomization 
+sequences with respect to these issues. 
+The first argument should be a result of one of the functions 
 \code{\link{genSeq}} or \code{\link{getAllSeq}}.
-The second argument should be any number of \code{\link{issues}} arising
-in a clinical trial. The last argument \code{endp} may be provided if
+The second argument should be any number of \code{\link{issues}} arising 
+in a clinical trial. The last argument \code{endp} may be provided if 
 the assessment should take the distribution of the treatment groups
 into account, e.g. for power evaluation.
 }
