@@ -1,7 +1,7 @@
 Package: randomizeR
 Type: Package
 Title: Randomization for Clinical Trials
-Version: 3.0.0
+Version: 3.0.1
 Authors@R: 
     c(person(given = "David",
              family = "Schindler",
@@ -75,7 +75,7 @@ Collate: 'getDesign.R' 'randPar.R' 'pbrPar.R' 'rarPar.R' 'POC.R'
 Suggests: testthat, knitr
 RoxygenNote: 7.2.1
 NeedsCompilation: no
-Packaged: 2023-03-14 13:04:34 UTC; denisr
+Packaged: 2023-03-17 16:19:22 UTC; denisr
 Author: David Schindler [aut],
   Diane Uschner [aut],
   Denis Razsolkov [ctb],
@@ -87,4 +87,4 @@ Author: David Schindler [aut],
   Ralf-Dieter Hilgers [aut, ths, cre],
   Nicole Heussen [aut, ths]
 Repository: CRAN
-Date/Publication: 2023-03-14 15:40:03 UTC
+Date/Publication: 2023-03-19 22:20:02 UTC

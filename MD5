@@ -1,5 +1,5 @@
-be0de4e5a81909013b2766bba6498930 *DESCRIPTION
-f8312d459d025461954e1157737306e1 *NAMESPACE
+1988dcc4702c754e90e991a323d76acd *DESCRIPTION
+ac7df2d8e6db4509efed4eb3501cac1c *NAMESPACE
 d6f1a207986a8096051563a291ecf433 *R/GSD.R
 d99a6965f7a305d3c8c707a9870943f8 *R/OBF.R
 30dd20602b42a657e73d404c6cf81d09 *R/POC.R
@@ -28,8 +28,8 @@ fe3d468351d938a0db18f0599572cacd *R/derringerRs.R
 a9919e28c2b7c633969755a0e36e45ff *R/desFunc.R
 a5431e78dab8b78a288e6a3b5dc4ae7e *R/desScores.R
 6fbf21f30be3d0098a70fc5123ca450d *R/desirability.R
-7ab8907033b6f139f66c846af8648d2a *R/doublyF.R
-d998921aad9d51e92acf53070700187a *R/doublyT.R
+477fb37d1519fd5b71c61e7aaa67dc76 *R/doublyF.R
+0c2ff9b64cc0c2471dcf4daf7f8d686c *R/doublyT.R
 09af42db9cc443391fe89b18ea5ecb9a *R/ebcPar.R
 2cc5b023332fc8d9c6018f77106d7fd3 *R/ebcSeq.R
 2cbdaf302119ecca84e2c94bdea829d2 *R/endpoint.R
@@ -119,7 +119,7 @@ e3596e54c6af5717009f817f01cd6e7f *man/createParam.Rd
 f8223d5fd458f6f40cb0b0ac5aad5880 *man/derFunc.Rd
 18da999e4a1c75a0194cc742321eb23a *man/desirability.Rd
 77f8bba7209246cfeeffd92ee0c0796a *man/doublyF_opt.Rd
-d3d985a014c1bfabfe1ce04a15eb34c9 *man/doublyF_value.Rd
+a98ba3838f69dae0eac9d8728fa269f8 *man/doublyF_value.Rd
 d11bcf5e15754243a4af88827a2502d3 *man/doublyF_values.Rd
 89b238b71bbfb8f8a3c87e0d3926cdaa *man/doublyT.Rd
 c186b745e0401dc89c9776e5879a1cdc *man/doublyTValues.Rd
@@ -129,6 +129,7 @@ b1fad2de0377799956b9b87dd68f8239 *man/expEndp.Rd
 92ca952acfb5826927683eca8fe94523 *man/gbcdPar.Rd
 0175ad7a89cc1eed2b0b870caa68454e *man/gbcdRand.Rd
 6c4564f7ea1cc7ec4f9a11dd8ab98d18 *man/genNcps.Rd
+986defdba46cd8c017454781745ef9a6 *man/genNcps_new.Rd
 ff73eb6701eba76baf3d6803b3a48dc6 *man/generateAllSequences.Rd
 a6343659a0c79f28f962c36dd08b9b8f *man/generateRandomSequences.Rd
 1aa28f94dab1addb862736356267355e *man/getCorGuesses.Rd
@@ -139,6 +140,7 @@ cca9b25e656b7e55b3992d64a8e36650 *man/getDistributionPars.Rd
 81f4d22eaaa573c6c69a00d067a5b30c *man/getExpectation.Rd
 8ec67d3df72d46b7623db28e71ac81b2 *man/getProbabilities.Rd
 1ae1522862d3a6f4d47dd367633fa616 *man/getRandomizationList.Rd
+4cbccdd3097c50e61b47ffaddf548a94 *man/get_p_values_new.Rd
 8b8e88d833ce25f7bcb79c5f7112e38e *man/getbiasCS1.Rd
 c39fd8fd0249973e22c88add77ab9756 *man/getbiasCS2.Rd
 4e7d13da647c2dc8fbbd156b37fadbcd *man/hadaPar.Rd
@@ -152,7 +154,7 @@ b4f36d51afcd77af4d263af08d430aab *man/lambda2.Rd
 610a6172dd630d54cc723bd6e1106c33 *man/logRankDecSim.Rd
 2997f54d278cf5068c4f834c76e6b0e3 *man/logRankRejectionProb.Rd
 38d8b17d50594cdc1861813be385b837 *man/makeBiasedExpectation.Rd
-b4ff60e6480cc3073de186c825160e3a *man/makeDesignMatrix.Rd
+41464e74bb222d7835cb4ee3af16b5c8 *man/makeDesignMatrix.Rd
 a30f48da20caf564947d4e6fb35dd8dc *man/method.Rd
 0995b97ef737c49db6128ed43c74879d *man/mpPar.Rd
 f26c9add812aa228e1779abc7ce1e7f3 *man/mti.Rd

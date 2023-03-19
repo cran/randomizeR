@@ -1,11 +1,11 @@
 #' Design Matrix
-#' 
+#'
 #' Calculate Design Matrix from randomization sequence
-#' 
+#'
 #' @param R randomization sequence, object of type randSeq
 #' @keywords internal
-#' @return \code{makeDesignMatrix} converts the randomization sequence \code{R} 
-#' to its Matrix form. The resulting matrix has \code{K} columns, one for 
+#' @return \code{makeDesignMatrix} converts the randomization sequence \code{R}
+#' to its Matrix form. The resulting matrix has \code{K} columns, one for
 #' each treatment group, and \code{N} rows, one for each subject. If a subject \code{i}
 #' is randomized to a certain treatment {j}, the entry of \code{(i,j)} of the
 #' matrix will be one, and all other entries in this row will be zero.
@@ -17,10 +17,10 @@ makeDesignMatrix <- function(R){
 }
 
 
-#' Biasing Policy for a Group of Favored Treatments 
-#' 
+#' Biasing Policy for a Group of Favored Treatments
+#'
 #' Calculate vector with the selection bias for each patient
-#' 
+#'
 #' @param R randomization sequence, a integer vector with entries 1, \dots, K, of length N
 #' @param K number of treatment groups, a single integer value
 #' @param pref preferred groups for the guessing
@@ -32,9 +32,9 @@ getbiasCS1 <- function(R, K, pref){
 }
 
 #' Biasing Policy for Avoiding the Placebo Treatment
-#' 
+#'
 #' Calculate vector with the selection bias for each patient
-#' 
+#'
 #' @param R randomization sequence, a integer vector with entries 1, \dots, K, of length N
 #' @param K number of treatment groups, a single integer value
 #' @param avoid avoided groups for the guessing
@@ -45,8 +45,8 @@ getbiasCS2 <- function(R, K, avoid){
   as.vector(diff(apply(Gsize, 1, function(x) c(any(x[-avoid] < x[avoid]), all(x[-avoid] > x[avoid])))))
 }
 
-#' Calculate Expectation vector 
-#' 
+#' Calculate Expectation vector
+#'
 #' @param R randomization sequence, an object of type randSeq
 #' @param mu vector of length K containing the expectation values of groups 1, \dots, K
 #' @param bias selection or chronological bias object, containing eta(or theta) and alpha
@@ -58,7 +58,7 @@ makeBiasedExpectation <-  function(R, mu, bias){
   if (is(bias, "selBias") && bias@type == "CS") {
     return(means + eta*getbiasCS1(R@M, K(R), 1))
   } else if (is(bias, "selBias") && bias@type == "CS2") {
-    return(means + eta*getbiasCS2(R@M, K(R), 1)) 
+    return(means + eta*getbiasCS2(R@M, K(R), 1))
   } else {
     warning("Please specify valid Biasing Policy")
   }
@@ -66,10 +66,10 @@ makeBiasedExpectation <-  function(R, mu, bias){
 
 
 #' Calculate hat matrix
-#' 
+#'
 #' @param M Design Matrix representing the randomization sequence
 #' @keywords internal
-#' @return Hat matrix, i.e. \code{M * (M^T M)^{-1} M^T} 
+#' @return Hat matrix, i.e. \code{M * (M^T M)^{-1} M^T}
 hatMatrix <- function(M){
   A <- t(M)%*%M
   A_inv <- solve(A)
@@ -77,7 +77,7 @@ hatMatrix <- function(M){
 }
 
 #' Calculate first non centrality parameter of the doubly non central F-distribution
-#' 
+#'
 #' @param H Hat Matrix
 #' @param EY (Biased) expectation of the responses
 #' @keywords internal
@@ -88,7 +88,7 @@ lambda1 <- function(H, EY){
 }
 
 #' Calculate second non centrality parameter of the doubly non central F-distribution
-#' 
+#'
 #' @param H Hat Matrix
 #' @param EY (Biased) expectation of the responses
 #' @keywords internal
@@ -98,7 +98,7 @@ lambda2 <- function(H, EY){
 }
 
 #' Distribution function of the non central F-distribution
-#' 
+#'
 #' @param x quantile, a single numeric value
 #' @param df1 first degree of freedom, a single integer value
 #' @param df2 second degree of freedom, a single integer value
@@ -127,24 +127,24 @@ doublyF_opt <- function(x, df1, df2, lambda1, lambda2, acc=100, ex = 5){
 }
 
 #' Rejection probability for one sequence in the presence of selection bias
-#' 
+#'
 #' @param R object of type randSeq representing the randomization procedure
 #' @param bias selection or chronological bias object, containing eta(or theta) and alpha
 #' @param endp endpoint object, containing mu and sigma
 #' @keywords internal
 #' @return data frame containing the non centrality parameters, the degrees of
 #' freedom, the \code{1-alpha} quantile corresponding to the central f distribution and
-#' a numeric value for probability of false rejection of the null 
+#' a numeric value for probability of false rejection of the null
 #' hypothesis of no difference in the presence of selection bias.
 doublyF_value <- function(R, bias, endp){
   alpha <- bias@alpha
-  
+
   if(is(bias, "selBias")){
-    EY <- makeBiasedExpectation(R, endp@mu, bias) 
+    EY <- makeBiasedExpectation(R, endp@mu, bias)
   } else{
     EY <- as.vector(getExpectation(R, bias, endp))
   }
-  
+
   M <- makeDesignMatrix(R)
   H <- hatMatrix(M)
   ovMean <- matrix(rep(1/N(R), N(R)^2), ncol=N(R)) # overall mean
@@ -152,9 +152,9 @@ doublyF_value <- function(R, bias, endp){
   l2 <- lambda2(H, EY)
   df1 <- K(R)-1
   df2 <- N(R)-K(R)
-  
+
   x <- qf(1-alpha, df1, df2) # quantile of the central f distribution
-  
+
   data.frame(
     x = x,
     df1 = df1,
@@ -169,7 +169,7 @@ doublyF_value <- function(R, bias, endp){
 #' Check function for occurrence of all treatment groups in the sequence
 #'
 #' checks whether each group has its value coming up at least once in the sequence
-#' 
+#'
 #' @param seq randomization sequence as inverted matrix
 #' @param K number of treatment arms
 #' @keywords internal
@@ -188,13 +188,14 @@ hasAllGroups <- function(seq, K){
 #' Rejection probability in case of selection bias in multi-arm trials
 #'
 #' calculates the non-centrality parameters of the F-distribution under third
-#' order selection bias. 
+#' order selection bias.
 #' @param randSeq the object containing the randomization sequences
 #' @param bias selection bias object, containing eta and alpha
 #' @param endp endpoint object, containing mu and sigma
 #' @keywords internal
 #' @return data frame with the sequences and their corresponding ncps and rejection
 #' probabilities.
+#' @export
 doublyF_values <- function(randSeq, bias, endp){
   seq <- randSeq@M
 
