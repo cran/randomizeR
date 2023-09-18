@@ -1,8 +1,6 @@
-1988dcc4702c754e90e991a323d76acd *DESCRIPTION
-ac7df2d8e6db4509efed4eb3501cac1c *NAMESPACE
-d6f1a207986a8096051563a291ecf433 *R/GSD.R
-d99a6965f7a305d3c8c707a9870943f8 *R/OBF.R
-30dd20602b42a657e73d404c6cf81d09 *R/POC.R
+cb256f51344ff872d44bc6f7f42e8eec *DESCRIPTION
+147e0c95ca3f4fcd35bde2c762cca97c *NAMESPACE
+5427e298315206e9c2abaccf793a5054 *R/GSD-Bias.R
 d33111381003a8f2ee6521afc8d70357 *R/abcdPar.R
 44de3041cbf835049fec861c736482e6 *R/abcdSeq.R
 0c154e25327d1b8430756327150e1ccd *R/assess.R
@@ -80,8 +78,8 @@ e1f20994d463160705d69406962a2aeb *R/util.R
 fcce61b549a0ae9b38ff4cbdbb976bcc *README.md
 2fb5bf73ad56e938ba47d1cb9bc90789 *inst/CITATION
 b61a85074432c285679fd25a48b3755c *inst/WORDLIST
-cb0868183564c9e470fd029ad9c8eaaf *man/GSD_OBF.Rd
-6f88c4d9b7017ecff26b6146f15decef *man/GSD_POC.Rd
+2efc327a2c147f8052e6e2801fc8fb84 *man/GSD_allocation.Rd
+0d969cfce232e3f8a0fee59b57ec4b9d *man/GSD_allocation_seq.Rd
 f06b5b04218eba0da00eddb41438eb8e *man/K.Rd
 4dbac4c994e0801215553a08a7a2112f *man/N.Rd
 9c9d1715cd9469933a2a225ade59436c *man/TV.Rd
@@ -135,10 +133,10 @@ a6343659a0c79f28f962c36dd08b9b8f *man/generateRandomSequences.Rd
 1aa28f94dab1addb862736356267355e *man/getCorGuesses.Rd
 74f67f1fa450bf2ace645c42a3b6b6b2 *man/getDesFunc.Rd
 49eff007fdcba21f62df401c0dfa6a05 *man/getDesScores.Rd
-444dcf11256a84791436c38484b4d9d7 *man/getDesign.Rd
+2637c41bd95634dd6c071203b48bbf83 *man/getDesign.Rd
 cca9b25e656b7e55b3992d64a8e36650 *man/getDistributionPars.Rd
 81f4d22eaaa573c6c69a00d067a5b30c *man/getExpectation.Rd
-8ec67d3df72d46b7623db28e71ac81b2 *man/getProbabilities.Rd
+aebbc53efb5bc969674a0a30e92a9e18 *man/getProbabilities.Rd
 1ae1522862d3a6f4d47dd367633fa616 *man/getRandomizationList.Rd
 4cbccdd3097c50e61b47ffaddf548a94 *man/get_p_values_new.Rd
 8b8e88d833ce25f7bcb79c5f7112e38e *man/getbiasCS1.Rd

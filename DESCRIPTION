@@ -1,7 +1,7 @@
 Package: randomizeR
 Type: Package
 Title: Randomization for Clinical Trials
-Version: 3.0.1
+Version: 3.0.2
 Authors@R: 
     c(person(given = "David",
              family = "Schindler",
@@ -42,7 +42,11 @@ Authors@R:
       person(given = "Nicole",
              family = "Heussen",
              role = c("aut", "ths"),
-             email = "nheussen@ukaachen.de"))
+             email = "nheussen@ukaachen.de"),
+      person(given = "Daniel",
+             family = "Bodden",
+             role = "ctb",
+             email = "dbodden@ukaachen.de"))
 Maintainer: Ralf-Dieter Hilgers <rhilgers@ukaachen.de>
 Description: This tool enables the user to choose a randomization procedure
     based on sound scientific criteria. It comprises the generation of
@@ -52,10 +56,10 @@ Description: This tool enables the user to choose a randomization procedure
 License: GPL (>= 3)
 Encoding: UTF-8
 Depends: R (>= 3.6.0), methods, ggplot2, plotrix, survival, mvtnorm
-Imports: pracma, cubature, mstate, purrr, rlang, magrittr, dplyr, coin,
-        PwrGSD
-Collate: 'getDesign.R' 'randPar.R' 'pbrPar.R' 'rarPar.R' 'POC.R'
-        'OBF.R' 'GSD.R' 'abcdPar.R' 'randSeq.R' 'abcdSeq.R'
+Imports: mstate, purrr, rlang, magrittr, dplyr, coin, PwrGSD, gsDesign,
+        insight, reshape2
+Collate: 'getDesign.R' 'randPar.R' 'pbrPar.R' 'rarPar.R' 'randSeq.R'
+        'rarSeq.R' 'GSD-Bias.R' 'abcdPar.R' 'abcdSeq.R'
         'getParameters.R' 'getExpectation.R' 'survEndp.R' 'expEndp.R'
         'normEndp.R' 'endpoint.R' 'util.R' 'getStat.R' 'power.R'
         'imbalance.R' 'corGuess.R' 'logRankDistribution.R' 'doublyF.R'
@@ -69,13 +73,13 @@ Collate: 'getDesign.R' 'randPar.R' 'pbrPar.R' 'rarPar.R' 'POC.R'
         'gbcdPar.R' 'gbcdSeq.R' 'hadaPar.R' 'hadaSeq.R' 'maccombo.R'
         'mpPar.R' 'mpSeq.R' 'pbrSeq.R' 'probUnDes.R' 'rtbdSeq.R'
         'rpbrSeq.R' 'randomBlockSeq.R' 'randomizeROverview.R'
-        'randomizeRPackage.R' 'rarSeq.R' 'rpbrPar.R' 'tbdPar.R'
-        'rtbdPar.R' 'saveAssess.R' 'saveRand.R' 'stratifiedAnalysis.R'
-        'tbdSeq.R' 'udPar.R' 'udSeq.R'
+        'randomizeRPackage.R' 'rpbrPar.R' 'tbdPar.R' 'rtbdPar.R'
+        'saveAssess.R' 'saveRand.R' 'stratifiedAnalysis.R' 'tbdSeq.R'
+        'udPar.R' 'udSeq.R'
 Suggests: testthat, knitr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-03-17 16:19:22 UTC; denisr
+Packaged: 2023-09-18 16:02:44 UTC; denisr
 Author: David Schindler [aut],
   Diane Uschner [aut],
   Denis Razsolkov [ctb],
@@ -85,6 +89,7 @@ Author: David Schindler [aut],
   Thi Mui Pham [ctb],
   Michael Martini [ctb],
   Ralf-Dieter Hilgers [aut, ths, cre],
-  Nicole Heussen [aut, ths]
+  Nicole Heussen [aut, ths],
+  Daniel Bodden [ctb]
 Repository: CRAN
-Date/Publication: 2023-03-19 22:20:02 UTC
+Date/Publication: 2023-09-18 19:50:02 UTC
